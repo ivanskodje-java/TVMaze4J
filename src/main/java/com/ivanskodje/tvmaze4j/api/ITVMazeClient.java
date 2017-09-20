@@ -22,9 +22,29 @@ import com.ivanskodje.tvmaze4j.model.IShow;
 import java.util.List;
 
 /**
+ * This is a client that is used to simplify interaction with the TVMaze API.
+ * The main way of interacting with the TVMaze API.
+ *
  * @author Ivan Skodje on 19/09/2017
  */
 public interface ITVMazeClient
 {
-	List<IShow> getShows();
+	/**
+	 * Gets a list of shows matching the query.
+	 * <p>
+	 * This is the equivalent of <code>showSearch(query, false)</code>
+	 *
+	 * @param query Search query.
+	 * @return A list of Shows matching the query.
+	 */
+	List<IShow> showSearch(String query);
+
+	/**
+	 * Gets a list of shows matching the query.
+	 *
+	 * @param query        Search query.
+	 * @param withEpisodes Whether or not you want episodes included with the shows.
+	 * @return A list of Shows matching the query.
+	 */
+	List<IShow> showSearch(String query, boolean withEpisodes);
 }

@@ -52,11 +52,22 @@ public class TVMazeClientImpl implements ITVMazeClient
 	{
 		REQUESTS = new Requests(httpClient);
 	}
+	public static double getAPIResponseTimeForDay() {
+		MetricsResponse response = Requests.GENERAL_REQUESTS.GET.makeRequest(
+				String.format(DiscordEndpoints.METRICS, "day"), MetricsResponse.class);
+
+		return response.summary.mean;
+	}
 
 	@Override
-	public List<IShow> getShows()
+	public List<IShow> showSearch(String query)
 	{
-		// TODO: Use REQUEST.GET to get data?
+		List<IShow> shows = REQUESTS.GET.makeRequest();
+	}
+
+	@Override
+	public List<IShow> showSearch(String query, boolean withEpisodes)
+	{
 		return null;
 	}
 }

@@ -17,39 +17,14 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
-
-import java.util.*;
-
 /**
- * This represents a json Show object.
+ * A Network that run the shows.
  *
- * @author Ivan Skodje on 19/09/2017
+ * @author ivanskodje on 20.09.17
  */
-public class ShowObject
+public class NetworkObject
 {
-	/**
-	 * TODO: Comment all variables.
-	 */
 	public Integer id;
-	public String url;
 	public String name;
-	public String type;
-	public String language;
-	public List<String> genres;
-	public String status;
-	public Integer runtime;
-	public Date premiered;
-	public String officialSite;
-	public ScheduleObject schedule;
-	public RatingObject rating;
-	public Integer weight;
-	public NetworkObject network;
-	public ExternalsObject externals;
-	public Map<String, String> image; // TODO: Create ImageObject.java
-	public Integer updated;
-	public String summary;
-	public LinksObject _links;
-	public List<EpisodeObject> episodes;
-	public EpisodeObject previousEpisode;
-	public EmbeddedObject _embedded;
+	public CountryObject country;
 }

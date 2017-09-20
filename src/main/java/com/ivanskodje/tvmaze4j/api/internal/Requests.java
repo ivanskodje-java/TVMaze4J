@@ -49,7 +49,7 @@ public class Requests
 	/**
 	 * Used for GET requests.
 	 */
-	public final Request GET;
+	public final HttpRequest GET;
 
 	/**
 	 * HTTP Client
@@ -64,13 +64,13 @@ public class Requests
 	public Requests(HttpClient client)
 	{
 		this.client = client;
-		GET = new Request(HttpGet.class);
+		GET = new HttpRequest(HttpGet.class);
 	}
 
 	/**
 	 * Used to access
 	 */
-	public final class Request
+	public final class HttpRequest
 	{
 		/**
 		 * Class containing request type.

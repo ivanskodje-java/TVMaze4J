@@ -69,7 +69,7 @@ public final class TVMazeEndpoints
 
 	/**
 	 * URL used to get a list of episode scheduled to air today (US).
-	 *
+	 * <p>
 	 * Episodes are returned in the order in which they are aired,
 	 * and full information about the episode and the corresponding
 	 * show is included.
@@ -77,17 +77,17 @@ public final class TVMazeEndpoints
 	public static final String SCHEDULE = CORE_URL + "schedule";
 
 	/**
-	 * URL used to get a list of episodes scheduled to air in the given country.
+	 * Formatted URL used to get a list of episodes scheduled to air in the given country.
 	 */
 	public static final String SCHEDULE_IN_COUNTRY = SCHEDULE + "?country=%s";
 
 	/**
-	 * URL used to get a list of episodes scheduled to air on the given date.
+	 * Formatted URL used to get a list of episodes scheduled to air on the given date.
 	 */
 	public static final String SCHEDULE_ON_DATE = SCHEDULE + "?date=%s";
 
 	/**
-	 * URL used to get a list of episodes schedules to air in the given country
+	 * Formatted URL used to get a list of episodes schedules to air in the given country
 	 * on the given date.
 	 */
 	public static final String SCHEDULE_IN_COUNTRY_ON_DATE = SCHEDULE + "?country=%s&date=%s";
@@ -97,4 +97,9 @@ public final class TVMazeEndpoints
 	 * Warning: This may be at least several MB large.
 	 */
 	public static final String SCHEDULE_FULL = SCHEDULE + "/full";
+
+	/**
+	 * TODO: Formatted string for getting image URLs
+	 */
+	public static final String IMAGES = "...";
 }

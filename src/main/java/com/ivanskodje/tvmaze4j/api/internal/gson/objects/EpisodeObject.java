@@ -17,11 +17,37 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import com.google.gson.annotations.Expose;
+
+import java.util.Map;
+
 /**
  * This represents a json Episode object.
  *
- * @author Ivan Skodje on 19/09/2017
+ * @author Ivan Skodje on 20/09/2017
  */
 public class EpisodeObject
 {
+	/**
+	 * TODO: Find out if there is any advantage using Integer Vs int.
+	 */
+	public Integer id;
+	public String url;
+	public String name;
+	public Integer season;
+	public Integer number;
+	public String airdate;
+	public String airtime;
+	public Integer runtime;
+	public Map<String, String> image; // TODO: Create ImageObject.java
+	public String summary;
+	public LinksObject _links;
+
+	/**
+	 * Serialization is off, as we do not want to store these values in the database.
+	 * When we deserialize from a json string, we might as well store the show if it
+	 * comes with it.
+	 */
+	@Expose(serialize = false, deserialize = true)
+	private ShowObject show;
 }
