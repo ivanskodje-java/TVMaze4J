@@ -18,8 +18,13 @@
 package com.ivanskodje.tvmaze4j.model;
 
 /**
+ * A TVMaze Show.
+ *
  * @author Ivan Skodje on 19/09/2017
  */
 public interface IShow
 {
+	String getName();
+
+	void setName(String name);
 }

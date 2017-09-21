@@ -18,11 +18,15 @@
 package com.ivanskodje.tvmaze4j.api.internal;
 
 import com.ivanskodje.tvmaze4j.api.ITVMazeClient;
+import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ResultObject;
+import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ShowObject;
 import com.ivanskodje.tvmaze4j.model.IShow;
-import org.apache.http.client.HttpClient;
-import org.yamj.api.common.http.SimpleHttpClientBuilder;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Ivan Skodje on 19/09/2017
@@ -40,34 +44,54 @@ public class TVMazeClientImpl implements ITVMazeClient
 	 */
 	public TVMazeClientImpl()
 	{
-		this(new SimpleHttpClientBuilder().build());
-	}
-
-	/**
-	 * Initializes with a given HttpClient, for handling interaction with TVMaze.
-	 *
-	 * @param httpClient
-	 */
-	public TVMazeClientImpl(HttpClient httpClient)
-	{
-		REQUESTS = new Requests(httpClient);
-	}
-	public static double getAPIResponseTimeForDay() {
-		MetricsResponse response = Requests.GENERAL_REQUESTS.GET.makeRequest(
-				String.format(DiscordEndpoints.METRICS, "day"), MetricsResponse.class);
-
-		return response.summary.mean;
+		REQUESTS = new Requests(this);
 	}
 
 	@Override
 	public List<IShow> showSearch(String query)
 	{
-		List<IShow> shows = REQUESTS.GET.makeRequest();
+		query = encodeURL(query);
+
+		List<IShow> shows = new CopyOnWriteArrayList<>();
+		ResultObject[] resultObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_SEARCH, query), ResultObject[].class);
+		Arrays.stream(resultObjects).map(TVMazeUtilities::getShowFromGSON).forEach(shows::add);
+
+
+		// Arrays.stream(showObjects).map(TVMazeUtilities::getShowFromGSON).forEach(shows::add);
+		return shows;
 	}
 
 	@Override
-	public List<IShow> showSearch(String query, boolean withEpisodes)
+	public IShow showSingleSearch(String query)
 	{
-		return null;
+		return showSingleSearch(query, false);
+	}
+
+	@Override
+	public IShow showSingleSearch(String query, boolean getEpisodes)
+	{
+		query = encodeURL(query);
+		String formattedUrl = getEpisodes ? TVMazeEndpoints.SHOW_SINGLE_SEARCH_WITH_EPISODES : TVMazeEndpoints.SHOW_SINGLE_SEARCH;
+		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(formattedUrl, query), ShowObject.class);
+		return TVMazeUtilities.getShowFromGSON(showObject);
+	}
+
+	/**
+	 * Clean the query and set the correct encoding to avoid errors.
+	 *
+	 * @param query An URL query.
+	 * @return An encoded query.
+	 */
+	private static String encodeURL(String query)
+	{
+		try
+		{
+			return URLEncoder.encode(query, "UTF-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+			return "";
+		}
 	}
 }

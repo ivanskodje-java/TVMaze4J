@@ -19,6 +19,7 @@ package com.ivanskodje.tvmaze4j;
 
 import com.ivanskodje.tvmaze4j.api.ITVMazeClient;
 import com.ivanskodje.tvmaze4j.api.internal.TVMazeClientImpl;
+import com.ivanskodje.tvmaze4j.model.IShow;
 import com.ivanskodje.tvmaze4j.util.LogMarkers;
 import com.ivanskodje.tvmaze4j.util.TVMazeException;
 import org.slf4j.Logger;
@@ -27,10 +28,14 @@ import org.slf4j.helpers.NOPLoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 /**
- * This is the main class for TVMaze4J. All static information will also be stored here.
+ * This is the main class for TVMaze4J.
+ * Not to be used as part of the wrapper - for intern use only.
+ * <p>
+ * A lot of static information about TVMaze4J will also be stored here.
  *
  * @author Ivan Skodje on 19/09/2017
  */
@@ -58,8 +63,8 @@ public class TVMaze4J
 
 
 	/**
-	 * Fetch information from Maven using the "app.properties" resource,
-	 * so we won't have duplicate values anywhere.
+	 * Fetch information from Maven using the "app.properties" resource.
+	 * This helps us avoiding duplicate values around the project.
 	 */
 	static
 	{
@@ -124,16 +129,20 @@ public class TVMaze4J
 	}
 
 	/**
-	 * Runs TVMaze4J in order to test if you can connect with the TVMaze API.
+	 * Run TVMaze4J in order to test whether or not you can connect with the TVMaze API.
+	 * <p>
 	 * Requires access to http://api.tvmaze.com.
 	 *
-	 * @param args No parameters are being used.
+	 * @param args No parameters expected.
 	 */
 	public static void main(String[] args)
 	{
 		try
 		{
 			ITVMazeClient client = new TVMazeClientImpl();
+			List<IShow> shows = client.showSearch("silicon valley");
+
+			shows.stream().forEach(s -> System.out.println(s.getName()));
 		}
 		catch (TVMazeException ex)
 		{

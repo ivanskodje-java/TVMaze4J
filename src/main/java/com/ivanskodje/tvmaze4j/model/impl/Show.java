@@ -15,19 +15,33 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ivanskodje.tvmaze4j.api.internal;
+package com.ivanskodje.tvmaze4j.model.impl;
+
+import com.ivanskodje.tvmaze4j.model.IShow;
 
 /**
- * Web socket connection between client and TVMaze's gateway:
- * "An inter-networking system for joining together two systems."
+ * Default implementation of {@link IShow}.
  *
- * @author Ivan Skodje on 19/09/2017
+ * @author Ivan Skodje on 21/09/2017
  */
-public class TVMazeWebSocket
+public class Show implements IShow
 {
+	private String name;
 
-	TVMazeWebSocket(String gateway)
+	public Show(String name)
 	{
+		this.name = name;
+	}
 
+	@Override
+	public String getName()
+	{
+		return name;
+	}
+
+	@Override
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 }

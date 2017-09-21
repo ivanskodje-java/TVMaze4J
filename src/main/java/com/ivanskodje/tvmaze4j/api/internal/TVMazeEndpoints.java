@@ -18,6 +18,8 @@
 package com.ivanskodje.tvmaze4j.api.internal;
 
 /**
+ * A list of all end points for the TVMaze API.
+ *
  * @author Ivan Skodje on 20/09/2017
  */
 public final class TVMazeEndpoints
@@ -99,7 +101,7 @@ public final class TVMazeEndpoints
 	public static final String SCHEDULE_FULL = SCHEDULE + "/full";
 
 	/**
-	 * TODO: Formatted string for getting image URLs
+	 * TODO: Get a formatted string for the image URLs
 	 */
 	public static final String IMAGES = "...";
 }

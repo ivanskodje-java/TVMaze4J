@@ -15,29 +15,13 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ivanskodje.tvmaze4j.api.events;
-
-import com.ivanskodje.tvmaze4j.api.ITVMazeClient;
+package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * Super-class of events triggered by {@link EventDispatcher}.
- * These are events sent by TVMaze4J.
- *
- * @author Ivan Skodje on 19/09/2017
+ * @author Ivan Skodje on 21/09/2017
  */
-public abstract class Event
+public class ResultObject
 {
-	/**
-	 * The client the {@link EventDispatcher} is associated with.
-	 */
-	protected ITVMazeClient client;
-
-	/**
-	 * Returns the client associated with the event.
-	 * @return
-	 */
-	public ITVMazeClient getClient()
-	{
-		return client;
-	}
+	public float score;
+	public ShowObject show;
 }

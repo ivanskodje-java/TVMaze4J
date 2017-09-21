@@ -41,10 +41,20 @@ public interface ITVMazeClient
 
 	/**
 	 * Gets a list of shows matching the query.
+	 * <p>
+	 * This is the equivalent of <code>showSearch(query, false)</code>
+	 *
+	 * @param query Search query.
+	 * @return A list of Shows matching the query.
+	 */
+	IShow showSingleSearch(String query);
+
+	/**
+	 * Gets a list of shows matching the query.
 	 *
 	 * @param query        Search query.
 	 * @param withEpisodes Whether or not you want episodes included with the shows.
 	 * @return A list of Shows matching the query.
 	 */
-	List<IShow> showSearch(String query, boolean withEpisodes);
+	IShow showSingleSearch(String query, boolean withEpisodes);
 }

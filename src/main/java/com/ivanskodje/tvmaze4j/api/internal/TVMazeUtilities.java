@@ -18,9 +18,13 @@
 package com.ivanskodje.tvmaze4j.api.internal;
 
 import com.google.gson.Gson;
+import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ResultObject;
+import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ShowObject;
+import com.ivanskodje.tvmaze4j.model.IShow;
+import com.ivanskodje.tvmaze4j.model.impl.Show;
 
 /**
- * Misc. utilities used throughout TVMaze4J.
+ * A bunch of various utilities used throughout TVMaze4J.
  *
  * @author ivanskodje on 20.09.17
  */
@@ -31,4 +35,14 @@ public class TVMazeUtilities
 	 * serialize and deserialize json strings received from TVMaze.
 	 */
 	public static final Gson GSON = new Gson();
+
+	public static IShow getShowFromGSON(ResultObject resultObject)
+	{
+		return new Show(resultObject.show.name);
+	}
+
+	public static IShow getShowFromGSON(ShowObject showObject)
+	{
+		return new Show(showObject.name);
+	}
 }
