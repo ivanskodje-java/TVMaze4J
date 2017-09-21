@@ -1,1 +1,10 @@
-[{"name":"Кремниевая долина","country":{"name":"Russian Federation","code":"RU","timezone":"Asia/Magadan"}}]
+[
+	{
+		"name": "Кремниевая долина",
+		"country": {
+			"name": "Russian Federation",
+			"code": "RU",
+			"timezone": "Asia/Magadan"
+		}
+	}
+]

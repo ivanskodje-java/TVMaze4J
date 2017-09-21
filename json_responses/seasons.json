@@ -1,1 +1,115 @@
-[{"id":661,"url":"http://www.tvmaze.com/seasons/661/silicon-valley-season-1","number":1,"name":"","episodeOrder":8,"premiereDate":"2014-04-06","endDate":"2014-06-01","network":{"id":8,"name":"HBO","country":{"name":"United States","code":"US","timezone":"America/New_York"}},"webChannel":null,"image":{"medium":"http://static.tvmaze.com/uploads/images/medium_portrait/49/123627.jpg","original":"http://static.tvmaze.com/uploads/images/original_untouched/49/123627.jpg"},"summary":"","_links":{"self":{"href":"http://api.tvmaze.com/seasons/661"}}},{"id":1953,"url":"http://www.tvmaze.com/seasons/1953/silicon-valley-season-2","number":2,"name":"","episodeOrder":10,"premiereDate":"2015-04-12","endDate":"2015-06-14","network":{"id":8,"name":"HBO","country":{"name":"United States","code":"US","timezone":"America/New_York"}},"webChannel":null,"image":{"medium":"http://static.tvmaze.com/uploads/images/medium_portrait/49/123628.jpg","original":"http://static.tvmaze.com/uploads/images/original_untouched/49/123628.jpg"},"summary":"","_links":{"self":{"href":"http://api.tvmaze.com/seasons/1953"}}},{"id":31752,"url":"http://www.tvmaze.com/seasons/31752/silicon-valley-season-3","number":3,"name":"","episodeOrder":10,"premiereDate":"2016-04-24","endDate":"2016-06-26","network":{"id":8,"name":"HBO","country":{"name":"United States","code":"US","timezone":"America/New_York"}},"webChannel":null,"image":{"medium":"http://static.tvmaze.com/uploads/images/medium_portrait/49/124839.jpg","original":"http://static.tvmaze.com/uploads/images/original_untouched/49/124839.jpg"},"summary":"","_links":{"self":{"href":"http://api.tvmaze.com/seasons/31752"}}},{"id":61681,"url":"http://www.tvmaze.com/seasons/61681/silicon-valley-season-4","number":4,"name":"","episodeOrder":10,"premiereDate":"2017-04-23","endDate":"2017-06-25","network":{"id":8,"name":"HBO","country":{"name":"United States","code":"US","timezone":"America/New_York"}},"webChannel":null,"image":null,"summary":"<p>Change is in the air as the Pied Piper guys pursue their video-chat app, PiperChat, but Richard has a hard time letting go of his dream to put his algorithm to better use. Dinesh flirts with notoriety, while Gilfoyle looks on in amusement. Erlich searches for his next big break. Jared attempts to pivot with the company. And Big Head enters the world of academia.<br /><br />Meanwhile, over at Hooli, Gavin finds himself threatened by Jack Barker, while Monica struggles to bounce back at Raviga after her fallout with Laurie. Sharp and irreverent, SILICON VALLEY continues to lambast the self-important world of tech in a season that finds the Pied Piper team looking to leave their mark, even as they continue to fumble along the road to success.</p>","_links":{"self":{"href":"http://api.tvmaze.com/seasons/61681"}}}]
+[
+	{
+		"id": 661,
+		"url": "http://www.tvmaze.com/seasons/661/silicon-valley-season-1",
+		"number": 1,
+		"name": "",
+		"episodeOrder": 8,
+		"premiereDate": "2014-04-06",
+		"endDate": "2014-06-01",
+		"network": {
+			"id": 8,
+			"name": "HBO",
+			"country": {
+				"name": "United States",
+				"code": "US",
+				"timezone": "America/New_York"
+			}
+		},
+		"webChannel": null,
+		"image": {
+			"medium": "http://static.tvmaze.com/uploads/images/medium_portrait/49/123627.jpg",
+			"original": "http://static.tvmaze.com/uploads/images/original_untouched/49/123627.jpg"
+		},
+		"summary": "",
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/seasons/661"
+			}
+		}
+	},
+	{
+		"id": 1953,
+		"url": "http://www.tvmaze.com/seasons/1953/silicon-valley-season-2",
+		"number": 2,
+		"name": "",
+		"episodeOrder": 10,
+		"premiereDate": "2015-04-12",
+		"endDate": "2015-06-14",
+		"network": {
+			"id": 8,
+			"name": "HBO",
+			"country": {
+				"name": "United States",
+				"code": "US",
+				"timezone": "America/New_York"
+			}
+		},
+		"webChannel": null,
+		"image": {
+			"medium": "http://static.tvmaze.com/uploads/images/medium_portrait/49/123628.jpg",
+			"original": "http://static.tvmaze.com/uploads/images/original_untouched/49/123628.jpg"
+		},
+		"summary": "",
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/seasons/1953"
+			}
+		}
+	},
+	{
+		"id": 31752,
+		"url": "http://www.tvmaze.com/seasons/31752/silicon-valley-season-3",
+		"number": 3,
+		"name": "",
+		"episodeOrder": 10,
+		"premiereDate": "2016-04-24",
+		"endDate": "2016-06-26",
+		"network": {
+			"id": 8,
+			"name": "HBO",
+			"country": {
+				"name": "United States",
+				"code": "US",
+				"timezone": "America/New_York"
+			}
+		},
+		"webChannel": null,
+		"image": {
+			"medium": "http://static.tvmaze.com/uploads/images/medium_portrait/49/124839.jpg",
+			"original": "http://static.tvmaze.com/uploads/images/original_untouched/49/124839.jpg"
+		},
+		"summary": "",
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/seasons/31752"
+			}
+		}
+	},
+	{
+		"id": 61681,
+		"url": "http://www.tvmaze.com/seasons/61681/silicon-valley-season-4",
+		"number": 4,
+		"name": "",
+		"episodeOrder": 10,
+		"premiereDate": "2017-04-23",
+		"endDate": "2017-06-25",
+		"network": {
+			"id": 8,
+			"name": "HBO",
+			"country": {
+				"name": "United States",
+				"code": "US",
+				"timezone": "America/New_York"
+			}
+		},
+		"webChannel": null,
+		"image": null,
+		"summary": "<p>Change is in the air as the Pied Piper guys pursue their video-chat app, PiperChat, but Richard has a hard time letting go of his dream to put his algorithm to better use. Dinesh flirts with notoriety, while Gilfoyle looks on in amusement. Erlich searches for his next big break. Jared attempts to pivot with the company. And Big Head enters the world of academia.<br /><br />Meanwhile, over at Hooli, Gavin finds himself threatened by Jack Barker, while Monica struggles to bounce back at Raviga after her fallout with Laurie. Sharp and irreverent, SILICON VALLEY continues to lambast the self-important world of tech in a season that finds the Pied Piper team looking to leave their mark, even as they continue to fumble along the road to success.</p>",
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/seasons/61681"
+			}
+		}
+	}
+]

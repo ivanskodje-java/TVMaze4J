@@ -1,1 +1,215 @@
-[{"id":1310584,"url":"http://www.tvmaze.com/episodes/1310584/melk-1x14-episode-14","name":"Episode 14","season":1,"number":14,"airdate":"2017-09-21","airtime":"07:00","airstamp":"2017-09-21T05:00:00+00:00","runtime":12,"image":null,"summary":null,"show":{"id":31780,"url":"http://www.tvmaze.com/shows/31780/melk","name":"Melk","type":"Scripted","language":"Norwegian","genres":["Drama","Comedy"],"status":"Running","runtime":12,"premiered":"2017-09-05","officialSite":"https://www.viafree.no/programmer/underholdning/melk","schedule":{"time":"07:00","days":["Monday","Tuesday","Wednesday","Thursday"]},"rating":{"average":null},"weight":35,"network":{"id":492,"name":"TV3","country":{"name":"Norway","code":"NO","timezone":"Europe/Oslo"}},"webChannel":null,"externals":{"tvrage":null,"thetvdb":334633,"imdb":null},"image":null,"summary":"<p><b>Melk</b> is a drama about two young single mothers who together try to make ends meet. The main roles are Ingri and Mathilde who happen to meet when they both birthed children on the same day at Ullevål Hospital. There are complications when the newly-born mothers' children are to be rescued and they both appear to be Johansen's last name. The foreclosure is quickly discovered and the broky start is proving to be the beginning of a beautiful and fun friendship that we follow through the maternity leave.</p>","updated":1505924437,"_links":{"self":{"href":"http://api.tvmaze.com/shows/31780"},"previousepisode":{"href":"http://api.tvmaze.com/episodes/1310584"}}},"_links":{"self":{"href":"http://api.tvmaze.com/episodes/1310584"}}},{"id":1285268,"url":"http://www.tvmaze.com/episodes/1285268/sinnasnekkern-8x04-episode-4","name":"Episode 4","season":8,"number":4,"airdate":"2017-09-21","airtime":"20:30","airstamp":"2017-09-21T18:30:00+00:00","runtime":60,"image":null,"summary":null,"show":{"id":20924,"url":"http://www.tvmaze.com/shows/20924/sinnasnekkern","name":"Sinnasnekker'n","type":"Reality","language":"Norwegian","genres":[],"status":"Running","runtime":60,"premiered":"2010-08-31","officialSite":"http://www.dplay.no/sinnasnekkern/","schedule":{"time":"20:30","days":["Thursday"]},"rating":{"average":null},"weight":16,"network":{"id":314,"name":"TV Norge","country":{"name":"Norway","code":"NO","timezone":"Europe/Oslo"}},"webChannel":null,"externals":{"tvrage":null,"thetvdb":186661,"imdb":null},"image":{"medium":"http://static.tvmaze.com/uploads/images/medium_portrait/73/184749.jpg","original":"http://static.tvmaze.com/uploads/images/original_untouched/73/184749.jpg"},"summary":"<p>Sinnasnekker'n Otto Robsahm helps families which have uncompleted renovations. Otto applies his technique of angry counseling and tough love to fix both their houses and their relationships.</p>","updated":1505944245,"_links":{"self":{"href":"http://api.tvmaze.com/shows/20924"},"previousepisode":{"href":"http://api.tvmaze.com/episodes/1285268"},"nextepisode":{"href":"http://api.tvmaze.com/episodes/1311774"}}},"_links":{"self":{"href":"http://api.tvmaze.com/episodes/1285268"}}},{"id":1311800,"url":"http://www.tvmaze.com/episodes/1311800/matkontrollen-6x04-episode-4","name":"Episode 4","season":6,"number":4,"airdate":"2017-09-21","airtime":"20:30","airstamp":"2017-09-21T18:30:00+00:00","runtime":30,"image":null,"summary":null,"show":{"id":31538,"url":"http://www.tvmaze.com/shows/31538/matkontrollen","name":"Matkontrollen","type":"Documentary","language":"Norwegian","genres":[],"status":"Running","runtime":30,"premiered":"2015-01-22","officialSite":"http://www.tv2.no/underholdning/matkontrollen/","schedule":{"time":"20:30","days":["Thursday"]},"rating":{"average":null},"weight":34,"network":{"id":339,"name":"TV 2","country":{"name":"Norway","code":"NO","timezone":"Europe/Oslo"}},"webChannel":null,"externals":{"tvrage":null,"thetvdb":291142,"imdb":null},"image":null,"summary":"<p><b>Matkontrollen</b> checks the taste, hygiene and quality of food products for sale in the Norwegian market. Do the consumers get what they pay for, or are they fooled by the industry.</p>","updated":1505944455,"_links":{"self":{"href":"http://api.tvmaze.com/shows/31538"},"previousepisode":{"href":"http://api.tvmaze.com/episodes/1311800"},"nextepisode":{"href":"http://api.tvmaze.com/episodes/1311801"}}},"_links":{"self":{"href":"http://api.tvmaze.com/episodes/1311800"}}}]
+[
+	{
+		"id": 1310584,
+		"url": "http://www.tvmaze.com/episodes/1310584/melk-1x14-episode-14",
+		"name": "Episode 14",
+		"season": 1,
+		"number": 14,
+		"airdate": "2017-09-21",
+		"airtime": "07:00",
+		"airstamp": "2017-09-21T05:00:00+00:00",
+		"runtime": 12,
+		"image": null,
+		"summary": null,
+		"show": {
+			"id": 31780,
+			"url": "http://www.tvmaze.com/shows/31780/melk",
+			"name": "Melk",
+			"type": "Scripted",
+			"language": "Norwegian",
+			"genres": [
+				"Drama",
+				"Comedy"
+			],
+			"status": "Running",
+			"runtime": 12,
+			"premiered": "2017-09-05",
+			"officialSite": "https://www.viafree.no/programmer/underholdning/melk",
+			"schedule": {
+				"time": "07:00",
+				"days": [
+					"Monday",
+					"Tuesday",
+					"Wednesday",
+					"Thursday"
+				]
+			},
+			"rating": {
+				"average": null
+			},
+			"weight": 35,
+			"network": {
+				"id": 492,
+				"name": "TV3",
+				"country": {
+					"name": "Norway",
+					"code": "NO",
+					"timezone": "Europe/Oslo"
+				}
+			},
+			"webChannel": null,
+			"externals": {
+				"tvrage": null,
+				"thetvdb": 334633,
+				"imdb": null
+			},
+			"image": null,
+			"summary": "<p><b>Melk</b> is a drama about two young single mothers who together try to make ends meet. The main roles are Ingri and Mathilde who happen to meet when they both birthed children on the same day at Ullevål Hospital. There are complications when the newly-born mothers' children are to be rescued and they both appear to be Johansen's last name. The foreclosure is quickly discovered and the broky start is proving to be the beginning of a beautiful and fun friendship that we follow through the maternity leave.</p>",
+			"updated": 1505924437,
+			"_links": {
+				"self": {
+					"href": "http://api.tvmaze.com/shows/31780"
+				},
+				"previousepisode": {
+					"href": "http://api.tvmaze.com/episodes/1310584"
+				}
+			}
+		},
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/episodes/1310584"
+			}
+		}
+	},
+	{
+		"id": 1285268,
+		"url": "http://www.tvmaze.com/episodes/1285268/sinnasnekkern-8x04-episode-4",
+		"name": "Episode 4",
+		"season": 8,
+		"number": 4,
+		"airdate": "2017-09-21",
+		"airtime": "20:30",
+		"airstamp": "2017-09-21T18:30:00+00:00",
+		"runtime": 60,
+		"image": null,
+		"summary": null,
+		"show": {
+			"id": 20924,
+			"url": "http://www.tvmaze.com/shows/20924/sinnasnekkern",
+			"name": "Sinnasnekker'n",
+			"type": "Reality",
+			"language": "Norwegian",
+			"genres": [],
+			"status": "Running",
+			"runtime": 60,
+			"premiered": "2010-08-31",
+			"officialSite": "http://www.dplay.no/sinnasnekkern/",
+			"schedule": {
+				"time": "20:30",
+				"days": [
+					"Thursday"
+				]
+			},
+			"rating": {
+				"average": null
+			},
+			"weight": 16,
+			"network": {
+				"id": 314,
+				"name": "TV Norge",
+				"country": {
+					"name": "Norway",
+					"code": "NO",
+					"timezone": "Europe/Oslo"
+				}
+			},
+			"webChannel": null,
+			"externals": {
+				"tvrage": null,
+				"thetvdb": 186661,
+				"imdb": null
+			},
+			"image": {
+				"medium": "http://static.tvmaze.com/uploads/images/medium_portrait/73/184749.jpg",
+				"original": "http://static.tvmaze.com/uploads/images/original_untouched/73/184749.jpg"
+			},
+			"summary": "<p>Sinnasnekker'n Otto Robsahm helps families which have uncompleted renovations. Otto applies his technique of angry counseling and tough love to fix both their houses and their relationships.</p>",
+			"updated": 1505944245,
+			"_links": {
+				"self": {
+					"href": "http://api.tvmaze.com/shows/20924"
+				},
+				"previousepisode": {
+					"href": "http://api.tvmaze.com/episodes/1285268"
+				},
+				"nextepisode": {
+					"href": "http://api.tvmaze.com/episodes/1311774"
+				}
+			}
+		},
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/episodes/1285268"
+			}
+		}
+	},
+	{
+		"id": 1311800,
+		"url": "http://www.tvmaze.com/episodes/1311800/matkontrollen-6x04-episode-4",
+		"name": "Episode 4",
+		"season": 6,
+		"number": 4,
+		"airdate": "2017-09-21",
+		"airtime": "20:30",
+		"airstamp": "2017-09-21T18:30:00+00:00",
+		"runtime": 30,
+		"image": null,
+		"summary": null,
+		"show": {
+			"id": 31538,
+			"url": "http://www.tvmaze.com/shows/31538/matkontrollen",
+			"name": "Matkontrollen",
+			"type": "Documentary",
+			"language": "Norwegian",
+			"genres": [],
+			"status": "Running",
+			"runtime": 30,
+			"premiered": "2015-01-22",
+			"officialSite": "http://www.tv2.no/underholdning/matkontrollen/",
+			"schedule": {
+				"time": "20:30",
+				"days": [
+					"Thursday"
+				]
+			},
+			"rating": {
+				"average": null
+			},
+			"weight": 34,
+			"network": {
+				"id": 339,
+				"name": "TV 2",
+				"country": {
+					"name": "Norway",
+					"code": "NO",
+					"timezone": "Europe/Oslo"
+				}
+			},
+			"webChannel": null,
+			"externals": {
+				"tvrage": null,
+				"thetvdb": 291142,
+				"imdb": null
+			},
+			"image": null,
+			"summary": "<p><b>Matkontrollen</b> checks the taste, hygiene and quality of food products for sale in the Norwegian market. Do the consumers get what they pay for, or are they fooled by the industry.</p>",
+			"updated": 1505944455,
+			"_links": {
+				"self": {
+					"href": "http://api.tvmaze.com/shows/31538"
+				},
+				"previousepisode": {
+					"href": "http://api.tvmaze.com/episodes/1311800"
+				},
+				"nextepisode": {
+					"href": "http://api.tvmaze.com/episodes/1311801"
+				}
+			}
+		},
+		"_links": {
+			"self": {
+				"href": "http://api.tvmaze.com/episodes/1311800"
+			}
+		}
+	}
+]
