@@ -24,7 +24,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.ivanskodje.tvmaze4j.TVMaze4J" level="TRACE"/>
+    <logger name="com.ivanskodje.tvmaze4j.TVMaze4JTest" level="TRACE"/>
 
     <root level="debug">
         <appender-ref ref="CONSOLE" />

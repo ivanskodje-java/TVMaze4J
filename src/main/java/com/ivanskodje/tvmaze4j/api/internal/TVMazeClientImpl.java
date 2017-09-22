@@ -50,7 +50,7 @@ public class TVMazeClientImpl implements ITVMazeClient
 	@Override
 	public List<IShow> showSearch(String query)
 	{
-		query = encodeURL(query);
+		query = TVMazeUtilities.encodeURL(query);
 
 		List<IShow> shows = new CopyOnWriteArrayList<>();
 		ResultObject[] resultObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_SEARCH, query), ResultObject[].class);
@@ -70,28 +70,11 @@ public class TVMazeClientImpl implements ITVMazeClient
 	@Override
 	public IShow showSingleSearch(String query, boolean getEpisodes)
 	{
-		query = encodeURL(query);
+		query = TVMazeUtilities.encodeURL(query);
 		String formattedUrl = getEpisodes ? TVMazeEndpoints.SHOW_SINGLE_SEARCH_WITH_EPISODES : TVMazeEndpoints.SHOW_SINGLE_SEARCH;
 		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(formattedUrl, query), ShowObject.class);
 		return TVMazeUtilities.getShowFromGSON(showObject);
 	}
 
-	/**
-	 * Clean the query and set the correct encoding to avoid errors.
-	 *
-	 * @param query An URL query.
-	 * @return An encoded query.
-	 */
-	private static String encodeURL(String query)
-	{
-		try
-		{
-			return URLEncoder.encode(query, "UTF-8");
-		}
-		catch (UnsupportedEncodingException e)
-		{
-			e.printStackTrace();
-			return "";
-		}
-	}
+
 }

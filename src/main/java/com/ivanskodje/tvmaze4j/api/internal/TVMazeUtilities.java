@@ -23,6 +23,9 @@ import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ShowObject;
 import com.ivanskodje.tvmaze4j.model.IShow;
 import com.ivanskodje.tvmaze4j.model.impl.Show;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * A bunch of various utilities used throughout TVMaze4J.
  *
@@ -44,5 +47,24 @@ public class TVMazeUtilities
 	public static IShow getShowFromGSON(ShowObject showObject)
 	{
 		return new Show(showObject.name);
+	}
+
+	/**
+	 * Clean query and set encoding format.
+	 *
+	 * @param query An URL query.
+	 * @return An encoded query.
+	 */
+	public static String encodeURL(String query)
+	{
+		try
+		{
+			return URLEncoder.encode(query, "UTF-8");
+		}
+		catch (UnsupportedEncodingException e)
+		{
+			e.printStackTrace();
+			return "";
+		}
 	}
 }
