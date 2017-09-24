@@ -18,7 +18,9 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * Externals contain show IDs from different databases such as IMDB.
+ * This represents a json ExternalsImpl object.
+ * <p>
+ * ExternalsImpl contain show IDs from different databases such as IMDB.
  *
  * @author ivanskodje on 20.09.17
  */

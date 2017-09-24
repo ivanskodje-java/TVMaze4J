@@ -18,7 +18,9 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * Country details.
+ * This represents a json CountryImpl object.
+ * <p>
+ * CountryImpl details.
  *
  * @author ivanskodje on 20.09.17
  */

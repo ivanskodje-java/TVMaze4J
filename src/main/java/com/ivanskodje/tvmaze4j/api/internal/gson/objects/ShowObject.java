@@ -18,18 +18,16 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 /**
- * This represents a json Show object.
+ * This represents a json ShowImpl object.
  *
  * @author Ivan Skodje on 19/09/2017
  */
 public class ShowObject
 {
-	/**
-	 * TODO: Comment all variables.
-	 */
 	public Integer id;
 	public String url;
 	public String name;
@@ -44,12 +42,11 @@ public class ShowObject
 	public RatingObject rating;
 	public Integer weight;
 	public NetworkObject network;
+	public WebChannelObject webChannel;
 	public ExternalsObject externals;
-	public Map<String, String> image; // TODO: Create ImageObject.java
-	public Integer updated;
+	public ImageObject image;
 	public String summary;
+	public Integer updated;
 	public LinksObject _links;
-	public List<EpisodeObject> episodes;
-	public EpisodeObject previousEpisode;
 	public EmbeddedObject _embedded;
 }

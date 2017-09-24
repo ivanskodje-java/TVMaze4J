@@ -15,29 +15,50 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ivanskodje.tvmaze4j.util;
+package com.ivanskodje.tvmaze4j.model.impl;
 
 /**
- * @author Ivan Skodje on 19/09/2017
+ * @author Ivan Skodje on 23/09/2017
  */
-public class TVMazeException extends RuntimeException
+public class ExternalsImpl
 {
-	private String msg;
+	private int tvRage = -1;
+	private int theTvDb = -1;
+	private String imdb = "";
 
-	public TVMazeException(String msg)
+	public int getTvRage()
 	{
-		super(msg);
-		this.msg = msg;
+		return tvRage;
 	}
 
-	public TVMazeException(String msg, Throwable reason)
+	public void setTvRage(Integer tvRage)
 	{
-		super(msg, reason);
-		this.msg = msg;
+		this.tvRage = (tvRage != null) ? tvRage : -1;
 	}
 
-	public String getErrorMessage()
+	public int getTheTvDb()
 	{
-		return msg;
+		return theTvDb;
+	}
+
+	public void setTheTvDb(Integer theTvDb)
+	{
+		this.theTvDb = (theTvDb != null) ? theTvDb : -1;
+	}
+
+	public String getImdb()
+	{
+		return imdb;
+	}
+
+	public void setImdb(String imdb)
+	{
+		this.imdb = imdb;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "tvRage: " + getTvRage() + ", theTvDb: " + getTheTvDb() + ", imdb: " + getImdb();
 	}
 }

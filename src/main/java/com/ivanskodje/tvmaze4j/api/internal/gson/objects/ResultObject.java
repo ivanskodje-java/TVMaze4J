@@ -18,10 +18,26 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
+ * This represents a json Result object.
+ * <p>
+ * This is the container of shows, and is the result
+ * you get when using show search.
+ *
  * @author Ivan Skodje on 21/09/2017
  */
 public class ResultObject
 {
-	public float score;
+	/**
+	 * Search relevance score.
+	 * This score represent the relevance of your search.
+	 * A high value indicate a good match to your search result.
+	 * <p>
+	 * Range is expected to be between 0 and 40.
+	 */
+	public Float score;
+
+	/**
+	 * The ShowImpl object.
+	 */
 	public ShowObject show;
 }

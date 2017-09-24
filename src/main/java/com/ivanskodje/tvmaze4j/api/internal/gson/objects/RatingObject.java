@@ -18,12 +18,11 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * RatingObject is an object used to parse from Gson directly.
- * It contains the average show rating.
+ * This represents a json RatingImpl object.
  *
  * @author ivanskodje on 20.09.17
  */
 public class RatingObject
 {
-	public float average;
+	public Float average;
 }

@@ -15,30 +15,34 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
-
-import java.util.Date;
+package com.ivanskodje.tvmaze4j.model.impl;
 
 /**
- * This represents a json EpisodeImpl object.
+ * RatingImpl is on its own class, since we may expect to
+ * get more types of rating other than just average.
  *
- * @author Ivan Skodje on 20/09/2017
+ * @author Ivan Skodje on 23/09/2017
  */
-public class EpisodeObject
+public class RatingImpl
 {
-	public Integer id;
-	public String url;
-	public String name;
-	public Integer season;
-	public Integer number;
-	public String airdate;
-	public String airtime;
-	public Date airstamp;
-	public Integer runtime;
-	public ImageObject image;
-	public String summary;
-	public LinksObject _links;
+	private float average = 0;
 
-	public Integer status; // Used for error handling
-	public String message; // Error message
+	public float getAverage()
+	{
+		return average;
+	}
+
+	public void setAverage(Float average)
+	{
+		if(average != null)
+		{
+			this.average = average;
+		}
+	}
+
+	@Override
+	public String toString()
+	{
+		return "" + average;
+	}
 }

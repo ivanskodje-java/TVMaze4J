@@ -20,12 +20,14 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 import java.util.List;
 
 /**
- * Embedded contains data you may find with &embedded URLs.
+ * This represents a json EmbeddedImpl object.
+ * <p>
+ * EmbeddedImpl contains data you may find with &embedded URLs.
  *
  * @author ivanskodje on 20.09.17
  */
 public class EmbeddedObject
 {
-
+	public ShowObject show;
 	public List<EpisodeObject> episodes;
 }

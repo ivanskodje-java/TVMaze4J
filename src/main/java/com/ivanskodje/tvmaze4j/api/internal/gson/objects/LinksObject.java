@@ -17,16 +17,21 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
-import java.util.Map;
-
 /**
+ * This represents a json LinksImpl object.
+ * <p>
  * Contains various links with URLs.
  *
  * @author ivanskodje on 20.09.17
  */
 public class LinksObject
 {
-	// TODO: Create an SelfObject and a PreviousEpisodeObject sub-class in LinksObject.
-	public Map<String, String> self;
-	public Map<String, String> previousepisode;
+	public HyperlinkObject self;
+	public HyperlinkObject previousepisode;
+	public HyperlinkObject nextepisode;
+
+	public class HyperlinkObject
+	{
+		public String href;
+	}
 }

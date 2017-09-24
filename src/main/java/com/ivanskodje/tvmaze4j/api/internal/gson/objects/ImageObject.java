@@ -17,28 +17,13 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
-import java.util.Date;
-
 /**
- * This represents a json EpisodeImpl object.
+ * This represents a json Image object.
  *
- * @author Ivan Skodje on 20/09/2017
+ * @author Ivan Skodje on 22/09/2017
  */
-public class EpisodeObject
+public class ImageObject
 {
-	public Integer id;
-	public String url;
-	public String name;
-	public Integer season;
-	public Integer number;
-	public String airdate;
-	public String airtime;
-	public Date airstamp;
-	public Integer runtime;
-	public ImageObject image;
-	public String summary;
-	public LinksObject _links;
-
-	public Integer status; // Used for error handling
-	public String message; // Error message
+	public String medium;
+	public String original;
 }

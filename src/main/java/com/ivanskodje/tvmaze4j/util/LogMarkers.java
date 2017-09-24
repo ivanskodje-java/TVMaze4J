@@ -41,6 +41,11 @@ public enum LogMarkers implements Marker
 	API(MAIN),
 
 	/**
+	 * A Marker for models in {@link com.ivanskodje.tvmaze4j.model} package.
+	 */
+	MODEL(MAIN),
+
+	/**
 	 * A Marker for the classes in {@link com.ivanskodje.tvmaze4j.util} package.
 	 */
 	UTIL(MAIN),

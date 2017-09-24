@@ -18,7 +18,9 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * A Network that run the shows.
+ * This represents a json NetworkImpl object.
+ * <p>
+ * A NetworkImpl that run the shows.
  *
  * @author ivanskodje on 20.09.17
  */

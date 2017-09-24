@@ -20,7 +20,8 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 import java.util.List;
 
 /**
- * ScheduleObject is an object used to parse from Gson directly.
+ * This represents a json ScheduleImpl object.
+ * <p>
  * It contains the days the show airs, as well as the time.
  *
  * @author ivanskodje on 20.09.17

@@ -15,30 +15,39 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
-
-import java.util.Date;
+package com.ivanskodje.tvmaze4j.model.impl;
 
 /**
- * This represents a json EpisodeImpl object.
- *
- * @author Ivan Skodje on 20/09/2017
+ * @author Ivan Skodje on 23/09/2017
  */
-public class EpisodeObject
+public class ImagesImpl
 {
-	public Integer id;
-	public String url;
-	public String name;
-	public Integer season;
-	public Integer number;
-	public String airdate;
-	public String airtime;
-	public Date airstamp;
-	public Integer runtime;
-	public ImageObject image;
-	public String summary;
-	public LinksObject _links;
+	private String medium = "";
+	private String original = "";
 
-	public Integer status; // Used for error handling
-	public String message; // Error message
+	public String getMedium()
+	{
+		return medium;
+	}
+
+	public void setMedium(String medium)
+	{
+		this.medium = medium;
+	}
+
+	public String getOriginal()
+	{
+		return original;
+	}
+
+	public void setOriginal(String original)
+	{
+		this.original = original;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Medium: " + getMedium() + ", Original: " + getOriginal();
+	}
 }

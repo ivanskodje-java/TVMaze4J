@@ -18,6 +18,7 @@
 package com.ivanskodje.tvmaze4j.api.internal;
 
 import com.ivanskodje.tvmaze4j.TVMaze4J;
+import com.ivanskodje.tvmaze4j.api.TVMazeClient;
 import com.ivanskodje.tvmaze4j.util.LogMarkers;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -27,7 +28,6 @@ import org.yamj.api.common.http.DigestedResponse;
 import org.yamj.api.common.http.DigestedResponseReader;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 
 import static com.ivanskodje.tvmaze4j.TVMaze4J.LOGGER;
@@ -39,6 +39,12 @@ import static com.ivanskodje.tvmaze4j.TVMaze4J.LOGGER;
  */
 public class Requests
 {
+
+	/**
+	 * TODO: This might be used in future implementations.
+	 */
+	private final TVMazeClient client;
+
 	/**
 	 * User Agent which is used to identify us as we interact.
 	 */
@@ -47,61 +53,29 @@ public class Requests
 	/**
 	 * Used for GET requests.
 	 */
-	public final HttpRequest GET;
-
-	/**
-	 * Used for POST requests.
-	 */
-	// public final HttpRequest POST;
+	public final GetRequest GET;
 
 
 	/**
-	 * We use requests in order to request information from TVMaze.
+	 * We use the requests in order to request information from TVMaze.
 	 * <p>
-	 * The structure of using a GET variable to access certain requests,
-	 * will allow us to expand on this with POST, DELETE, and other types of
-	 * requests in the future - if ever needed.
-	 * <p>
-	 * TODO?: Implement premium account APIs
+	 * TODO-MAYBE: Implement premium account APIs end points & requests
 	 */
-	public Requests(TVMazeClientImpl client)
+	public Requests(TVMazeClient client)
 	{
-		GET = new HttpRequest(HttpGet.class, client);
-		// POST = new HttpRequest(HttpPost.class, client);
+		this.client = client;
+		GET = new GetRequest();
 	}
 
 	/**
-	 * Used to access HTTP requests, depending on Class that extends HttpUriRequest.
+	 * Used to make HTTP GET requests.
 	 */
-	public final class HttpRequest
+	public final class GetRequest implements Request
 	{
-		/**
-		 * TODO: Do we need this?
-		 * Client reference that may be used for some requests.
-		 */
-		private final TVMazeClientImpl client;
-
 		/**
 		 * HTTP Client; for which the requests are made with.
 		 */
-		private final CloseableHttpClient HTTP_CLIENT = HttpClients.custom().setUserAgent(USER_AGENT).build();
-
-		/**
-		 * Class of the method used for making requests.
-		 */
-		final Class<? extends HttpUriRequest> requestClass;
-
-		/**
-		 * Used to access HTTP requests, depending on Class that extends HttpUriRequest.
-		 *
-		 * @param clazz  The class that determines what kind of requests we are going to make.
-		 * @param client The client that own the requests.
-		 */
-		private HttpRequest(Class<? extends HttpUriRequest> clazz, TVMazeClientImpl client)
-		{
-			this.requestClass = clazz;
-			this.client = client;
-		}
+		private final CloseableHttpClient httpClient = HttpClients.custom().setUserAgent(USER_AGENT).build();
 
 		/**
 		 * Makes a request to TVMaze, using a class that extends HttpUriRequest.
@@ -111,47 +85,37 @@ public class Requests
 		 * @param <T>   Type used for deserialization of JSON responses.
 		 * @return A deserialized object from the response.
 		 */
+		@Override
 		public <T> T makeRequest(String url, Class<T> clazz)
 		{
+			System.out.println("-------> " + url);
 			try
 			{
-				HttpUriRequest httpRequest = this.requestClass.getConstructor(String.class).newInstance(url);
-				httpRequest.addHeader("User-Agent", USER_AGENT);
-				httpRequest.addHeader("Content-Type", "application/json; charset=utf-8");
-				DigestedResponse response = null;
+				HttpUriRequest httpRequest = new HttpGet(url);
+				DigestedResponse response = DigestedResponseReader.requestContent(httpClient, (HttpGet) httpRequest, Charset.forName("UTF-8"));
 
-				/**
-				 * HttpGet response
-				 */
-				if (httpRequest instanceof HttpGet)
+				switch (response.getStatusCode())
 				{
-					response = DigestedResponseReader.requestContent(HTTP_CLIENT, (HttpGet) httpRequest, Charset.forName("UTF-8"));
+					case 404:
+						TVMaze4J.LOGGER.error(LogMarkers.API, "Error Code 404: " + response.getContent());
+						return null;
 				}
-
 				return TVMazeUtilities.GSON.fromJson(response.getContent(), clazz);
 			}
 			catch (IOException ex)
 			{
 				LOGGER.error(LogMarkers.API, "IO Exception.\n" + ex.getMessage());
 			}
-			catch (IllegalAccessException ex)
-			{
-				LOGGER.error(LogMarkers.API, "Illegal Access.\n" + ex.getMessage());
-			}
-			catch (InstantiationException ex)
-			{
-				LOGGER.error(LogMarkers.API, "Was unable to instantiate with " + url + ".\n" + ex.getMessage());
-			}
-			catch (NoSuchMethodException ex)
-			{
-				LOGGER.error(LogMarkers.API, "No such method exists for " + clazz.getSimpleName() + ".\n" + ex.getMessage());
-			}
-			catch (InvocationTargetException ex)
-			{
-				LOGGER.error(LogMarkers.API, "Invocation target exception.\n" + ex.getMessage());
-			}
 
 			return null;
 		}
+	}
+
+	/**
+	 * Request Interface.
+	 */
+	public interface Request
+	{
+		<T> T makeRequest(String url, Class<T> clazz);
 	}
 }

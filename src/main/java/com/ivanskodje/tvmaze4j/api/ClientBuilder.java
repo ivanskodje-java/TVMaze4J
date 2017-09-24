@@ -20,20 +20,29 @@ package com.ivanskodje.tvmaze4j.api;
 import com.ivanskodje.tvmaze4j.api.internal.TVMazeClientImpl;
 
 /**
- * Used to configure and setup a {@link ITVMazeClient} instance.
+ * Used to configure and setup a {@link TVMazeClient} instance.
  *
  * @author Ivan Skodje on 19/09/2017
  */
 public class ClientBuilder
 {
 	/**
-	 * Creates a {@link ITVMazeClient} with configuration specified by this builder.
+	 * Creates a {@link TVMazeClient} with configuration specified by this builder.
+	 * <p>
+	 * The intention of a builder is to enable polymorphism, by allowing you to
+	 * setup all the classes and constructors leading up to the point.
+	 * <p>
+	 * NOTE:
+	 * This is added in anticipation for future changes and improvements
+	 * to the TVMaze4J wrapper. For example, if and when we enable user interaction
+	 * to the TVMaze API, we may want to request a password or token to go through
+	 * the builder, which in turn sets everything up, including error/exception handling.
 	 *
 	 * @return An implemented client.
 	 */
-	public ITVMazeClient build()
+	public TVMazeClient build()
 	{
-		final ITVMazeClient client = new TVMazeClientImpl();
+		final TVMazeClient client = new TVMazeClientImpl();
 		return client;
 	}
 }

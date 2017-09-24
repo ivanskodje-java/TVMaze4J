@@ -17,18 +17,16 @@
 
 package com.ivanskodje.tvmaze4j;
 
-import com.ivanskodje.tvmaze4j.api.ITVMazeClient;
-import com.ivanskodje.tvmaze4j.api.internal.TVMazeClientImpl;
-import com.ivanskodje.tvmaze4j.model.IShow;
+import com.ivanskodje.tvmaze4j.api.ClientBuilder;
+import com.ivanskodje.tvmaze4j.api.TVMazeClient;
+import com.ivanskodje.tvmaze4j.model.Show;
 import com.ivanskodje.tvmaze4j.util.LogMarkers;
-import com.ivanskodje.tvmaze4j.util.TVMazeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.helpers.NOPLoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Properties;
 
 /**
@@ -102,7 +100,7 @@ public class TVMaze4J
 		else
 		{
 			/**
-			 * TODO: Implement a custom logger that we can return instead of NOP.
+			 * TODO: Implement a custom logger that we can return instead of NOP?
 			 */
 			System.err.println("TVMaze4J: Error initializing the SLF4J logger.\n" +
 					"TVMaze4J: There are no SLF4J implementation available.");
@@ -137,16 +135,12 @@ public class TVMaze4J
 	 */
 	public static void main(String[] args)
 	{
-		try
-		{
-			ITVMazeClient client = new TVMazeClientImpl();
-			List<IShow> shows = client.showSearch("silicon valley");
+		// Create client
+		ClientBuilder builder = new ClientBuilder();
+		TVMazeClient client = builder.build();
 
-			shows.stream().forEach(s -> System.out.println(s.getName()));
-		}
-		catch (TVMazeException ex)
-		{
-			LOGGER.error(LogMarkers.MAIN, "There was an error initializing the client", ex);
-		}
+		// Get the matching show (single) with episodes
+		Show show = client.showSingleSearch("silicon valley", true);
+		System.out.println(show.getEpisodes());
 	}
 }

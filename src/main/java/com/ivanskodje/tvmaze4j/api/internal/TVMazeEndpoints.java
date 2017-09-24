@@ -45,24 +45,44 @@ public final class TVMazeEndpoints
 	public static final String SHOW_SINGLE_SEARCH_WITH_EPISODES = SHOW_SINGLE_SEARCH + "&embed=episodes";
 
 	/**
-	 * Private URL used to find a show using tvrage, thetvdb or IMBD ID.
+	 * Formatted URL used to find a specific show using a TVMaze ID.
 	 */
-	private static final String SHOW_LOOKUP = CORE_URL + "lookup/shows";
+	public static final String SHOW_LOOKUP_TVMAZE = CORE_URL + "shows/%s";
 
 	/**
 	 * Formatted URL used to find a specific show using a TVRage ID.
 	 */
-	public static final String SHOW_LOOKUP_TVRAGE = SHOW_LOOKUP + "?tvrage=%s";
+	public static final String SHOW_LOOKUP_TVRAGE = CORE_URL + "lookup/shows?tvrage=%s";
 
 	/**
 	 * Formatted URL used to find a specific show using a TheTVDB ID.
 	 */
-	public static final String SHOW_LOOKUP_THETVDB = SHOW_LOOKUP + "?thetvdb=%s";
+	public static final String SHOW_LOOKUP_THETVDB = CORE_URL + "lookup/shows?thetvdb=%s";
 
 	/**
 	 * Formatted URL used to find a specific show using a IMDB ID.
 	 */
-	public static final String SHOW_LOOKUP_IMDB = SHOW_LOOKUP + "?imdb=%s";
+	public static final String SHOW_LOOKUP_IMDB = CORE_URL + "lookup/shows?imdb=%s";
+
+	/**
+	 * Formatted URL used to get a list of episodes belonging to a show.
+	 */
+	public static final String EPISODE_LIST = CORE_URL + "shows/%s/episodes";
+
+	/**
+	 * Formatted URL used to get a list of episodes with specials belonging to a show.
+	 */
+	public static final String EPISODE_LIST_WITH_SPECIALS = EPISODE_LIST + "?specials=1";
+
+	/**
+	 * Formatted URL used to get a single episode matching show ID, season number, and episode number.
+	 */
+	public static final String EPISODE_BY_NUMBER = CORE_URL + "shows/%s/episodebynumber?season=%s&number=%s";
+
+	/**
+	 * Formatted URL for getting a list of episodes matching show ID, and the date it aired.
+	 */
+	public static final String EPISODES_BY_DATE = CORE_URL + "shows/%s/episodesbydate?date=%s";
 
 	/**
 	 * Formatted URL used to find people.

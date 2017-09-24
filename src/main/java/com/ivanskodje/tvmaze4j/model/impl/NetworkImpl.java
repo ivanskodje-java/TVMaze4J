@@ -15,16 +15,52 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ivanskodje.tvmaze4j.model;
+package com.ivanskodje.tvmaze4j.model.impl;
 
 /**
- * A TVMaze Show.
+ * A show's NetworkImpl.
  *
- * @author Ivan Skodje on 19/09/2017
+ * @author Ivan Skodje on 23/09/2017
  */
-public interface IShow
+public class NetworkImpl
 {
-	String getName();
+	private int id = -1;
+	private String name = "";
+	private CountryImpl countryImpl = null;
 
-	void setName(String name);
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public CountryImpl getCountryImpl()
+	{
+		return countryImpl;
+	}
+
+	public void setCountryImpl(CountryImpl countryImpl)
+	{
+		this.countryImpl = countryImpl;
+	}
+
+	@Override
+	public String toString()
+	{
+		return getName();
+	}
 }
