@@ -1,19 +1,21 @@
-/*
- * This file is part of TVMaze4J.
- *
- * TVMaze4J is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * TVMaze4J is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
- */
+/*************************************************************************
+ * This file (Requests.java) is part of TVMaze4J.                        *
+ *                                                                       *
+ * Copyright (c) 2017 Ivan Skodje.                                       *
+ *                                                                       *
+ * TVMaze4J is free software: you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by  *
+ * the Free Software Foundation, either version 3 of the License, or     *
+ * (at your option) any later version.                                   *
+ *                                                                       *
+ * TVMaze4J is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ * GNU General Public License for more details.                          *
+ *                                                                       *
+ * You should have received a copy of the GNU General Public License     *
+ * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.     *
+ *************************************************************************/
 
 package com.ivanskodje.tvmaze4j.api.internal;
 
@@ -59,7 +61,7 @@ public class Requests
 	/**
 	 * We use the requests in order to request information from TVMaze.
 	 * <p>
-	 * TODO-MAYBE: Implement premium account APIs end points & requests
+	 * TODO-MAYBE: Implement premium account APIs end points & requests (depends on getting access to User API)
 	 */
 	public Requests(TVMazeClient client)
 	{
@@ -88,7 +90,6 @@ public class Requests
 		@Override
 		public <T> T makeRequest(String url, Class<T> clazz)
 		{
-			System.out.println("-------> " + url);
 			try
 			{
 				HttpUriRequest httpRequest = new HttpGet(url);
@@ -99,6 +100,8 @@ public class Requests
 					case 404:
 						TVMaze4J.LOGGER.error(LogMarkers.API, "Error Code 404: " + response.getContent());
 						return null;
+					default:
+						break;
 				}
 				return TVMazeUtilities.GSON.fromJson(response.getContent(), clazz);
 			}

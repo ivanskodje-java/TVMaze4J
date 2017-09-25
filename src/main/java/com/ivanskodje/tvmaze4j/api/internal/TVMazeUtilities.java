@@ -1,26 +1,28 @@
-/*
- * This file is part of TVMaze4J.
- *
- * TVMaze4J is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * TVMaze4J is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.
- */
+/*************************************************************************
+ * This file (TVMazeUtilities.java) is part of TVMaze4J.                 *
+ *                                                                       *
+ * Copyright (c) 2017 Ivan Skodje.                                       *
+ *                                                                       *
+ * TVMaze4J is free software: you can redistribute it and/or modify      *
+ * it under the terms of the GNU General Public License as published by  *
+ * the Free Software Foundation, either version 3 of the License, or     *
+ * (at your option) any later version.                                   *
+ *                                                                       *
+ * TVMaze4J is distributed in the hope that it will be useful,           *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ * GNU General Public License for more details.                          *
+ *                                                                       *
+ * You should have received a copy of the GNU General Public License     *
+ * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.     *
+ *************************************************************************/
 
 package com.ivanskodje.tvmaze4j.api.internal;
 
 import com.google.gson.Gson;
 import com.ivanskodje.tvmaze4j.TVMaze4J;
 import com.ivanskodje.tvmaze4j.api.internal.gson.objects.*;
-import com.ivanskodje.tvmaze4j.model.impl.*;
+import com.ivanskodje.tvmaze4j.model.*;
 import com.ivanskodje.tvmaze4j.util.LogMarkers;
 
 import java.io.UnsupportedEncodingException;
@@ -44,14 +46,13 @@ public class TVMazeUtilities
 	 */
 	public static final Gson GSON = new Gson();
 
-
 	/**
-	 * Get ShowImpl from ResultObject.
+	 * Get Show from ResultObject.
 	 *
-	 * @param resultObject
-	 * @return
+	 * @param resultObject {@link ResultObject} is deserialized from Gson.
+	 * @return A {@link Show}.
 	 */
-	public static ShowImpl getShowFromGsonObject(ResultObject resultObject)
+	public static Show getShowFromGsonObject(ResultObject resultObject)
 	{
 		if (resultObject == null)
 		{
@@ -65,19 +66,19 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		ShowImpl showImpl = getShowFromGsonObject(resultObject.show);
-		showImpl.setScore(resultObject.score);
+		Show showImpl = getShowFromGsonObject(resultObject.show);
+		showImpl.setSearchRelevanceScore(resultObject.score);
 
 		return showImpl;
 	}
 
 	/**
-	 * Get ShowImpl from ShowObject.
+	 * Get Show from ShowObject.
 	 *
-	 * @param showObject
-	 * @return
+	 * @param showObject {@link ShowObject} is deserialized from Gson.
+	 * @return A {@link Show}.
 	 */
-	public static ShowImpl getShowFromGsonObject(ShowObject showObject)
+	public static Show getShowFromGsonObject(ShowObject showObject)
 	{
 		if (showObject == null)
 		{
@@ -85,7 +86,7 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		ShowImpl showImpl = new ShowImpl();
+		Show showImpl = new Show();
 		showImpl.setId(showObject.id);
 		showImpl.setUrl(showObject.url);
 		showImpl.setName(showObject.name);
@@ -96,22 +97,27 @@ public class TVMazeUtilities
 		showImpl.setRuntime(showObject.runtime);
 		showImpl.setPremiered(showObject.premiered);
 		showImpl.setOfficialSite(showObject.officialSite);
-		showImpl.setScheduleImpl(getScheduleFromGsonObject(showObject.schedule));
-		showImpl.setRatingImpl(getRatingFromGsonObject(showObject.rating));
+		showImpl.setSchedule(getScheduleFromGsonObject(showObject.schedule));
+		showImpl.setRating(getRatingFromGsonObject(showObject.rating));
 		showImpl.setWeight(showObject.weight);
-		showImpl.setNetworkImpl(getNetworkFromGsonObject(showObject.network));
-		showImpl.setWebChannelImpl(getWebChannelFromGsonObject(showObject.webChannel));
-		showImpl.setExternalsImpl(getExternalFromGsonObject(showObject.externals));
-		showImpl.setImagesImpl(getImagesFromGsonObject(showObject.image));
+		showImpl.setNetwork(getNetworkFromGsonObject(showObject.network));
+		showImpl.setWebChannel(getWebChannelFromGsonObject(showObject.webChannel));
+		showImpl.setExternals(getExternalFromGsonObject(showObject.externals));
+		showImpl.setImages(getImagesFromGsonObject(showObject.image));
 		showImpl.setSummary(showObject.summary);
 		showImpl.setUpdated(showObject.updated);
-		showImpl.setLinksImpl(getLinksFromGsonObject(showObject._links));
-		showImpl.setEmbeddedImpl(getEmbeddedFromGsonObject(showObject._embedded));
+		showImpl.setLinks(getLinksFromGsonObject(showObject._links));
+		showImpl.setEmbedded(getEmbeddedFromGsonObject(showObject._embedded));
 		return showImpl;
 	}
 
-
-	public static EpisodeImpl getEpisodeFromGsonObject(EpisodeObject episodeObject)
+	/**
+	 * Get Episode from EpisodeObject.
+	 *
+	 * @param episodeObject {@link EpisodeObject} is deserialized from Gson.
+	 * @return {@link Episode}.
+	 */
+	public static Episode getEpisodeFromGsonObject(EpisodeObject episodeObject)
 	{
 		if (episodeObject == null)
 		{
@@ -120,7 +126,7 @@ public class TVMazeUtilities
 		}
 
 		/**
-		 * Handle Status Error Messages in EpisodeImpl (if any).
+		 * Handle Status Error Messages in Episode (if any).
 		 */
 		if (episodeObject.status != null)
 		{
@@ -134,69 +140,66 @@ public class TVMazeUtilities
 			}
 		}
 
-		EpisodeImpl episodeImpl = new EpisodeImpl();
-		episodeImpl.setId(episodeObject.id);
-		episodeImpl.setUrl(episodeObject.url);
-		episodeImpl.setName(episodeObject.name);
-		episodeImpl.setSeason(episodeObject.season);
-		episodeImpl.setNumber(episodeObject.number);
+		Episode episode = new Episode();
+		episode.setId(episodeObject.id);
+		episode.setUrl(episodeObject.url);
+		episode.setName(episodeObject.name);
+		episode.setSeason(episodeObject.season);
+		episode.setNumber(episodeObject.number);
 
 		try
 		{
-			episodeImpl.setAirDate(LocalDate.parse(episodeObject.airdate));
+			episode.setAirDate(LocalDate.parse(episodeObject.airdate));
 		}
 		catch (DateTimeParseException ex)
 		{
-			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalDate in EpisodeImpl, due to LocalDate Parsing exceptions.\n");
+			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalDate in Episode, due to LocalDate Parsing exceptions.\n");
 		}
 		try
 		{
 			String timeString = (episodeObject.airtime.length() > 5) ? episodeObject.airtime : episodeObject.airtime + ":00";
-			episodeImpl.setAirTime(LocalTime.parse(timeString));
+			episode.setAirTime(LocalTime.parse(timeString));
 		}
 		catch (DateTimeParseException ex)
 		{
-			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalTime in EpisodeImpl, due to LocalTime Parsing exceptions.\n");
+			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalTime in Episode, due to LocalTime Parsing exceptions.\n");
 		}
 
-		episodeImpl.setAirStamp(episodeObject.airstamp);
-		episodeImpl.setRuntime(episodeObject.runtime);
-		episodeImpl.setImagesImpl(getImagesFromGsonObject(episodeObject.image));
-		episodeImpl.setSummary(episodeObject.summary);
-		episodeImpl.setLinksImpl(getLinksFromGsonObject(episodeObject._links));
+		episode.setAirStamp(episodeObject.airstamp);
+		episode.setRuntime(episodeObject.runtime);
+		episode.setImages(getImagesFromGsonObject(episodeObject.image));
+		episode.setSummary(episodeObject.summary);
+		episode.setLinks(getLinksFromGsonObject(episodeObject._links));
 
-		return episodeImpl;
+		return episode;
 	}
 
-
 	/**
-	 * Get EmbeddedImpl from EmbeddedObject.
+	 * Get Embedded from EmbeddedObject.
 	 *
-	 * @param embeddedObject
-	 * @return
+	 * @param embeddedObject {@link Embedded} is deserialized from Gson.
+	 * @return {@link Embedded}.
 	 */
-	public static EmbeddedImpl getEmbeddedFromGsonObject(EmbeddedObject embeddedObject)
+	public static Embedded getEmbeddedFromGsonObject(EmbeddedObject embeddedObject)
 	{
 		if (embeddedObject != null)
 		{
-			EmbeddedImpl embeddedImpl = new EmbeddedImpl();
+			Embedded embedded = new Embedded();
 
 			if (embeddedObject.show != null)
 			{
-				embeddedImpl.setShowImpl(getShowFromGsonObject(embeddedObject.show));
+				embedded.setShow(getShowFromGsonObject(embeddedObject.show));
 			}
 
 			if (embeddedObject.episodes != null)
 			{
-				List<EpisodeImpl> episodeImpls = new ArrayList<>();
+				List<Episode> episodes = new ArrayList<>();
 				List<EpisodeObject> episodeObjectss = embeddedObject.episodes;
-				episodeObjectss.stream().forEach(epObj -> episodeImpls.add(getEpisodeFromGsonObject(epObj)));
-				embeddedImpl.setEpisodeImpls(episodeImpls);
+				episodeObjectss.stream().forEach(epObj -> episodes.add(getEpisodeFromGsonObject(epObj)));
+				embedded.setEpisodes(episodes);
 			}
 
-			return embeddedImpl;
-
-
+			return embedded;
 		}
 		else
 		{
@@ -205,22 +208,21 @@ public class TVMazeUtilities
 		}
 	}
 
-
 	/**
-	 * Get LinksImpl from ImagesObject.
+	 * Get Links from ImagesObject.
 	 *
-	 * @param linksObject
-	 * @return
+	 * @param linksObject {@link LinksObject} is deserialized from Gson.
+	 * @return {@link Links}.
 	 */
-	public static LinksImpl getLinksFromGsonObject(LinksObject linksObject)
+	public static Links getLinksFromGsonObject(LinksObject linksObject)
 	{
 		if (linksObject != null)
 		{
-			LinksImpl linksImpl = new LinksImpl();
+			Links links = new Links();
 
 			if (linksObject.self != null)
 			{
-				linksImpl.setSelf(linksObject.self.href);
+				links.setSelf(linksObject.self.href);
 			}
 			else
 			{
@@ -229,7 +231,7 @@ public class TVMazeUtilities
 
 			if (linksObject.previousepisode != null)
 			{
-				linksImpl.setPreviousEpisode(linksObject.previousepisode.href);
+				links.setPreviousEpisode(linksObject.previousepisode.href);
 			}
 			else
 			{
@@ -238,14 +240,14 @@ public class TVMazeUtilities
 
 			if (linksObject.nextepisode != null)
 			{
-				linksImpl.setNextEpisode(linksObject.nextepisode.href);
+				links.setNextEpisode(linksObject.nextepisode.href);
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "linksObject.nextepisode was NULL.");
 			}
 
-			return linksImpl;
+			return links;
 		}
 		else
 		{
@@ -255,20 +257,20 @@ public class TVMazeUtilities
 	}
 
 	/**
-	 * Get ImagesImpl from ImagesObject.
+	 * Get Images from ImagesObject.
 	 *
-	 * @param imageObject
-	 * @return
+	 * @param imageObject {@link ImageObject} is deserialized from Gson.
+	 * @return {@link Images}.
 	 */
-	public static ImagesImpl getImagesFromGsonObject(ImageObject imageObject)
+	public static Images getImagesFromGsonObject(ImageObject imageObject)
 	{
 		if (imageObject != null)
 		{
-			ImagesImpl imagesImpl = new ImagesImpl();
+			Images images = new Images();
 
 			if (imageObject.medium != null)
 			{
-				imagesImpl.setMedium(imageObject.medium);
+				images.setMedium(imageObject.medium);
 			}
 			else
 			{
@@ -277,14 +279,14 @@ public class TVMazeUtilities
 
 			if (imageObject.original != null)
 			{
-				imagesImpl.setOriginal(imageObject.original);
+				images.setOriginal(imageObject.original);
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "imageObject.original was NULL.");
 			}
 
-			return imagesImpl;
+			return images;
 		}
 		else
 		{
@@ -294,20 +296,20 @@ public class TVMazeUtilities
 	}
 
 	/**
-	 * Get ExternalsImpl from ExternalsObject.
+	 * Get Externals from ExternalsObject.
 	 *
-	 * @param externalsObject
-	 * @return
+	 * @param externalsObject {@link ExternalsObject} is deserialized from Gson.
+	 * @return {@link Externals}.
 	 */
-	public static ExternalsImpl getExternalFromGsonObject(ExternalsObject externalsObject)
+	public static Externals getExternalFromGsonObject(ExternalsObject externalsObject)
 	{
 		if (externalsObject != null)
 		{
-			ExternalsImpl externalsImpl = new ExternalsImpl();
+			Externals externals = new Externals();
 
 			if (externalsObject.imdb != null)
 			{
-				externalsImpl.setImdb(externalsObject.imdb);
+				externals.setImdb(externalsObject.imdb);
 			}
 			else
 			{
@@ -316,7 +318,7 @@ public class TVMazeUtilities
 
 			if (externalsObject.tvrage != null)
 			{
-				externalsImpl.setTvRage(externalsObject.tvrage);
+				externals.setTvRage(externalsObject.tvrage);
 			}
 			else
 			{
@@ -325,14 +327,14 @@ public class TVMazeUtilities
 
 			if (externalsObject.thetvdb != null)
 			{
-				externalsImpl.setTheTvDb(externalsObject.thetvdb);
+				externals.setTheTvDb(externalsObject.thetvdb);
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "externalsObject.thetvdb was NULL.");
 			}
 
-			return externalsImpl;
+			return externals;
 		}
 		else
 		{
@@ -342,20 +344,20 @@ public class TVMazeUtilities
 	}
 
 	/**
-	 * Get WebChannelImpl from WebChannelObject.
+	 * Get WebChannel from WebChannelObject.
 	 *
-	 * @param webChannelObject
-	 * @return
+	 * @param webChannelObject {@link WebChannelObject} is deserialized from Gson.
+	 * @return A {@link WebChannel}.
 	 */
-	public static WebChannelImpl getWebChannelFromGsonObject(WebChannelObject webChannelObject)
+	public static WebChannel getWebChannelFromGsonObject(WebChannelObject webChannelObject)
 	{
 		if (webChannelObject != null)
 		{
-			WebChannelImpl webChannelImpl = new WebChannelImpl();
+			WebChannel webChannel = new WebChannel();
 
 			if (webChannelObject.id != null)
 			{
-				webChannelImpl.setId(webChannelObject.id);
+				webChannel.setId(webChannelObject.id);
 			}
 			else
 			{
@@ -364,7 +366,7 @@ public class TVMazeUtilities
 
 			if (webChannelObject.name != null)
 			{
-				webChannelImpl.setName(webChannelObject.name);
+				webChannel.setName(webChannelObject.name);
 			}
 			else
 			{
@@ -373,14 +375,14 @@ public class TVMazeUtilities
 
 			if (webChannelObject.country != null)
 			{
-				webChannelImpl.setCountryImpl(getCountryFromGsonObject(webChannelObject.country));
+				webChannel.setCountry(getCountryFromGsonObject(webChannelObject.country));
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "webChannelObject.country was NULL.");
 			}
 
-			return webChannelImpl;
+			return webChannel;
 		}
 		else
 		{
@@ -390,20 +392,20 @@ public class TVMazeUtilities
 	}
 
 	/**
-	 * Get NetworkImpl from NetworkObject.
+	 * Get Network from NetworkObject.
 	 *
-	 * @param networkObject
-	 * @return
+	 * @param networkObject {@link NetworkObject} is deserialized from Gson.
+	 * @return A {@link Network}.
 	 */
-	public static NetworkImpl getNetworkFromGsonObject(NetworkObject networkObject)
+	public static Network getNetworkFromGsonObject(NetworkObject networkObject)
 	{
 		if (networkObject != null)
 		{
-			NetworkImpl networkImpl = new NetworkImpl();
+			Network network = new Network();
 
 			if (networkObject.id != null)
 			{
-				networkImpl.setId(networkObject.id);
+				network.setId(networkObject.id);
 			}
 			else
 			{
@@ -412,7 +414,7 @@ public class TVMazeUtilities
 
 			if (networkObject.name != null)
 			{
-				networkImpl.setName(networkObject.name);
+				network.setName(networkObject.name);
 			}
 			else
 			{
@@ -421,14 +423,14 @@ public class TVMazeUtilities
 
 			if (networkObject.country != null)
 			{
-				networkImpl.setCountryImpl(getCountryFromGsonObject(networkObject.country));
+				network.setCountry(getCountryFromGsonObject(networkObject.country));
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "networkObject.country was NULL.");
 			}
 
-			return networkImpl;
+			return network;
 		}
 		else
 		{
@@ -438,18 +440,18 @@ public class TVMazeUtilities
 	}
 
 	/**
-	 * Get {@link CountryImpl} from {@link CountryObject}.
+	 * Get {@link Country} from {@link CountryObject}.
 	 *
-	 * @param ratingObject
-	 * @return
+	 * @param ratingObject {@link RatingObject} is deserialized from Gson.
+	 * @return A {@link Rating}.
 	 */
-	public static RatingImpl getRatingFromGsonObject(RatingObject ratingObject)
+	public static Rating getRatingFromGsonObject(RatingObject ratingObject)
 	{
 		if (ratingObject != null && ratingObject.average != null)
 		{
-			RatingImpl ratingImpl = new RatingImpl();
-			ratingImpl.setAverage(ratingObject.average);
-			return ratingImpl;
+			Rating rating = new Rating();
+			rating.setAverage(ratingObject.average);
+			return rating;
 		}
 		else
 		{
@@ -459,20 +461,20 @@ public class TVMazeUtilities
 	}
 
 	/**
-	 * Get CountryImpl from CountryObject.
+	 * Get Country from CountryObject.
 	 *
-	 * @param countryObject
-	 * @return
+	 * @param countryObject {@link CountryObject} is deserialized from Gson.
+	 * @return A {@link Country}.
 	 */
-	public static CountryImpl getCountryFromGsonObject(CountryObject countryObject)
+	public static Country getCountryFromGsonObject(CountryObject countryObject)
 	{
 		if (countryObject != null)
 		{
-			CountryImpl countryImpl = new CountryImpl();
+			Country country = new Country();
 
 			if (countryObject.name != null)
 			{
-				countryImpl.setName(countryObject.name);
+				country.setName(countryObject.name);
 			}
 			else
 			{
@@ -481,7 +483,7 @@ public class TVMazeUtilities
 
 			if (countryObject.code != null)
 			{
-				countryImpl.setCode(countryObject.code);
+				country.setCode(countryObject.code);
 			}
 			else
 			{
@@ -490,14 +492,14 @@ public class TVMazeUtilities
 
 			if (countryObject.timezone != null)
 			{
-				countryImpl.setTimeZone(countryObject.timezone);
+				country.setTimeZone(countryObject.timezone);
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "countryObject.timezone was NULL.");
 			}
 
-			return countryImpl;
+			return country;
 		}
 		else
 		{
@@ -506,14 +508,13 @@ public class TVMazeUtilities
 		}
 	}
 
-
 	/**
-	 * Get ScheduleImpl from ScheduleObject.
+	 * Get Schedule from ScheduleObject.
 	 *
-	 * @param scheduleObject
-	 * @return
+	 * @param scheduleObject {@link ScheduleObject} is deserialized from Gson.
+	 * @return A {@link Schedule}.
 	 */
-	public static ScheduleImpl getScheduleFromGsonObject(ScheduleObject scheduleObject)
+	public static Schedule getScheduleFromGsonObject(ScheduleObject scheduleObject)
 	{
 		if (scheduleObject == null)
 		{
@@ -521,17 +522,17 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		ScheduleImpl scheduleImpl = new ScheduleImpl();
+		Schedule schedule = new Schedule();
 
 		if (scheduleObject.time != null)
 		{
 			try
 			{
-				scheduleImpl.setTime(LocalTime.parse(scheduleObject.time));
+				schedule.setTime(LocalTime.parse(scheduleObject.time));
 			}
 			catch (DateTimeParseException ex)
 			{
-				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set time in ScheduleImpl, due to DateTime Parsing exception.\n");
+				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set time in Schedule, due to DateTime Parsing exception.\n");
 			}
 		}
 		else
@@ -541,19 +542,19 @@ public class TVMazeUtilities
 
 		if (scheduleObject.days != null)
 		{
-			scheduleImpl.setDays(scheduleObject.days);
+			schedule.setDays(scheduleObject.days);
 		}
 		else
 		{
 			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "scheduleObject.days is NULL.");
 		}
 
-		return scheduleImpl;
+		return schedule;
 	}
-
 
 	/**
 	 * Clean query and set encoding format.
+	 * Replace spaces with UTF-8 format of space.
 	 *
 	 * @param query An URL query.
 	 * @return An encoded query.

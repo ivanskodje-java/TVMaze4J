@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (LinksObject.java) is part of TVMaze4J.                     *
+ * This file (Rating.java) is part of TVMaze4J.                          *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -17,23 +17,61 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.     *
  *************************************************************************/
 
-package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
+package com.ivanskodje.tvmaze4j.model;
 
 /**
- * This represents a json Links object.
+ * Show ratings.
  * <p>
- * Contains various links with URLs.
+ * Rating is on its own class, since we may expect to
+ * get more types of rating other than just average.
  *
- * @author ivanskodje on 20.09.17
+ * @author Ivan Skodje on 23/09/2017
  */
-public class LinksObject
+public class Rating
 {
-	public HyperlinkObject self;
-	public HyperlinkObject previousepisode;
-	public HyperlinkObject nextepisode;
+	/**
+	 * Show Rating.
+	 * Average range 0 and up.
+	 */
+	private float average = -1;
 
-	public class HyperlinkObject
+	/**
+	 * Returns the average show rating,
+	 * or -1 if none has been set.
+	 *
+	 * @return Average show rating.
+	 */
+	public float getAverage()
 	{
-		public String href;
+		return average;
+	}
+
+	/**
+	 * Sets the average show rating,
+	 * if it is not null.
+	 *
+	 * @param average Average show rating.
+	 */
+	public void setAverage(Float average)
+	{
+		if (average != null)
+		{
+			this.average = average;
+		}
+	}
+
+	/**
+	 * Returns the average ranking,
+	 * or an empty string if it has not been set.
+	 * <p>
+	 * Formatted as:
+	 * "[average]"
+	 *
+	 * @return Average rank.
+	 */
+	@Override
+	public String toString()
+	{
+		return "" + average;
 	}
 }
