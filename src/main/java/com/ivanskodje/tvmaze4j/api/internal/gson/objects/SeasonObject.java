@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (EpisodeObject.java) is part of TVMaze4J.                   *
+ * This file (SeasonObject.java) is part of TVMaze4J.                    *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -22,27 +22,22 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 import java.util.Date;
 
 /**
- * This represents a json Episode object.
+ * This represents a json Season object.
  *
- * @author Ivan Skodje on 20/09/2017
+ * @author Ivan Skodje on 26/09/2017
  */
-public class EpisodeObject
+public class SeasonObject
 {
 	public Integer id;
 	public String url;
-	public String name;
-	public Integer season;
 	public Integer number;
-	public Date airdate;
-	public String airtime;
-	public Date airstamp;
-	public Integer runtime;
+	public String name;
+	public Integer episodeOrder;
+	public Date premiereDate;
+	public Date endDate;
+	public NetworkObject network;
+	public WebChannelObject webChannel;
 	public ImageObject image;
 	public String summary;
-	public ShowObject show; // Received from schedule requests.
 	public LinksObject _links;
-
-	// TODO: Handle potential error statuses and messages differently.
-	public Integer status; // Used for error handling
-	public String message; // Error message
 }

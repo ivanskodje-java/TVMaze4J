@@ -27,10 +27,12 @@ import com.ivanskodje.tvmaze4j.util.LogMarkers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -125,9 +127,6 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		/**
-		 * Handle Status Error Messages in Episode (if any).
-		 */
 		if (episodeObject.status != null)
 		{
 			switch (episodeObject.status)
@@ -146,15 +145,13 @@ public class TVMazeUtilities
 		episode.setName(episodeObject.name);
 		episode.setSeason(episodeObject.season);
 		episode.setNumber(episodeObject.number);
+		episode.setAirDate(parseToLocalDate(episodeObject.airdate));
+		episode.setAirStamp(episodeObject.airstamp);
+		episode.setRuntime(episodeObject.runtime);
+		episode.setImages(getImagesFromGsonObject(episodeObject.image));
+		episode.setSummary(episodeObject.summary);
+		episode.setLinks(getLinksFromGsonObject(episodeObject._links));
 
-		try
-		{
-			episode.setAirDate(LocalDate.parse(episodeObject.airdate));
-		}
-		catch (DateTimeParseException ex)
-		{
-			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalDate in Episode, due to LocalDate Parsing exceptions.\n");
-		}
 		try
 		{
 			String timeString = (episodeObject.airtime.length() > 5) ? episodeObject.airtime : episodeObject.airtime + ":00";
@@ -165,11 +162,11 @@ public class TVMazeUtilities
 			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalTime in Episode, due to LocalTime Parsing exceptions.\n");
 		}
 
-		episode.setAirStamp(episodeObject.airstamp);
-		episode.setRuntime(episodeObject.runtime);
-		episode.setImages(getImagesFromGsonObject(episodeObject.image));
-		episode.setSummary(episodeObject.summary);
-		episode.setLinks(getLinksFromGsonObject(episodeObject._links));
+		// The show is available when you retrieve episode from Schedule.
+		if (episodeObject.show != null)
+		{
+			episode.setShow(getShowFromGsonObject(episodeObject.show));
+		}
 
 		return episode;
 	}
@@ -553,6 +550,37 @@ public class TVMazeUtilities
 	}
 
 	/**
+	 * Get Season from SeasonObject.
+	 *
+	 * @param seasonObject {@link SeasonObject} is deserialized from Gson.
+	 * @return A {@link Season}.
+	 */
+	public static Season getSeasonFromGsonObject(SeasonObject seasonObject)
+	{
+		if (seasonObject == null)
+		{
+			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "SeasonObject was NULL.");
+			return null;
+		}
+
+		Season season = new Season();
+
+		season.setId(seasonObject.id);
+		season.setUrl(seasonObject.url);
+		season.setNumber(seasonObject.number);
+		season.setName(seasonObject.name);
+		season.setEpisodeOrder(seasonObject.episodeOrder);
+		season.setNetwork(getNetworkFromGsonObject(seasonObject.network));
+		season.setWebChannel(getWebChannelFromGsonObject(seasonObject.webChannel));
+		season.setImages(getImagesFromGsonObject(seasonObject.image));
+		season.setSummary(seasonObject.summary);
+		season.setLinks(getLinksFromGsonObject(seasonObject._links));
+		season.setPremiereDate(parseToLocalDate(seasonObject.premiereDate));
+		season.setEndDate(parseToLocalDate(seasonObject.endDate));
+		return season;
+	}
+
+	/**
 	 * Clean query and set encoding format.
 	 * Replace spaces with UTF-8 format of space.
 	 *
@@ -570,5 +598,30 @@ public class TVMazeUtilities
 			e.printStackTrace();
 			return "";
 		}
+	}
+
+	/**
+	 * Used to convert LocalDate to Date without needing to
+	 * look for exceptions everywhere it is used.
+	 * <p>
+	 * TVMaze uses the ISO date format.
+	 *
+	 * @param date A Date.
+	 * @return LocalDate.
+	 */
+	public static LocalDate parseToLocalDate(Date date)
+	{
+		LocalDate localDate = null;
+		try
+		{
+			localDate = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(date));
+		}
+		catch (DateTimeParseException ex)
+		{
+			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalDate, due to a LocalDate Parsing exception.\n" +
+					"Could not parse '" + date.toString() + "'.");
+		}
+
+		return localDate;
 	}
 }

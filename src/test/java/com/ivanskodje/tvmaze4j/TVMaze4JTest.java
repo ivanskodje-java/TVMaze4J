@@ -102,11 +102,9 @@ public class TVMaze4JTest extends TestCase
 	 */
 	public void testSearchShows()
 	{
-		/**
-		 * Attempting to create a client, and fetch a List of Shows.
-		 */
 		TVMaze4J.LOGGER.info("Attempting to search for showImpls, using the query 'silicon valley'...");
 		TVMazeClient client = new ClientBuilder().build();
+
 		List<Show> showImpls = client.showSearch("silicon valley");
 		showImpls.stream().forEach(s -> TVMaze4J.LOGGER.info("Search Result: " + s));
 
@@ -165,9 +163,87 @@ public class TVMaze4JTest extends TestCase
 		TVMaze4J.LOGGER.info("Searching for Shows with episodes and specials");
 		Show showImpl2 = client.showSingleSearch("Game of Thrones", true);
 		checkShow(showImpl2);
-
-
 	}
+
+	public void testSchedules()
+	{
+		TVMaze4J.LOGGER.info("Attempting to test schedules...");
+		TVMazeClient client = new ClientBuilder().build();
+
+		/**
+		 * Attempting to get today's schedule
+		 */
+		TVMaze4J.LOGGER.info("Getting today's schedule");
+		List<Episode> episodes1 = client.getSchedule();
+		episodes1.stream().forEach(e -> checkEpisode(e));
+
+		/**
+		 * Attempting to get today's schedule in Norway
+		 * ISO Country Code: https://en.wikipedia.org/wiki/ISO_3166-1
+		 */
+		TVMaze4J.LOGGER.info("Getting today's schedule in Norway");
+		List<Episode> episodes3 = client.getSchedule("No");
+		episodes3.stream().forEach(e -> checkEpisode(e));
+
+		/**
+		 * Attempting to get 30-09-2017's schedule
+		 */
+		TVMaze4J.LOGGER.info("Getting 30-09-2017's schedule");
+		List<Episode> episodes2 = client.getSchedule(LocalDate.parse("2017-09-30"));
+		episodes2.stream().forEach(e -> checkEpisode(e));
+
+		/**
+		 * Attempting to get 30-09-2017's schedule in Norway
+		 * ISO Country Code: https://en.wikipedia.org/wiki/ISO_3166-1
+		 */
+		TVMaze4J.LOGGER.info("Getting today's schedule in Norway");
+		List<Episode> episodes4 = client.getSchedule("no", LocalDate.parse("2017-09-30"));
+		episodes4.stream().forEach(e -> checkEpisode(e));
+
+		/**
+		 * Attempting to get FULL schedule.
+		 */
+		TVMaze4J.LOGGER.info("Getting FULL schedule");
+		List<Episode> episodes5 = client.getFullSchedule();
+		episodes5.stream().forEach(e -> checkEpisode(e));
+	}
+
+	public void testSeasons()
+	{
+		TVMazeClient client = new ClientBuilder().build();
+
+		/**
+		 * Attempting to get all seasons in Silicon Valley (ID: 143)
+		 */
+		TVMaze4J.LOGGER.info("Attempting to get all seasons in Silicon Valley (ID: 143)...");
+		List<Season> seasons1 = client.getSeasons(143);
+		seasons1.stream().forEach(s -> System.out.println(s));
+	}
+
+	private void checkEpisode(Episode episode)
+	{
+		TVMaze4J.LOGGER.info("episodes: " + episode);
+		TVMaze4J.LOGGER.info("episodes->getId: " + episode.getId());
+		TVMaze4J.LOGGER.info("episodes->url: " + episode.getUrl());
+		TVMaze4J.LOGGER.info("episodes->name: " + episode.getName());
+		TVMaze4J.LOGGER.info("episodes->season: " + episode.getSeason());
+		TVMaze4J.LOGGER.info("episodes->number: " + episode.getNumber());
+		TVMaze4J.LOGGER.info("episodes->airDate: " + episode.getAirDate());
+		TVMaze4J.LOGGER.info("episodes->airTime: " + episode.getAirTime());
+		TVMaze4J.LOGGER.info("episodes->airStamp: " + episode.getAirStamp());
+		TVMaze4J.LOGGER.info("episodes->runtime: " + episode.getRuntime());
+		TVMaze4J.LOGGER.info("episodes->images: " + episode.getImages());
+		TVMaze4J.LOGGER.info("episodes->summary: " + episode.getSummary());
+		TVMaze4J.LOGGER.info("episodes->links: " + episode.getLinks());
+
+		Show show = episode.getShow();
+		TVMaze4J.LOGGER.info("SHOW: " + show);
+		if (show != null)
+		{
+			checkShow(show);
+		}
+	}
+
 
 	private void checkShow(Show showImpl)
 	{

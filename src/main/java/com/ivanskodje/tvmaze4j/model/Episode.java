@@ -102,6 +102,11 @@ public class Episode
 	private String summary = "";
 
 	/**
+	 * The show this episode belongs in.
+	 */
+	private Show show = null;
+
+	/**
 	 * Links may contain API URLs to the episode, as well to
 	 * a previous- and next episode.
 	 */
@@ -384,6 +389,31 @@ public class Episode
 		if (summary != null)
 		{
 			this.summary = summary;
+		}
+	}
+
+	/**
+	 * Returns the Show this episode runs on,
+	 * or null of none have been set.
+	 *
+	 * @return This episode's {@link Show}.
+	 */
+	public Show getShow()
+	{
+		return show;
+	}
+
+	/**
+	 * Sets the Show this episode runs on,
+	 * if it is not null.
+	 *
+	 * @param show This episode's {@link Show}.
+	 */
+	public void setShow(Show show)
+	{
+		if (show != null)
+		{
+			this.show = show;
 		}
 	}
 

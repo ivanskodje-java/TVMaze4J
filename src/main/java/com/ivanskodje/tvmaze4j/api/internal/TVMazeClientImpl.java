@@ -22,8 +22,10 @@ package com.ivanskodje.tvmaze4j.api.internal;
 import com.ivanskodje.tvmaze4j.api.TVMazeClient;
 import com.ivanskodje.tvmaze4j.api.internal.gson.objects.EpisodeObject;
 import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ResultObject;
+import com.ivanskodje.tvmaze4j.api.internal.gson.objects.SeasonObject;
 import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ShowObject;
 import com.ivanskodje.tvmaze4j.model.Episode;
+import com.ivanskodje.tvmaze4j.model.Season;
 import com.ivanskodje.tvmaze4j.model.Show;
 
 import java.time.LocalDate;
@@ -38,7 +40,7 @@ public class TVMazeClientImpl implements TVMazeClient
 {
 
 	/**
-	 * Used to make HTTP requests with TVMaze
+	 * Used to make the HTTP requests with TVMaze
 	 */
 	public final Requests REQUESTS;
 
@@ -64,7 +66,7 @@ public class TVMazeClientImpl implements TVMazeClient
 	{
 		query = TVMazeUtilities.encodeURL(query);
 
-		List<Show> showImpls = new CopyOnWriteArrayList<>();
+		List<Show> shows = new CopyOnWriteArrayList<>();
 		ResultObject[] resultObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_SEARCH, query), ResultObject[].class);
 		if (resultObjects != null)
 		{
@@ -74,11 +76,11 @@ public class TVMazeClientImpl implements TVMazeClient
 				{
 					show.setEpisodes(showEpisodeList(show.getId()));
 				}
-				showImpls.add(show);
+				shows.add(show);
 			});
 		}
 
-		return showImpls;
+		return shows;
 	}
 
 	@Override
@@ -157,14 +159,21 @@ public class TVMazeClientImpl implements TVMazeClient
 	public Show showLookUpFromTvRage(int id)
 	{
 		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_LOOKUP_TVRAGE, id), ShowObject.class);
+		if (showObject == null)
+		{
+			return null;
+		}
 		return TVMazeUtilities.getShowFromGsonObject(showObject);
 	}
-
 
 	@Override
 	public Show showLookUpFromTheTvDb(int id)
 	{
 		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_LOOKUP_THETVDB, id), ShowObject.class);
+		if (showObject == null)
+		{
+			return null;
+		}
 		return TVMazeUtilities.getShowFromGsonObject(showObject);
 	}
 
@@ -172,6 +181,90 @@ public class TVMazeClientImpl implements TVMazeClient
 	public Show showLookUpFromImdb(String id)
 	{
 		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_LOOKUP_IMDB, id), ShowObject.class);
+		if (showObject == null)
+		{
+			return null;
+		}
 		return TVMazeUtilities.getShowFromGsonObject(showObject);
+	}
+
+	@Override
+	public List<Episode> getSchedule()
+	{
+		return getSchedule(null, null);
+	}
+
+	@Override
+	public List<Episode> getSchedule(String isoCountryCode)
+	{
+		return getSchedule(isoCountryCode, null);
+	}
+
+	@Override
+	public List<Episode> getSchedule(LocalDate date)
+	{
+		return getSchedule(null, date);
+	}
+
+	@Override
+	public List<Episode> getSchedule(String isoCountryCode, LocalDate date)
+	{
+		String requestUrl = TVMazeEndpoints.SCHEDULE;
+
+		if (date != null && isoCountryCode != null)
+		{
+			requestUrl = String.format(TVMazeEndpoints.SCHEDULE_IN_COUNTRY_ON_DATE, isoCountryCode, date);
+		}
+		else if (isoCountryCode != null)
+		{
+			requestUrl = String.format(TVMazeEndpoints.SCHEDULE_IN_COUNTRY, isoCountryCode);
+		}
+		else if (date != null)
+		{
+			requestUrl = String.format(TVMazeEndpoints.SCHEDULE_ON_DATE, date);
+		}
+
+		List<Episode> episodes = new CopyOnWriteArrayList<>();
+		EpisodeObject[] episodeObjects = REQUESTS.GET.makeRequest(requestUrl, EpisodeObject[].class);
+		if (episodeObjects != null)
+		{
+			Arrays.stream(episodeObjects).map(TVMazeUtilities::getEpisodeFromGsonObject).forEach(episodes::add);
+		}
+		return episodes;
+	}
+
+	/**
+	 * Returns the full schedule of all the registered TVMaze episodes.
+	 * NOTE: The data you receive from the API will be several megabytes.
+	 *
+	 * @return A list of all future {@link Episode} schedules.
+	 */
+	@Override
+	public List<Episode> getFullSchedule()
+	{
+		List<Episode> episodes = new CopyOnWriteArrayList<>();
+		EpisodeObject[] episodeObjects = REQUESTS.GET.makeRequest(TVMazeEndpoints.SCHEDULE_FULL, EpisodeObject[].class);
+		if (episodeObjects != null)
+		{
+			Arrays.stream(episodeObjects).map(TVMazeUtilities::getEpisodeFromGsonObject).forEach(episodes::add);
+		}
+		return episodes;
+	}
+
+	/**
+	 * Returns a list of Show seasons for the given Show
+	 *
+	 * @param showId
+	 */
+	@Override
+	public List<Season> getSeasons(int showId)
+	{
+		List<Season> seasons = new CopyOnWriteArrayList<>();
+		SeasonObject[] seasonObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_SEASONS, showId), SeasonObject[].class);
+		if (seasonObjects != null)
+		{
+			Arrays.stream(seasonObjects).map(TVMazeUtilities::getSeasonFromGsonObject).forEach(seasons::add);
+		}
+		return seasons;
 	}
 }

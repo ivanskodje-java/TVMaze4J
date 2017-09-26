@@ -120,7 +120,7 @@ public class Show
 	private Network network = null;
 
 	/**
-	 * Some shows originate from the web, such as 'YouTube Red'.
+	 * Some shows originate from the web, such as "YouTube Red".
 	 */
 	private WebChannel webChannel = null;
 

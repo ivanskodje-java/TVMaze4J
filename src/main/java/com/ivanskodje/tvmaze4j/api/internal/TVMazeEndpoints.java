@@ -87,6 +87,11 @@ public final class TVMazeEndpoints
 	public static final String EPISODES_BY_DATE = CORE_URL + "shows/%s/episodesbydate?date=%s";
 
 	/**
+	 * Formatted URL for getting a list of seasons matching the show ID.
+	 */
+	public static final String SHOW_SEASONS = CORE_URL + "shows/%s/seasons";
+
+	/**
 	 * Formatted URL used to find people.
 	 */
 	public static final String PEOPLE_SEARCH = CORE_URL + "people?q=%s";

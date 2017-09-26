@@ -20,6 +20,7 @@
 package com.ivanskodje.tvmaze4j.api;
 
 import com.ivanskodje.tvmaze4j.model.Episode;
+import com.ivanskodje.tvmaze4j.model.Season;
 import com.ivanskodje.tvmaze4j.model.Show;
 
 import java.time.LocalDate;
@@ -86,7 +87,6 @@ public interface TVMazeClient
 	 */
 	Show showSingleSearch(String query, boolean fetchEpisodes);
 
-
 	/**
 	 * Gets a list of Episodes belonging to the Show matching the TVMaze ID.
 	 * <p>
@@ -97,7 +97,6 @@ public interface TVMazeClient
 	 */
 	List<Episode> showEpisodeList(int showId);
 
-
 	/**
 	 * Gets a list of Episodes belonging to the Show matching the TVMaze ID.
 	 *
@@ -107,9 +106,8 @@ public interface TVMazeClient
 	 */
 	List<Episode> showEpisodeList(int showId, boolean fetchSpecials);
 
-
 	/**
-	 * Get the matching episode of show ID, Season, and Episode number.
+	 * Get the matching episode from the Show ID, Season, and Episode number.
 	 *
 	 * @param showId TVMaze ID.
 	 * @param season Season number.
@@ -158,4 +156,56 @@ public interface TVMazeClient
 	 * @return Show
 	 */
 	Show showLookUpFromImdb(String imdbId);
+
+	/**
+	 * Returns today's episode schedule.
+	 * <p>
+	 * This is the equivalent of <code>getSchedule(null)</code>
+	 * and <code>getSchedule(null, null)</code>.
+	 *
+	 * @return List of today's {@link Episode} schedule.
+	 */
+	List<Episode> getSchedule();
+
+	/**
+	 * Returns today's episode schedule in the given country,
+	 * using ISO 3166-1 code formatting (https://en.wikipedia.org/wiki/ISO_3166-1).
+	 * <p>
+	 * This is the equivalent of <code>getSchedule(isoCountryCode, null)</code>.
+	 *
+	 * @return List of today's {@link Episode} schedule from the country.
+	 */
+	List<Episode> getSchedule(String isoCountryCode);
+
+	/**
+	 * Returns the date's episode schedule.
+	 * Date using ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601#Dates).
+	 * <p>
+	 * This is the equivalent of <code>getSchedule(null, date)</code>.
+	 *
+	 * @return List of the date's {@link Episode} schedule.
+	 */
+	List<Episode> getSchedule(LocalDate date);
+
+	/**
+	 * Returns the date's episode schedule in the given country.
+	 * Country code using ISO 3166-1 (https://en.wikipedia.org/wiki/ISO_3166-1).
+	 * Date using ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601#Dates).
+	 *
+	 * @return List of the date's {@link Episode} schedule from the country.
+	 */
+	List<Episode> getSchedule(String isoCountryCode, LocalDate date);
+
+
+	/**
+	 * Returns the full schedule of all the oncoming registered TVMaze episodes.
+	 *
+	 * @return A list of all future {@link Episode} schedules.
+	 */
+	List<Episode> getFullSchedule();
+
+	/**
+	 * Returns a list of Show seasons for the given Show
+	 */
+	List<Season> getSeasons(int showId);
 }
