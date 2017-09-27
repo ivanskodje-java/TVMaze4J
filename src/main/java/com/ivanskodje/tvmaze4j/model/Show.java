@@ -73,7 +73,7 @@ public class Show
 	private List<String> genres = null;
 
 	/**
-	 * The show's current status.
+	 * The Show's current status.
 	 * Examples: "Running", "In Development".
 	 */
 	private String status = "";
@@ -86,13 +86,13 @@ public class Show
 	private int runtime = -1;
 
 	/**
-	 * The date of the show's premiere.
+	 * The date of the Show's premiere.
 	 * TODO: Change from Date to LocalDateTime.
 	 */
 	private Date premiered = null;
 
 	/**
-	 * URL to the show's official web-site.
+	 * URL to the Show's official web-site.
 	 */
 	private String officialSite = "";
 
@@ -107,7 +107,7 @@ public class Show
 	private Rating rating = null;
 
 	/**
-	 * The most popular show on TVMaze would have a weight value of 100,
+	 * The most popular Show on TVMaze would have a weight value of 100,
 	 * while the worst would have a value of 0.
 	 * <p>
 	 * Weight is ranged 0 and up to 100.
@@ -125,46 +125,46 @@ public class Show
 	private WebChannel webChannel = null;
 
 	/**
-	 * Externals contain the show IDs from IMDB, TVRage and TheTVDB.
+	 * Externals contain the Show IDs from IMDB, TVRage and TheTVDB.
 	 */
 	private Externals externals = null;
 
 	/**
 	 * Contains the URL addresses to the medium and original
-	 * show images.
+	 * Show images.
 	 */
 	private Images images = null;
 
 	/**
 	 * The Show summary is a small description of the
-	 * show with HTML formatting.
+	 * Show with HTML formatting.
 	 */
 	private String summary = "";
 
 	/**
 	 * Updated is a Unix Epoch value. It is updated to reflect
-	 * the time and date of the last update to the show or episodes.
+	 * the time and date of the last update to the Show or episodes.
 	 * <p>
 	 * A common use for this value may be to compare your own local cache
-	 * with TVMaze to check if there have been any changes to the show.
+	 * with TVMaze to check if there have been any changes to the Show.
 	 * <p>
 	 * Keep in mind that MazeTV stores their own Show cache for 24 hours.
 	 */
 	private int updated = -1;
 
 	/**
-	 * Links may contain API URLs to the show, as well to
+	 * Links may contain API URLs to the Show, as well to
 	 * a previous- and next episode.
 	 */
 	private Links links = null;
 
 	/**
-	 * Embedded may contain a show, or a list of episodes.
+	 * Embedded may contain a Show, or a list of episodes.
 	 */
 	private Embedded embedded = null;
 
 	/**
-	 * Returns the show's search relevance score
+	 * Returns the Show's search relevance score
 	 * from the search that fetched this,
 	 * or -1 if none has been set.
 	 *
@@ -176,7 +176,7 @@ public class Show
 	}
 
 	/**
-	 * Sets the show's search relevance score
+	 * Sets the Show's search relevance score
 	 * from the search that fetched this,
 	 * if it is not null.
 	 *
@@ -291,7 +291,7 @@ public class Show
 	}
 
 	/**
-	 * Returns the show language,
+	 * Returns the Show language,
 	 * or an empty string if none have been set.
 	 *
 	 * @return Show language.
@@ -341,7 +341,7 @@ public class Show
 	}
 
 	/**
-	 * Returns the show status,
+	 * Returns the Show status,
 	 * or an empty string if none have been set.
 	 *
 	 * @return Show status.
@@ -352,7 +352,7 @@ public class Show
 	}
 
 	/**
-	 * Sets the show status,
+	 * Sets the Show status,
 	 * if it is not null
 	 *
 	 * @param status Show status.
@@ -393,7 +393,7 @@ public class Show
 	}
 
 	/**
-	 * Returns the date of the show's premiere,
+	 * Returns the date of the Show's premiere,
 	 * or -1 if none have been set.
 	 *
 	 * @return Premiere date.
@@ -404,7 +404,7 @@ public class Show
 	}
 
 	/**
-	 * Sets the date of the show's premiere,
+	 * Sets the date of the Show's premiere,
 	 * if it is not null.
 	 *
 	 * @param premiered Premiere date.
@@ -468,7 +468,7 @@ public class Show
 	}
 
 	/**
-	 * Returns the show Rating,
+	 * Returns the Show Rating,
 	 * or null if none have been set.
 	 *
 	 * @return Show {@link Rating}.
@@ -479,7 +479,7 @@ public class Show
 	}
 
 	/**
-	 * Sets the show Rating,
+	 * Sets the Show Rating,
 	 * if it is not null.
 	 *
 	 * @param rating Show {@link Rating}.
@@ -493,10 +493,10 @@ public class Show
 	}
 
 	/**
-	 * Returns the show's weight on TVMaze,
+	 * Returns the Show's weight on TVMaze,
 	 * or -1 if none have been set.
 	 * <p>
-	 * The most popular show on TVMaze would have a weight value of 100,
+	 * The most popular Show on TVMaze would have a weight value of 100,
 	 * while the worst would have a value of 0.
 	 *
 	 * @return The Show's weight.
@@ -507,10 +507,10 @@ public class Show
 	}
 
 	/**
-	 * Sets the show's weight on TVMaze,
+	 * Sets the Show's weight on TVMaze,
 	 * if it is not null.
 	 * <p>
-	 * The most popular show on TVMaze would have a weight value of 100,
+	 * The most popular Show on TVMaze would have a weight value of 100,
 	 * while the worst would have a value of 0.
 	 *
 	 * @param weight The Show's weight.
@@ -652,7 +652,7 @@ public class Show
 
 	/**
 	 * Returns last update, which is a Unix Epoch value for the
-	 * last time the show have been updated (recursively),
+	 * last time the Show have been updated (recursively),
 	 * or -1 if none have been set.
 	 *
 	 * @return The last update in unix epoch time.
@@ -664,7 +664,7 @@ public class Show
 
 	/**
 	 * Sets last update, which is a Unix Epoch value for the
-	 * last time the show have been updated (recursively),
+	 * last time the Show have been updated (recursively),
 	 * if it is not null.
 	 *
 	 * @param updated The last update in unix epoch time.
@@ -707,7 +707,7 @@ public class Show
 	 * the {@link Episode}s for the Show,
 	 * or null of none have been set.
 	 *
-	 * @return The show's {@link Embedded} data.
+	 * @return The Show's {@link Embedded} data.
 	 */
 	public Embedded getEmbedded()
 	{
@@ -730,7 +730,7 @@ public class Show
 	}
 
 	/**
-	 * Returns a list of the show's {@link Episode}s,
+	 * Returns a list of the Show's {@link Episode}s,
 	 * or null if none have been set.
 	 * <p>
 	 * Episodes are stored and retrieved from {@link Embedded}.
@@ -747,7 +747,7 @@ public class Show
 	}
 
 	/**
-	 * Sets a list of the show's {@link Episode}s,
+	 * Sets a list of the Show's {@link Episode}s,
 	 * if it is not null.
 	 * <p>
 	 * If embedded is null, we instantiate it before
@@ -770,7 +770,7 @@ public class Show
 	}
 
 	/**
-	 * Returns the show name.
+	 * Returns the Show name.
 	 * <p>
 	 * Formatted as:
 	 * "[name]"

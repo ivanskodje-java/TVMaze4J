@@ -22,7 +22,7 @@ package com.ivanskodje.tvmaze4j.model;
 import java.time.LocalDate;
 
 /**
- * The Season of a show.
+ * The Season of a Show.
  * This should give you a small overview of the season.
  *
  * @author Ivan Skodje on 26/09/2017
@@ -82,7 +82,7 @@ public class Season
 
 	/**
 	 * Contains the URL addresses to the medium and original
-	 * show images.
+	 * Show images.
 	 */
 	private Images images = null;
 

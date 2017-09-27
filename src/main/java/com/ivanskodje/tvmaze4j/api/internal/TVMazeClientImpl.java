@@ -20,11 +20,9 @@
 package com.ivanskodje.tvmaze4j.api.internal;
 
 import com.ivanskodje.tvmaze4j.api.TVMazeClient;
-import com.ivanskodje.tvmaze4j.api.internal.gson.objects.EpisodeObject;
-import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ResultObject;
-import com.ivanskodje.tvmaze4j.api.internal.gson.objects.SeasonObject;
-import com.ivanskodje.tvmaze4j.api.internal.gson.objects.ShowObject;
+import com.ivanskodje.tvmaze4j.api.internal.gson.objects.*;
 import com.ivanskodje.tvmaze4j.model.Episode;
+import com.ivanskodje.tvmaze4j.model.Person;
 import com.ivanskodje.tvmaze4j.model.Season;
 import com.ivanskodje.tvmaze4j.model.Show;
 
@@ -67,10 +65,10 @@ public class TVMazeClientImpl implements TVMazeClient
 		query = TVMazeUtilities.encodeURL(query);
 
 		List<Show> shows = new CopyOnWriteArrayList<>();
-		ResultObject[] resultObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_SEARCH, query), ResultObject[].class);
-		if (resultObjects != null)
+		ShowResultObject[] showResultObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_SEARCH, query), ShowResultObject[].class);
+		if (showResultObjects != null)
 		{
-			Arrays.stream(resultObjects).map(TVMazeUtilities::getShowFromGsonObject).forEach(show ->
+			Arrays.stream(showResultObjects).map(TVMazeUtilities::getShowFromGsonObject).forEach(show ->
 			{
 				if (fetchEpisodes)
 				{
@@ -100,6 +98,24 @@ public class TVMazeClientImpl implements TVMazeClient
 			return null;
 		}
 		return TVMazeUtilities.getShowFromGsonObject(showObject);
+	}
+
+	@Override
+	public List<Person> peopleSearch(String query)
+	{
+		query = TVMazeUtilities.encodeURL(query);
+
+		List<Person> people = new CopyOnWriteArrayList<>();
+		PersonResultObject[] personResultObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.PEOPLE_SEARCH, query), PersonResultObject[].class);
+		if (personResultObjects != null)
+		{
+			Arrays.stream(personResultObjects).map(TVMazeUtilities::getPersonFromGsonObject).forEach(person ->
+			{
+				people.add(person);
+			});
+		}
+
+		return people;
 	}
 
 	@Override
@@ -137,6 +153,18 @@ public class TVMazeClientImpl implements TVMazeClient
 	{
 		List<Episode> episodes = new CopyOnWriteArrayList<>();
 		EpisodeObject[] episodeObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.EPISODES_BY_DATE, showId, date), EpisodeObject[].class);
+		if (episodeObjects != null)
+		{
+			Arrays.stream(episodeObjects).map(TVMazeUtilities::getEpisodeFromGsonObject).forEach(episodes::add);
+		}
+		return episodes;
+	}
+
+	@Override
+	public List<Episode> episodesBySeason(int seasonId)
+	{
+		List<Episode> episodes = new CopyOnWriteArrayList<>();
+		EpisodeObject[] episodeObjects = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.EPISODES_BY_SEASON, seasonId), EpisodeObject[].class);
 		if (episodeObjects != null)
 		{
 			Arrays.stream(episodeObjects).map(TVMazeUtilities::getEpisodeFromGsonObject).forEach(episodes::add);

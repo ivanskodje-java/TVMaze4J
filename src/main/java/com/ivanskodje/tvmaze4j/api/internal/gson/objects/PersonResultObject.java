@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (ExternalsObject.java) is part of TVMaze4J.                 *
+ * This file (PersonResultObject.java) is part of TVMaze4J.              *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -20,15 +20,23 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * This represents a json Externals object.
- * <p>
- * Externals contain person IDs from different databases such as IMDB.
+ * This represents a json Result object.
  *
- * @author ivanskodje on 20.09.17
+ * @author Ivan Skodje on 27/09/2017
  */
-public class ExternalsObject
+public class PersonResultObject
 {
-	public Integer tvrage;
-	public Integer thetvdb;
-	public String imdb;
+	/**
+	 * Search relevance score.
+	 * This score represent the relevance of your search.
+	 * A high value indicate a good match to your search result.
+	 * <p>
+	 * Range is expected to be between 0 and 40.
+	 */
+	public Float score;
+
+	/**
+	 * The Person object.
+	 */
+	public PersonObject person;
 }

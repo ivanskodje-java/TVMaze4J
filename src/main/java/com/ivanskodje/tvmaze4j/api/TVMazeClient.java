@@ -20,6 +20,7 @@
 package com.ivanskodje.tvmaze4j.api;
 
 import com.ivanskodje.tvmaze4j.model.Episode;
+import com.ivanskodje.tvmaze4j.model.Person;
 import com.ivanskodje.tvmaze4j.model.Season;
 import com.ivanskodje.tvmaze4j.model.Show;
 
@@ -64,7 +65,7 @@ public interface TVMazeClient
 	 * @param query         Search query.
 	 * @param fetchEpisodes Whether or not we want to fetch all episodes with the shows.
 	 * @param fetchSpecials Whether or not to get specials together with episodes
-	 * @return A list of Shows matching the query, with all episodes + specials.
+	 * @return A list of {@link Show}s matching the query, with all {@link Episode}s + specials.
 	 */
 	List<Show> showSearch(String query, boolean fetchEpisodes, boolean fetchSpecials);
 
@@ -74,18 +75,27 @@ public interface TVMazeClient
 	 * This is the equivalent of <code>showSingleSearch(query, false)</code>
 	 *
 	 * @param query Search query.
-	 * @return A list of Shows matching the query.
+	 * @return A list of {@link Show}s matching the query.
 	 */
 	Show showSingleSearch(String query);
 
 	/**
-	 * Gets a list of shows matching the query.
+	 * Gets a list of shows matching the search query.
 	 *
 	 * @param query         Search query.
 	 * @param fetchEpisodes Whether or not you want episodes included with the shows.
-	 * @return A list of Shows matching the query.
+	 * @return A list of {@link Show}s matching the query.
 	 */
 	Show showSingleSearch(String query, boolean fetchEpisodes);
+
+
+	/**
+	 * Gets a list of people matching the search query.
+	 *
+	 * @param query Search query.
+	 * @return A list of {@link Person} matching the query.
+	 */
+	List<Person> peopleSearch(String query);
 
 	/**
 	 * Gets a list of Episodes belonging to the Show matching the TVMaze ID.
@@ -93,7 +103,7 @@ public interface TVMazeClient
 	 * This is the equivalent of <code>showEpisodeList(id, false)</code>
 	 *
 	 * @param showId TVMaze Show ID.
-	 * @return A list of Episodes matching the show ID.
+	 * @return A list of Episodes matching the person ID.
 	 */
 	List<Episode> showEpisodeList(int showId);
 
@@ -102,7 +112,7 @@ public interface TVMazeClient
 	 *
 	 * @param showId        TVMaze Show ID.
 	 * @param fetchSpecials Whether or not to fetch the special episodes.
-	 * @return A list of Episodes matching the show ID - possibly with specials.
+	 * @return A list of Episodes matching the person ID - possibly with specials.
 	 */
 	List<Episode> showEpisodeList(int showId, boolean fetchSpecials);
 
@@ -117,16 +127,25 @@ public interface TVMazeClient
 	Episode episodeByNumber(int showId, int season, int number);
 
 	/**
-	 * Get a list of episodes from the show id, matching the given date.
+	 * Get a list of episodes from the person id, matching the given date.
 	 *
 	 * @param showId TVmaze ID.
 	 * @param date   The specific date the episode aired.
-	 * @return A list of matching episodes (of any).
+	 * @return A list of matching episodes.
 	 */
 	List<Episode> episodesByDate(int showId, LocalDate date);
 
+
 	/**
-	 * Find the show matching the TVMaze ID.
+	 * Get a list of episodes belonging to the given season ID.
+	 *
+	 * @param seasonId Season ID.
+	 * @return A list of Episodes from the same season.
+	 */
+	List<Episode> episodesBySeason(int seasonId);
+
+	/**
+	 * Find the person matching the TVMaze ID.
 	 *
 	 * @param showId
 	 * @return
@@ -134,7 +153,7 @@ public interface TVMazeClient
 	Show showLookUp(int showId);
 
 	/**
-	 * Find the show matching the TVRage ID.
+	 * Find the person matching the TVRage ID.
 	 *
 	 * @param tvRageId TVRage ID
 	 * @return Show
@@ -142,7 +161,7 @@ public interface TVMazeClient
 	Show showLookUpFromTvRage(int tvRageId);
 
 	/**
-	 * Find the show matching the TheTVDB ID.
+	 * Find the person matching the TheTVDB ID.
 	 *
 	 * @param theTvdbId TheTVDB ID
 	 * @return Show
@@ -150,7 +169,7 @@ public interface TVMazeClient
 	Show showLookUpFromTheTvDb(int theTvdbId);
 
 	/**
-	 * Find the show matching the IMDB ID.
+	 * Find the person matching the IMDB ID.
 	 *
 	 * @param imdbId IMDB ID
 	 * @return Show

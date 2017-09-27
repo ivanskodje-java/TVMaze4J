@@ -27,7 +27,7 @@ package com.ivanskodje.tvmaze4j.model;
 public class Links
 {
 	/**
-	 * API URL to own show or episode.
+	 * API URL to own Show or episode.
 	 */
 	private String self = "";
 
@@ -42,10 +42,10 @@ public class Links
 	private String nextEpisode = "";
 
 	/**
-	 * Returns API URL to the own show/episode,
+	 * Returns API URL to the own Show/episode,
 	 * or an empty string if none have been set.
 	 *
-	 * @return API URL to own show/episode.
+	 * @return API URL to own Show/episode.
 	 */
 	public String getSelf()
 	{
@@ -53,10 +53,10 @@ public class Links
 	}
 
 	/**
-	 * Sets the API URL to the own show/episode,
+	 * Sets the API URL to the own Show/episode,
 	 * if it is not null.
 	 *
-	 * @param self API URL to own show/episode.
+	 * @param self API URL to own Show/episode.
 	 */
 	public void setSelf(String self)
 	{

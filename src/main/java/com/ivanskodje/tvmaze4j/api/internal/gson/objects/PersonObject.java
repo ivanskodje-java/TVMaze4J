@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (ExternalsObject.java) is part of TVMaze4J.                 *
+ * This file (PersonObject.java) is part of TVMaze4J.                    *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -20,15 +20,15 @@
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
 /**
- * This represents a json Externals object.
- * <p>
- * Externals contain person IDs from different databases such as IMDB.
+ * This represents a json Person object.
  *
- * @author ivanskodje on 20.09.17
+ * @author Ivan Skodje on 27/09/2017
  */
-public class ExternalsObject
+public class PersonObject
 {
-	public Integer tvrage;
-	public Integer thetvdb;
-	public String imdb;
+	public Integer id;
+	public String url;
+	public String name;
+	public ImageObject image;
+	public LinksObject _links;
 }

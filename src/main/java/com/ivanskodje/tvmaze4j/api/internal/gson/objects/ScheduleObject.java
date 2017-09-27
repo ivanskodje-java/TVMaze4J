@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * This represents a json Schedule object.
  * <p>
- * It contains the days the show airs, as well as the time.
+ * It contains the days the person airs, as well as the time.
  *
  * @author ivanskodje on 20.09.17
  */

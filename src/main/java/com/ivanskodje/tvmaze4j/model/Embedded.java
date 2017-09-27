@@ -25,14 +25,14 @@ import java.util.List;
  * Some shows or episodes may contain embedded content.
  * This is the class we use to store such content.
  * <p>
- * It may contain either a show or an episode, or perhaps both.
+ * It may contain either a Show or an episode, or perhaps both.
  *
  * @author Ivan Skodje on 23/09/2017
  */
 public class Embedded
 {
 	/**
-	 * A show.
+	 * A Show.
 	 */
 	private Show show = null;
 
@@ -91,10 +91,10 @@ public class Embedded
 
 	/**
 	 * To string will be formatted as either
-	 * "[show]",
+	 * "[Show]",
 	 * "[#] episodes"
 	 * or
-	 * "[show] has [#] episodes".
+	 * "[Show] has [#] episodes".
 	 *
 	 * @return A description of the embedded content.
 	 */

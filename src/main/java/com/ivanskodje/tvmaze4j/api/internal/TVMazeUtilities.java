@@ -49,27 +49,27 @@ public class TVMazeUtilities
 	public static final Gson GSON = new Gson();
 
 	/**
-	 * Get Show from ResultObject.
+	 * Get Show from ShowResultObject.
 	 *
-	 * @param resultObject {@link ResultObject} is deserialized from Gson.
+	 * @param showResultObject {@link ShowResultObject} is deserialized from Gson.
 	 * @return A {@link Show}.
 	 */
-	public static Show getShowFromGsonObject(ResultObject resultObject)
+	public static Show getShowFromGsonObject(ShowResultObject showResultObject)
 	{
-		if (resultObject == null)
+		if (showResultObject == null)
 		{
-			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "ResultObject was NULL.");
+			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "ShowResultObject was NULL.");
 			return null;
 		}
 
-		if (resultObject.show == null)
+		if (showResultObject.show == null)
 		{
-			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "resultObject.showImpl was NULL.");
+			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "showResultObject.showImpl was NULL.");
 			return null;
 		}
 
-		Show showImpl = getShowFromGsonObject(resultObject.show);
-		showImpl.setSearchRelevanceScore(resultObject.score);
+		Show showImpl = getShowFromGsonObject(showResultObject.show);
+		showImpl.setSearchRelevanceScore(showResultObject.score);
 
 		return showImpl;
 	}
@@ -127,6 +127,7 @@ public class TVMazeUtilities
 			return null;
 		}
 
+		// TODO: Handle errors everywhere... !
 		if (episodeObject.status != null)
 		{
 			switch (episodeObject.status)
@@ -162,13 +163,54 @@ public class TVMazeUtilities
 			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "Was unable to set LocalTime in Episode, due to LocalTime Parsing exceptions.\n");
 		}
 
-		// The show is available when you retrieve episode from Schedule.
+		// The person is available when you retrieve episode from Schedule.
 		if (episodeObject.show != null)
 		{
 			episode.setShow(getShowFromGsonObject(episodeObject.show));
 		}
 
 		return episode;
+	}
+
+
+	public static Person getPersonFromGsonObject(PersonResultObject personResultObject)
+	{
+		if (personResultObject == null)
+		{
+			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "PersonResultObject was NULL.");
+			return null;
+		}
+
+		if (personResultObject.person == null)
+		{
+			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "PersonObject in PersonResultObject was NULL.");
+			return null;
+		}
+
+		return getPersonFromGsonObject(personResultObject.person);
+	}
+
+	/**
+	 * Get Person from PersonObject.
+	 *
+	 * @param personObject {@link PersonObject} is deserialized from Gson.
+	 * @return {@link Person}.
+	 */
+	public static Person getPersonFromGsonObject(PersonObject personObject)
+	{
+		if (personObject == null)
+		{
+			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "PersonObject was NULL.");
+			return null;
+		}
+
+		Person person = new Person();
+		person.setId(personObject.id);
+		person.setUrl(personObject.url);
+		person.setName(personObject.name);
+		person.setImages(getImagesFromGsonObject(personObject.image));
+		person.setLinks(getLinksFromGsonObject(personObject._links));
+		return person;
 	}
 
 	/**

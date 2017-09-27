@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (ResultObject.java) is part of TVMaze4J.                    *
+ * This file (ShowResultObject.java) is part of TVMaze4J.                    *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -23,11 +23,11 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
  * This represents a json Result object.
  * <p>
  * This is the container of shows, and is the result
- * you get when using show search.
+ * you get when using person search.
  *
  * @author Ivan Skodje on 21/09/2017
  */
-public class ResultObject
+public class ShowResultObject
 {
 	/**
 	 * Search relevance score.

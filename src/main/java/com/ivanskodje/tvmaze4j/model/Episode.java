@@ -102,7 +102,7 @@ public class Episode
 	private String summary = "";
 
 	/**
-	 * The show this episode belongs in.
+	 * The Show this episode belongs in.
 	 */
 	private Show show = null;
 

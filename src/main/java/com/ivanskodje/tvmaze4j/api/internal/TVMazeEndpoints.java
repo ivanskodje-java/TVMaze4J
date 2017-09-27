@@ -37,71 +37,76 @@ public final class TVMazeEndpoints
 	public static final String SHOW_SEARCH = CORE_URL + "search/shows?q=%s";
 
 	/**
-	 * Formatted URL used to find one matching show.
+	 * Formatted URL used to find one matching person.
 	 */
 	public static final String SHOW_SINGLE_SEARCH = CORE_URL + "singlesearch/shows?q=%s";
 
 	/**
-	 * URL used to find one matching show with all episodes attached.
+	 * URL used to find one matching person with all episodes attached.
 	 */
 	public static final String SHOW_SINGLE_SEARCH_WITH_EPISODES = SHOW_SINGLE_SEARCH + "&embed=episodes";
 
 	/**
-	 * Formatted URL used to find a specific show using a TVMaze ID.
+	 * Formatted URL used to find a specific person using a TVMaze ID.
 	 */
 	public static final String SHOW_LOOKUP_TVMAZE = CORE_URL + "shows/%s";
 
 	/**
-	 * Formatted URL used to find a specific show using a TVRage ID.
+	 * Formatted URL used to find a specific person using a TVRage ID.
 	 */
 	public static final String SHOW_LOOKUP_TVRAGE = CORE_URL + "lookup/shows?tvrage=%s";
 
 	/**
-	 * Formatted URL used to find a specific show using a TheTVDB ID.
+	 * Formatted URL used to find a specific person using a TheTVDB ID.
 	 */
 	public static final String SHOW_LOOKUP_THETVDB = CORE_URL + "lookup/shows?thetvdb=%s";
 
 	/**
-	 * Formatted URL used to find a specific show using a IMDB ID.
+	 * Formatted URL used to find a specific person using a IMDB ID.
 	 */
 	public static final String SHOW_LOOKUP_IMDB = CORE_URL + "lookup/shows?imdb=%s";
 
 	/**
-	 * Formatted URL used to get a list of episodes belonging to a show.
+	 * Formatted URL used to get a list of episodes belonging to a person.
 	 */
 	public static final String EPISODE_LIST = CORE_URL + "shows/%s/episodes";
 
 	/**
-	 * Formatted URL used to get a list of episodes with specials belonging to a show.
+	 * Formatted URL used to get a list of episodes with specials belonging to a person.
 	 */
 	public static final String EPISODE_LIST_WITH_SPECIALS = EPISODE_LIST + "?specials=1";
 
 	/**
-	 * Formatted URL used to get a single episode matching show ID, season number, and episode number.
+	 * Formatted URL used to get a single episode matching person ID, season number, and episode number.
 	 */
 	public static final String EPISODE_BY_NUMBER = CORE_URL + "shows/%s/episodebynumber?season=%s&number=%s";
 
 	/**
-	 * Formatted URL for getting a list of episodes matching show ID, and the date it aired.
+	 * Formatted URL for getting a list of episodes matching person ID, and the date it aired.
 	 */
 	public static final String EPISODES_BY_DATE = CORE_URL + "shows/%s/episodesbydate?date=%s";
 
 	/**
-	 * Formatted URL for getting a list of seasons matching the show ID.
+	 * Formatted URL for getting a list of episodes in the same season, as the given episode ID.
+	 */
+	public static final String EPISODES_BY_SEASON = CORE_URL + "seasons/%s/episodes";
+
+	/**
+	 * Formatted URL for getting a list of seasons matching the person ID.
 	 */
 	public static final String SHOW_SEASONS = CORE_URL + "shows/%s/seasons";
 
 	/**
-	 * Formatted URL used to find people.
+	 * Formatted URL used to find people matching the search query.
 	 */
-	public static final String PEOPLE_SEARCH = CORE_URL + "people?q=%s";
+	public static final String PEOPLE_SEARCH = CORE_URL + "search/people?q=%s";
 
 	/**
 	 * URL used to get a list of episode scheduled to air today (US).
 	 * <p>
 	 * Episodes are returned in the order in which they are aired,
 	 * and full information about the episode and the corresponding
-	 * show is included.
+	 * person is included.
 	 */
 	public static final String SCHEDULE = CORE_URL + "schedule";
 

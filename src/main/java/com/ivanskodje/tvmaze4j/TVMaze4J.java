@@ -141,7 +141,7 @@ public class TVMaze4J
 		ClientBuilder builder = new ClientBuilder();
 		TVMazeClient client = builder.build();
 
-		// Fetch a show.
+		// Fetch a person.
 		Show show = client.showSingleSearch("silicon valley", true);
 		System.out.println(show.getClass().getSimpleName());
 	}

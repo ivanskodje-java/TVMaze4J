@@ -62,23 +62,23 @@ public class TVMaze4JTest extends TestCase
 		ClientBuilder builder = new ClientBuilder();
 		TVMazeClient client = builder.build();
 
-		// Get the matching show (single) with episodes
+		// Get the matching person (single) with episodes
 		Show showImpl1 = client.showSingleSearch("silicon valley", true);
 		System.out.println(showImpl1.getEpisodes());
 
-		// Get show with TVRage ID
+		// Get person with TVRage ID
 		Show showImpl2 = client.showLookUpFromTvRage(24493); // Game of Thrones has TVRage ID 24493
 		System.out.println(showImpl2);
 
-		// Get show with TheTVDB ID
+		// Get person with TheTVDB ID
 		Show showImpl3 = client.showLookUpFromTheTvDb(81189); // Breaking Bad has TheTVDB ID 81189
 		System.out.println(showImpl3);
 
-		// Get show with IMDB ID
+		// Get person with IMDB ID
 		Show showImpl4 = client.showLookUpFromImdb("tt0944947"); // Game of Thrones has IMDB ID tt0944947
 		System.out.println(showImpl4);
 
-		// Get show with TVMaze
+		// Get person with TVMaze
 		Show showImpl5 = client.showLookUp(143); // Silicon Valley has TVMaze ID 143
 		System.out.println(showImpl5);
 
@@ -90,7 +90,7 @@ public class TVMaze4JTest extends TestCase
 		Episode episode1 = client.episodeByNumber(143, 1, 4); // showid, season, number
 		System.out.println(episode1);
 
-		// Get a list of episodes aired by the show on a specific date.
+		// Get a list of episodes aired by the person on a specific date.
 		List<Episode> episodes2 = client.episodesByDate(1, LocalDate.parse("2013-07-01")); // showid, date (yyyy-mm-dd)
 		System.out.println(episodes2);
 	}
@@ -151,14 +151,14 @@ public class TVMaze4JTest extends TestCase
 		});
 
 		/**
-		 * Attempting to get a single show
+		 * Attempting to get a single person
 		 */
 		TVMaze4J.LOGGER.info("Searching for Shows with episodes and specials");
 		Show showImpl1 = client.showSingleSearch("Silicon Valley");
 		checkShow(showImpl1);
 
 		/**
-		 * Attempting to get a single show with episodes
+		 * Attempting to get a single person with episodes
 		 */
 		TVMaze4J.LOGGER.info("Searching for Shows with episodes and specials");
 		Show showImpl2 = client.showSingleSearch("Game of Thrones", true);
@@ -218,6 +218,65 @@ public class TVMaze4JTest extends TestCase
 		TVMaze4J.LOGGER.info("Attempting to get all seasons in Silicon Valley (ID: 143)...");
 		List<Season> seasons1 = client.getSeasons(143);
 		seasons1.stream().forEach(s -> System.out.println(s));
+	}
+
+	public void testGetEpisodesFromSameSeasonAsGivenEpisodeId()
+	{
+		TVMazeClient client = new ClientBuilder().build();
+
+		/**
+		 * Attempting to get all episodes belonging in the same season,
+		 * using ID: 661 (Silicon Valley, Season 1).
+		 */
+		TVMaze4J.LOGGER.info("Attempting to get all episodes belonging in the same season... ");
+		List<Episode> episodes = client.episodesBySeason(661); // 661: Silicon Valley, Season 1's ID.
+		episodes.stream().forEach(e -> System.out.println(e));
+	}
+
+	public void testPeopleSearch()
+	{
+		TVMazeClient client = new ClientBuilder().build();
+
+		/**
+		 * Attempting to get a bunch of matching People, using the search query: "L".
+		 */
+		TVMaze4J.LOGGER.info("Attempting to get a bunch of matching People, using the search query: 'L'.");
+		List<Person> people = client.peopleSearch("L");
+		people.stream().forEach(p -> checkPerson(p));
+	}
+
+	private void checkPerson(Person person)
+	{
+		TVMaze4J.LOGGER.info("Person: " + person);
+		if (person != null)
+		{
+			TVMaze4J.LOGGER.info("Person->getId: " + person.getId());
+			TVMaze4J.LOGGER.info("Person->getUrl: " + person.getUrl());
+			TVMaze4J.LOGGER.info("Person->getName: " + person.getName());
+			checkImages(person.getImages());
+			checkLinks(person.getLinks());
+		}
+	}
+
+	private void checkLinks(Links links)
+	{
+		TVMaze4J.LOGGER.info("Links: " + links);
+		if (links != null)
+		{
+			TVMaze4J.LOGGER.info("Links->getSelf: " + links.getSelf());
+			TVMaze4J.LOGGER.info("Links->getPreviousEpisode: " + links.getPreviousEpisode());
+			TVMaze4J.LOGGER.info("Links->getNextEpisode: " + links.getNextEpisode());
+		}
+	}
+
+	private void checkImages(Images images)
+	{
+		TVMaze4J.LOGGER.info("Images: " + images);
+		if (images != null)
+		{
+			TVMaze4J.LOGGER.info("Images->getMedium: " + images.getMedium());
+			TVMaze4J.LOGGER.info("Images->getOriginal: " + images.getOriginal());
+		}
 	}
 
 	private void checkEpisode(Episode episode)
