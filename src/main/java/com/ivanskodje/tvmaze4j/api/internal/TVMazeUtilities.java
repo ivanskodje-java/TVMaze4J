@@ -31,9 +31,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A bunch of various utilities used throughout TVMaze4J.
@@ -187,7 +187,9 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		return getPersonFromGsonObject(personResultObject.person);
+		Person person = getPersonFromGsonObject(personResultObject.person);
+		person.setSearchRelevanceScore(personResultObject.score);
+		return person;
 	}
 
 	/**
@@ -232,10 +234,18 @@ public class TVMazeUtilities
 
 			if (embeddedObject.episodes != null)
 			{
-				List<Episode> episodes = new ArrayList<>();
-				List<EpisodeObject> episodeObjectss = embeddedObject.episodes;
-				episodeObjectss.stream().forEach(epObj -> episodes.add(getEpisodeFromGsonObject(epObj)));
+				List<Episode> episodes = new CopyOnWriteArrayList<>();
+				List<EpisodeObject> episodeObjects = embeddedObject.episodes;
+				episodeObjects.stream().forEach(epObj -> episodes.add(getEpisodeFromGsonObject(epObj)));
 				embedded.setEpisodes(episodes);
+			}
+
+			if (embeddedObject.cast != null)
+			{
+				List<Cast> castMembers = new CopyOnWriteArrayList<>();
+				List<CastObject> castObjects = embeddedObject.cast;
+				castObjects.stream().forEach(castObj -> castMembers.add(getCastFromGsonObject(castObj)));
+				embedded.setCastMembers(castMembers);
 			}
 
 			return embedded;
@@ -246,6 +256,21 @@ public class TVMazeUtilities
 			return null;
 		}
 	}
+
+	public static Cast getCastFromGsonObject(CastObject castObject)
+	{
+		if (castObject == null)
+		{
+			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "CastObject was NULL.");
+			return null;
+		}
+
+		Cast cast = new Cast();
+		cast.setActor(getPersonFromGsonObject(castObject.person));
+		cast.setCharacter(getPersonFromGsonObject(castObject.character));
+		return cast;
+	}
+
 
 	/**
 	 * Get Links from ImagesObject.

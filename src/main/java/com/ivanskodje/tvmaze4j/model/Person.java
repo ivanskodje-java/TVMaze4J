@@ -20,12 +20,23 @@
 package com.ivanskodje.tvmaze4j.model;
 
 /**
- * A Person.
+ * A Person can be an Actor or Character from a {@link Show}.
  *
  * @author Ivan Skodje on 27/09/2017
  */
 public class Person
 {
+	/**
+	 * Search relevance score.
+	 * <p>
+	 * Score is estimated to range 0 and up to 40.
+	 * <p>
+	 * When searching with terms that provide multiple results,
+	 * the result with the highest search relevance score will
+	 * return when searching for a single show.
+	 */
+	private float searchRelevanceScore = -1;
+
 	/**
 	 * The Person's TVMaze ID.
 	 * IDs range 0 and up.
@@ -53,6 +64,35 @@ public class Person
 	 * All have an API url to the person.
 	 */
 	private Links links = null;
+
+
+	/**
+	 * Returns the Person's search relevance score
+	 * from the search that fetched this,
+	 * or -1 if none has been set.
+	 *
+	 * @return Search relevance score.
+	 */
+	public float getSearchRelevanceScore()
+	{
+		return searchRelevanceScore;
+	}
+
+	/**
+	 * Sets the Person's search relevance score
+	 * from the search that fetched this,
+	 * if it is not null.
+	 *
+	 * @param searchRelevanceScore
+	 */
+	public void setSearchRelevanceScore(Float searchRelevanceScore)
+	{
+		if (searchRelevanceScore != null)
+		{
+			this.searchRelevanceScore = searchRelevanceScore;
+		}
+	}
+
 
 	/**
 	 * Returns the Person's TVMaze ID,

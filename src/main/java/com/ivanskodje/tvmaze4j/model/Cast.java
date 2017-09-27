@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (PersonResultObject.java) is part of TVMaze4J.              *
+ * This file (Cast.java) is part of TVMaze4J.                            *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -17,28 +17,81 @@
  * along with TVMaze4J.  If not, see <http://www.gnu.org/licenses/>.     *
  *************************************************************************/
 
-package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
+package com.ivanskodje.tvmaze4j.model;
 
 /**
- * This represents a json Result object.
- * <p>
- * A Person can be both the actor and character from a Show.
+ * A cast member has the role of both an actor and character.
  *
  * @author Ivan Skodje on 27/09/2017
  */
-public class PersonResultObject
+public class Cast
 {
 	/**
-	 * Search relevance score.
-	 * This score represent the relevance of your search.
-	 * A high value indicate a good match to your search result.
-	 * <p>
-	 * Range is expected to be between 0 and 40.
+	 * The Actor in a Show.
 	 */
-	public Float score;
+	private Person actor = null;
 
 	/**
-	 * The Person object.
+	 * The Character the actor portrays.
 	 */
-	public PersonObject person;
+	private Person character = null;
+
+	/**
+	 * Returns the Actor,
+	 * or null if none have been set.
+	 *
+	 * @return The Actor.
+	 */
+	public Person getActor()
+	{
+		return actor;
+	}
+
+	/**
+	 * Sets the Actor,
+	 * if it is not null.
+	 *
+	 * @param actor The Actor.
+	 */
+	public void setActor(Person actor)
+	{
+		if (actor != null)
+		{
+			this.actor = actor;
+		}
+	}
+
+	/**
+	 * Returns the Character the actor portrays,
+	 * or null if none have been set.
+	 *
+	 * @return The Character.
+	 */
+	public Person getCharacter()
+	{
+		return character;
+	}
+
+	/**
+	 * Sets the Character the actor prortrays,
+	 * if it is not null.
+	 *
+	 * @param character The Character.
+	 */
+	public void setCharacter(Person character)
+	{
+		this.character = character;
+	}
+
+	/**
+	 * To string will be formatted as
+	 * "'[actor name]' portraying the role as '[character name]'".
+	 *
+	 * @return A description of the cast member.
+	 */
+	@Override
+	public String toString()
+	{
+		return "'" + actor.getName() + "' portraying the role as '" + character.getName() + "'";
+	}
 }

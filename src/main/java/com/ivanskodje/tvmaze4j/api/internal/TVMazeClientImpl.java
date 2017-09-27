@@ -173,9 +173,16 @@ public class TVMazeClientImpl implements TVMazeClient
 	}
 
 	@Override
-	public Show showLookUp(int id)
+	public Show showInfo(int showId)
 	{
-		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(TVMazeEndpoints.SHOW_LOOKUP_TVMAZE, id), ShowObject.class);
+		return showInfo(showId, false);
+	}
+
+	@Override
+	public Show showInfo(int showId, boolean fetchCast)
+	{
+		String apiUrl = fetchCast ? TVMazeEndpoints.SHOW_INFO_WITH_CAST : TVMazeEndpoints.SHOW_INFO;
+		ShowObject showObject = REQUESTS.GET.makeRequest(String.format(apiUrl, showId), ShowObject.class);
 		if (showObject == null)
 		{
 			return null;

@@ -103,7 +103,7 @@ public interface TVMazeClient
 	 * This is the equivalent of <code>showEpisodeList(id, false)</code>
 	 *
 	 * @param showId TVMaze Show ID.
-	 * @return A list of Episodes matching the person ID.
+	 * @return A list of Episodes matching the Show ID.
 	 */
 	List<Episode> showEpisodeList(int showId);
 
@@ -112,7 +112,7 @@ public interface TVMazeClient
 	 *
 	 * @param showId        TVMaze Show ID.
 	 * @param fetchSpecials Whether or not to fetch the special episodes.
-	 * @return A list of Episodes matching the person ID - possibly with specials.
+	 * @return A list of Episodes matching the Show ID - possibly with specials.
 	 */
 	List<Episode> showEpisodeList(int showId, boolean fetchSpecials);
 
@@ -127,7 +127,7 @@ public interface TVMazeClient
 	Episode episodeByNumber(int showId, int season, int number);
 
 	/**
-	 * Get a list of episodes from the person id, matching the given date.
+	 * Get a list of episodes from the Show id, matching the given date.
 	 *
 	 * @param showId TVmaze ID.
 	 * @param date   The specific date the episode aired.
@@ -145,15 +145,24 @@ public interface TVMazeClient
 	List<Episode> episodesBySeason(int seasonId);
 
 	/**
-	 * Find the person matching the TVMaze ID.
+	 * Find the Show matching the TVMaze ID.
 	 *
-	 * @param showId
-	 * @return
+	 * @param showId Show ID.
+	 * @return A {@link Show}.
 	 */
-	Show showLookUp(int showId);
+	Show showInfo(int showId);
 
 	/**
-	 * Find the person matching the TVRage ID.
+	 * Find the Show matching the TVMaze ID, with cast members embedded.
+	 *
+	 * @param showId    Show ID.
+	 * @param fetchCast Whether or not to fetch the cast members.
+	 * @return A {@link Show}.
+	 */
+	Show showInfo(int showId, boolean fetchCast);
+
+	/**
+	 * Find the Show matching the TVRage ID.
 	 *
 	 * @param tvRageId TVRage ID
 	 * @return Show
@@ -161,7 +170,7 @@ public interface TVMazeClient
 	Show showLookUpFromTvRage(int tvRageId);
 
 	/**
-	 * Find the person matching the TheTVDB ID.
+	 * Find the Show matching the TheTVDB ID.
 	 *
 	 * @param theTvdbId TheTVDB ID
 	 * @return Show
@@ -169,7 +178,7 @@ public interface TVMazeClient
 	Show showLookUpFromTheTvDb(int theTvdbId);
 
 	/**
-	 * Find the person matching the IMDB ID.
+	 * Find the Show matching the IMDB ID.
 	 *
 	 * @param imdbId IMDB ID
 	 * @return Show

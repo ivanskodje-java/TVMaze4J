@@ -735,7 +735,7 @@ public class Show
 	 * <p>
 	 * Episodes are stored and retrieved from {@link Embedded}.
 	 *
-	 * @return {@link Episode}.
+	 * @return List of {@link Episode}s.
 	 */
 	public List<Episode> getEpisodes()
 	{
@@ -755,7 +755,7 @@ public class Show
 	 * <p>
 	 * Episodes are stored and retrieved from {@link Embedded}.
 	 *
-	 * @param episodes {@link Episode}.
+	 * @param episodes List of {@link Episode}s.
 	 */
 	public void setEpisodes(List<Episode> episodes)
 	{
@@ -766,6 +766,47 @@ public class Show
 				embedded = new Embedded();
 			}
 			embedded.setEpisodes(episodes);
+		}
+	}
+
+
+	/**
+	 * Returns a list of the Show's {@link Cast} Members,
+	 * or null if none have been set.
+	 * <p>
+	 * Cast are stored and retrieved from {@link Embedded}.
+	 *
+	 * @return List of {@link Cast} Members.
+	 */
+	public List<Cast> getCastMembers()
+	{
+		if (embedded == null)
+		{
+			return null;
+		}
+		return embedded.getCastMembers();
+	}
+
+	/**
+	 * Sets a list of the Show's {@link Cast} Members,
+	 * if it is not null.
+	 * <p>
+	 * If embedded is null, we instantiate it before
+	 * adding the cast members.
+	 * <p>
+	 * Cast members are stored and retrieved from {@link Embedded}.
+	 *
+	 * @param castMembers List of {@link Cast} Members.
+	 */
+	public void setCastMembers(List<Cast> castMembers)
+	{
+		if (castMembers != null)
+		{
+			if (embedded == null)
+			{
+				embedded = new Embedded();
+			}
+			embedded.setCastMembers(castMembers);
 		}
 	}
 

@@ -79,7 +79,7 @@ public class TVMaze4JTest extends TestCase
 		System.out.println(showImpl4);
 
 		// Get person with TVMaze
-		Show showImpl5 = client.showLookUp(143); // Silicon Valley has TVMaze ID 143
+		Show showImpl5 = client.showInfo(143); // Silicon Valley has TVMaze ID 143
 		System.out.println(showImpl5);
 
 		// Get a list of Episodes from ID
@@ -245,6 +245,19 @@ public class TVMaze4JTest extends TestCase
 		people.stream().forEach(p -> checkPerson(p));
 	}
 
+
+	public void testCastMembers()
+	{
+		TVMazeClient client = new ClientBuilder().build();
+
+		/**
+		 * Attempting to get a bunch of matching People, using the search query: "L".
+		 */
+		TVMaze4J.LOGGER.info("Attempting to get a bunch of Cast Members from Silicon Valley");
+		Show show = client.showInfo(143, true);
+		checkShow(show);
+	}
+
 	private void checkPerson(Person person)
 	{
 		TVMaze4J.LOGGER.info("Person: " + person);
@@ -276,6 +289,16 @@ public class TVMaze4JTest extends TestCase
 		{
 			TVMaze4J.LOGGER.info("Images->getMedium: " + images.getMedium());
 			TVMaze4J.LOGGER.info("Images->getOriginal: " + images.getOriginal());
+		}
+	}
+
+	private void checkCast(Cast cast)
+	{
+		TVMaze4J.LOGGER.info("Cast: " + cast);
+		if (cast != null)
+		{
+			TVMaze4J.LOGGER.info("Cast->getActor: " + cast.getActor());
+			TVMaze4J.LOGGER.info("Cast->getCharacter: " + cast.getCharacter());
 		}
 	}
 
@@ -371,8 +394,20 @@ public class TVMaze4JTest extends TestCase
 		TVMaze4J.LOGGER.info("EMBEDDED: " + embedded);
 		if (embedded != null)
 		{
-			TVMaze4J.LOGGER.info("embedded->getShowImpl: " + embedded.getShow());
-			TVMaze4J.LOGGER.info("embedded->getEpisodes: " + embedded.getEpisodes());
+			if(embedded.getShow() != null)
+			{
+				checkShow(embedded.getShow());
+			}
+			if(embedded.getEpisodes() != null)
+			{
+				embedded.getEpisodes().stream().forEach(e -> checkEpisode(e));
+			}
+			if(embedded.getCastMembers() != null)
+			{
+				embedded.getCastMembers().stream().forEach(c -> checkCast(c));
+			}
+
+
 		}
 
 		List<Episode> episodes = showImpl.getEpisodes();

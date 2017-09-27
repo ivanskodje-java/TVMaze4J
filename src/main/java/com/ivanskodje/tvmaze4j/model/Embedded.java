@@ -42,6 +42,11 @@ public class Embedded
 	private List<Episode> episodes = null;
 
 	/**
+	 * A list of cast members.
+	 */
+	private List<Cast> castMembers = null;
+
+	/**
 	 * Returns the Show embedded,
 	 * or null if none have been set.
 	 *
@@ -53,7 +58,8 @@ public class Embedded
 	}
 
 	/**
-	 * Sets the Show, if it is not null.
+	 * Sets the Show,
+	 * if it is not null.
 	 *
 	 * @param show A {@link Show}.
 	 */
@@ -77,7 +83,8 @@ public class Embedded
 	}
 
 	/**
-	 * Sets the Episode, if it is not null.
+	 * Sets the Episode,
+	 * if it is not null.
 	 *
 	 * @param episodes An {@link Episode} or <code>null</code>.
 	 */
@@ -86,6 +93,31 @@ public class Embedded
 		if (episodes != null)
 		{
 			this.episodes = episodes;
+		}
+	}
+
+	/**
+	 * Returns the Cast Members,
+	 * or null if none have been set.
+	 *
+	 * @return A list of {@link Cast} members.
+	 */
+	public List<Cast> getCastMembers()
+	{
+		return castMembers;
+	}
+
+	/**
+	 * Sets the Cast Members,
+	 * if it is not null.
+	 *
+	 * @param castMembers
+	 */
+	public void setCastMembers(List<Cast> castMembers)
+	{
+		if (castMembers != null)
+		{
+			this.castMembers = castMembers;
 		}
 	}
 

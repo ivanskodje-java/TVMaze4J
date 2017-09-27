@@ -1,5 +1,5 @@
 /*************************************************************************
- * This file (EmbeddedObject.java) is part of TVMaze4J.                  *
+ * This file (CastObject.java) is part of TVMaze4J.                      *
  *                                                                       *
  * Copyright (c) 2017 Ivan Skodje.                                       *
  *                                                                       *
@@ -19,18 +19,11 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
-import java.util.List;
-
 /**
- * This represents a json Embedded object.
- * <p>
- * Embedded contains data you may find with &embedded URLs.
- *
- * @author ivanskodje on 20.09.17
+ * @author Ivan Skodje on 27/09/2017
  */
-public class EmbeddedObject
+public class CastObject
 {
-	public ShowObject show;
-	public List<EpisodeObject> episodes;
-	public List<CastObject> cast;
+	public PersonObject person;
+	public PersonObject character;
 }
