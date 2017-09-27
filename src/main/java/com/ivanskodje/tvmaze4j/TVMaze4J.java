@@ -21,6 +21,7 @@ package com.ivanskodje.tvmaze4j;
 
 import com.ivanskodje.tvmaze4j.api.ClientBuilder;
 import com.ivanskodje.tvmaze4j.api.TVMazeClient;
+import com.ivanskodje.tvmaze4j.model.Episode;
 import com.ivanskodje.tvmaze4j.model.Show;
 import com.ivanskodje.tvmaze4j.util.LogMarkers;
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ import org.slf4j.helpers.NOPLoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -137,12 +139,20 @@ public class TVMaze4J
 	 */
 	public static void main(String[] args)
 	{
-		// Create client.
-		ClientBuilder builder = new ClientBuilder();
-		TVMazeClient client = builder.build();
+		/* Create a TVMaze Client */
+		TVMazeClient client = new ClientBuilder().build();
 
-		// Fetch a person.
-		Show show = client.showSingleSearch("silicon valley", true);
-		System.out.println(show.getClass().getSimpleName());
+		/* Search for a single show */
+		List<Show> shows = client.showSearch("silicon valley", true);
+
+		/* Print show name,and episode names */
+		shows.stream().forEach(show ->
+		{
+			System.out.println(">>> " + show);
+			for(Episode episode : show.getEpisodes())
+			{
+				System.out.println(episode);
+			}
+		});
 	}
 }
