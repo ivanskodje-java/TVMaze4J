@@ -5,8 +5,11 @@ You can find the official information about TVMaze's API [here](http://www.tvmaz
 
 
 ## Project Status: Usable
-
-Some work remains, such as implementing all the different ways you can get Cast members. The same goes for AKAs (names in different languages), indexing, crew and credits. We also need to handle 404 errors and 429 errors, that may happen when you request too many times in a short amount of time.
+The most important work that remains;
+- Need to implement all variants of fetching Cast members.
+- Need to be able to retreve AKAs, indexes, crew and credits.
+- Need to handle errors, such as error 404 and 429.
+- Need to implement sorting.
 
 Contributions are welcome, as I only work on this as a hobby project from time to time.
 
