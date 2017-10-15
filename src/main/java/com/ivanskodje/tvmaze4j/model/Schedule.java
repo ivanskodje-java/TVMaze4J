@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 import java.time.LocalTime;
 import java.util.List;
 
@@ -27,67 +29,17 @@ import java.util.List;
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Schedule
+public @Data class Schedule
 {
 	/**
 	 * Time the show airs.
 	 */
-	private LocalTime time = null;
+	private LocalTime time;
 
 	/**
 	 * Days the show airs.
 	 */
-	private List<String> days = null;
-
-	/**
-	 * Returns the time the show airs,
-	 * or null if none have been set.
-	 *
-	 * @return Time the show airs.
-	 */
-	public LocalTime getTime()
-	{
-		return time;
-	}
-
-	/**
-	 * Sets the time the show airs,
-	 * if it is not null.
-	 *
-	 * @param time Time the show airs.
-	 */
-	public void setTime(LocalTime time)
-	{
-		if (time != null)
-		{
-			this.time = time;
-		}
-	}
-
-	/**
-	 * Returns the days the show airs,
-	 * or null if none have been set.
-	 *
-	 * @return Days the show airs.
-	 */
-	public List<String> getDays()
-	{
-		return days;
-	}
-
-	/**
-	 * Sets the days the show airs,
-	 * if it is not null.
-	 *
-	 * @param days Days the show airs.
-	 */
-	public void setDays(List<String> days)
-	{
-		if (days != null)
-		{
-			this.days = days;
-		}
-	}
+	private List<String> days;
 
 	/**
 	 * Returns a summary of when the show airs,

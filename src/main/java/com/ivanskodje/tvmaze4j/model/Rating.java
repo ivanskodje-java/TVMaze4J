@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * Show ratings.
  * <p>
@@ -27,38 +29,13 @@ package com.ivanskodje.tvmaze4j.model;
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Rating
+public @Data class Rating
 {
 	/**
 	 * Show Rating.
 	 * Average range 0 and up.
 	 */
-	private float average = -1;
-
-	/**
-	 * Returns the average show rating,
-	 * or -1 if none has been set.
-	 *
-	 * @return Average show rating.
-	 */
-	public float getAverage()
-	{
-		return average;
-	}
-
-	/**
-	 * Sets the average show rating,
-	 * if it is not null.
-	 *
-	 * @param average Average show rating.
-	 */
-	public void setAverage(Float average)
-	{
-		if (average != null)
-		{
-			this.average = average;
-		}
-	}
+	private float average;
 
 	/**
 	 * Returns the average ranking,

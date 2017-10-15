@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * Image URLs for Show or Episode images.
  * <p>
@@ -27,65 +29,21 @@ package com.ivanskodje.tvmaze4j.model;
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Images
+public @Data class Images
 {
 	/**
 	 * Medium sized image URL.
 	 * For Shows the image is vertical.
 	 * For Episodes the image is horizontal.
 	 */
-	private String medium = "";
+	private String medium;
 
 	/**
 	 * Original sized image URL.
 	 * For Shows the image is vertical.
 	 * For Episodes the image is horizontal.
 	 */
-	private String original = "";
-
-	/**
-	 * Returns the medium sized image URL,
-	 * or an empty string if none have been set.
-	 *
-	 * @return Medium sized image url.
-	 */
-	public String getMedium()
-	{
-		return medium;
-	}
-
-	/**
-	 * Sets the medium sized image URL,
-	 * if it is not null.
-	 *
-	 * @param medium Medium sized image url.
-	 */
-	public void setMedium(String medium)
-	{
-		this.medium = medium;
-	}
-
-	/**
-	 * Returns the original sized image URL,
-	 * or an empty string if none have been set.
-	 *
-	 * @return Original sized image url.
-	 */
-	public String getOriginal()
-	{
-		return original;
-	}
-
-	/**
-	 * Sets the original sized image URL,
-	 * if it is not null.
-	 *
-	 * @param original Original sized image url.
-	 */
-	public void setOriginal(String original)
-	{
-		this.original = original;
-	}
+	private String original;
 
 	/**
 	 * Returns the image URLs.

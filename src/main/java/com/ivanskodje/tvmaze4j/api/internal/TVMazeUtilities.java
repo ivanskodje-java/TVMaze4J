@@ -62,14 +62,14 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		if (showResultObject.show == null)
+		if (showResultObject.getShow() == null)
 		{
 			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "showResultObject.showImpl was NULL.");
 			return null;
 		}
 
-		Show showImpl = getShowFromGsonObject(showResultObject.show);
-		showImpl.setSearchRelevanceScore(showResultObject.score);
+		Show showImpl = getShowFromGsonObject(showResultObject.getShow());
+		showImpl.setSearchRelevanceScore(showResultObject.getScore());
 
 		return showImpl;
 	}
@@ -89,27 +89,27 @@ public class TVMazeUtilities
 		}
 
 		Show showImpl = new Show();
-		showImpl.setId(showObject.id);
-		showImpl.setUrl(showObject.url);
-		showImpl.setName(showObject.name);
-		showImpl.setType(showObject.type);
-		showImpl.setLanguage(showObject.language);
-		showImpl.setGenres(showObject.genres);
-		showImpl.setStatus(showObject.status);
-		showImpl.setRuntime(showObject.runtime);
-		showImpl.setPremiered(showObject.premiered);
-		showImpl.setOfficialSite(showObject.officialSite);
-		showImpl.setSchedule(getScheduleFromGsonObject(showObject.schedule));
-		showImpl.setRating(getRatingFromGsonObject(showObject.rating));
-		showImpl.setWeight(showObject.weight);
-		showImpl.setNetwork(getNetworkFromGsonObject(showObject.network));
-		showImpl.setWebChannel(getWebChannelFromGsonObject(showObject.webChannel));
-		showImpl.setExternals(getExternalFromGsonObject(showObject.externals));
-		showImpl.setImages(getImagesFromGsonObject(showObject.image));
-		showImpl.setSummary(showObject.summary);
-		showImpl.setUpdated(showObject.updated);
-		showImpl.setLinks(getLinksFromGsonObject(showObject._links));
-		showImpl.setEmbedded(getEmbeddedFromGsonObject(showObject._embedded));
+		showImpl.setId(showObject.getId());
+		showImpl.setUrl(showObject.getUrl());
+		showImpl.setName(showObject.getName());
+		showImpl.setType(showObject.getType());
+		showImpl.setLanguage(showObject.getLanguage());
+		showImpl.setGenres(showObject.getGenres());
+		showImpl.setStatus(showObject.getStatus());
+		showImpl.setRuntime(showObject.getRuntime());
+		showImpl.setPremiered(showObject.getPremiered());
+		showImpl.setOfficialSite(showObject.getOfficialSite());
+		showImpl.setSchedule(getScheduleFromGsonObject(showObject.getSchedule()));
+		showImpl.setRating(getRatingFromGsonObject(showObject.getRating()));
+		showImpl.setWeight(showObject.getWeight());
+		showImpl.setNetwork(getNetworkFromGsonObject(showObject.getNetwork()));
+		showImpl.setWebChannel(getWebChannelFromGsonObject(showObject.getWebChannel()));
+		showImpl.setExternals(getExternalFromGsonObject(showObject.getExternals()));
+		showImpl.setImages(getImagesFromGsonObject(showObject.getImage()));
+		showImpl.setSummary(showObject.getSummary());
+		showImpl.setUpdated(showObject.getUpdated());
+		showImpl.setLinks(getLinksFromGsonObject(showObject.get_links()));
+		showImpl.setEmbedded(getEmbeddedFromGsonObject(showObject.get_embedded()));
 		return showImpl;
 	}
 
@@ -128,12 +128,12 @@ public class TVMazeUtilities
 		}
 
 		// TODO: Handle errors everywhere... !
-		if (episodeObject.status != null)
+		if (episodeObject.getStatus() != null)
 		{
-			switch (episodeObject.status)
+			switch (episodeObject.getStatus())
 			{
 				case 404:
-					TVMaze4J.LOGGER.error(LogMarkers.UTIL, episodeObject.message);
+					TVMaze4J.LOGGER.error(LogMarkers.UTIL, episodeObject.getMessage());
 					return null;
 				default:
 					break;
@@ -141,21 +141,21 @@ public class TVMazeUtilities
 		}
 
 		Episode episode = new Episode();
-		episode.setId(episodeObject.id);
-		episode.setUrl(episodeObject.url);
-		episode.setName(episodeObject.name);
-		episode.setSeason(episodeObject.season);
-		episode.setNumber(episodeObject.number);
-		episode.setAirDate(parseToLocalDate(episodeObject.airdate));
-		episode.setAirStamp(episodeObject.airstamp);
-		episode.setRuntime(episodeObject.runtime);
-		episode.setImages(getImagesFromGsonObject(episodeObject.image));
-		episode.setSummary(episodeObject.summary);
-		episode.setLinks(getLinksFromGsonObject(episodeObject._links));
+		episode.setId(episodeObject.getId());
+		episode.setUrl(episodeObject.getUrl());
+		episode.setName(episodeObject.getName());
+		episode.setSeason(episodeObject.getSeason());
+		episode.setNumber(episodeObject.getNumber());
+		episode.setAirDate(parseToLocalDate(episodeObject.getAirdate()));
+		episode.setAirStamp(episodeObject.getAirstamp());
+		episode.setRuntime(episodeObject.getRuntime());
+		episode.setImages(getImagesFromGsonObject(episodeObject.getImage()));
+		episode.setSummary(episodeObject.getSummary());
+		episode.setLinks(getLinksFromGsonObject(episodeObject.get_links()));
 
 		try
 		{
-			String timeString = (episodeObject.airtime.length() > 5) ? episodeObject.airtime : episodeObject.airtime + ":00";
+			String timeString = (episodeObject.getAirtime().length() > 5) ? episodeObject.getAirtime() : episodeObject.getAirtime() + ":00";
 			episode.setAirTime(LocalTime.parse(timeString));
 		}
 		catch (DateTimeParseException ex)
@@ -164,9 +164,9 @@ public class TVMazeUtilities
 		}
 
 		// The person is available when you retrieve episode from Schedule.
-		if (episodeObject.show != null)
+		if (episodeObject.getShow() != null)
 		{
-			episode.setShow(getShowFromGsonObject(episodeObject.show));
+			episode.setShow(getShowFromGsonObject(episodeObject.getShow()));
 		}
 
 		return episode;
@@ -181,14 +181,14 @@ public class TVMazeUtilities
 			return null;
 		}
 
-		if (personResultObject.person == null)
+		if (personResultObject.getPerson() == null)
 		{
 			TVMaze4J.LOGGER.error(LogMarkers.UTIL, "PersonObject in PersonResultObject was NULL.");
 			return null;
 		}
 
-		Person person = getPersonFromGsonObject(personResultObject.person);
-		person.setSearchRelevanceScore(personResultObject.score);
+		Person person = getPersonFromGsonObject(personResultObject.getPerson());
+		person.setSearchRelevanceScore(personResultObject.getScore());
 		return person;
 	}
 
@@ -207,11 +207,11 @@ public class TVMazeUtilities
 		}
 
 		Person person = new Person();
-		person.setId(personObject.id);
-		person.setUrl(personObject.url);
-		person.setName(personObject.name);
-		person.setImages(getImagesFromGsonObject(personObject.image));
-		person.setLinks(getLinksFromGsonObject(personObject._links));
+		person.setId(personObject.getId());
+		person.setUrl(personObject.getUrl());
+		person.setName(personObject.getName());
+		person.setImages(getImagesFromGsonObject(personObject.getImage()));
+		person.setLinks(getLinksFromGsonObject(personObject.get_links()));
 		return person;
 	}
 
@@ -227,23 +227,23 @@ public class TVMazeUtilities
 		{
 			Embedded embedded = new Embedded();
 
-			if (embeddedObject.show != null)
+			if (embeddedObject.getShow() != null)
 			{
-				embedded.setShow(getShowFromGsonObject(embeddedObject.show));
+				embedded.setShow(getShowFromGsonObject(embeddedObject.getShow()));
 			}
 
-			if (embeddedObject.episodes != null)
+			if (embeddedObject.getEpisodes() != null)
 			{
 				List<Episode> episodes = new CopyOnWriteArrayList<>();
-				List<EpisodeObject> episodeObjects = embeddedObject.episodes;
+				List<EpisodeObject> episodeObjects = embeddedObject.getEpisodes();
 				episodeObjects.stream().forEach(epObj -> episodes.add(getEpisodeFromGsonObject(epObj)));
 				embedded.setEpisodes(episodes);
 			}
 
-			if (embeddedObject.cast != null)
+			if (embeddedObject.getCast() != null)
 			{
 				List<Cast> castMembers = new CopyOnWriteArrayList<>();
-				List<CastObject> castObjects = embeddedObject.cast;
+				List<CastObject> castObjects = embeddedObject.getCast();
 				castObjects.stream().forEach(castObj -> castMembers.add(getCastFromGsonObject(castObj)));
 				embedded.setCastMembers(castMembers);
 			}
@@ -266,8 +266,8 @@ public class TVMazeUtilities
 		}
 
 		Cast cast = new Cast();
-		cast.setActor(getPersonFromGsonObject(castObject.person));
-		cast.setCharacter(getPersonFromGsonObject(castObject.character));
+		cast.setActor(getPersonFromGsonObject(castObject.getPerson()));
+		cast.setCharacter(getPersonFromGsonObject(castObject.getCharacter()));
 		return cast;
 	}
 
@@ -284,27 +284,27 @@ public class TVMazeUtilities
 		{
 			Links links = new Links();
 
-			if (linksObject.self != null)
+			if (linksObject.getSelf() != null)
 			{
-				links.setSelf(linksObject.self.href);
+				links.setSelf(linksObject.getSelf().getHref());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "linksObject.self was NULL.");
 			}
 
-			if (linksObject.previousepisode != null)
+			if (linksObject.getPreviousepisode() != null)
 			{
-				links.setPreviousEpisode(linksObject.previousepisode.href);
+				links.setPreviousEpisode(linksObject.getPreviousepisode().getHref());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "linksObject.previousepisode was NULL.");
 			}
 
-			if (linksObject.nextepisode != null)
+			if (linksObject.getNextepisode() != null)
 			{
-				links.setNextEpisode(linksObject.nextepisode.href);
+				links.setNextEpisode(linksObject.getNextepisode().getHref());
 			}
 			else
 			{
@@ -332,18 +332,18 @@ public class TVMazeUtilities
 		{
 			Images images = new Images();
 
-			if (imageObject.medium != null)
+			if (imageObject.getMedium() != null)
 			{
-				images.setMedium(imageObject.medium);
+				images.setMedium(imageObject.getMedium());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "imageObject.medium was NULL.");
 			}
 
-			if (imageObject.original != null)
+			if (imageObject.getOriginal() != null)
 			{
-				images.setOriginal(imageObject.original);
+				images.setOriginal(imageObject.getOriginal());
 			}
 			else
 			{
@@ -371,27 +371,27 @@ public class TVMazeUtilities
 		{
 			Externals externals = new Externals();
 
-			if (externalsObject.imdb != null)
+			if (externalsObject.getImdb() != null)
 			{
-				externals.setImdb(externalsObject.imdb);
+				externals.setImdb(externalsObject.getImdb());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "externalsObject.imdb was NULL.");
 			}
 
-			if (externalsObject.tvrage != null)
+			if (externalsObject.getTvrage() != null)
 			{
-				externals.setTvRage(externalsObject.tvrage);
+				externals.setTvRage(externalsObject.getTvrage());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "externalsObject.tvrage was NULL.");
 			}
 
-			if (externalsObject.thetvdb != null)
+			if (externalsObject.getThetvdb() != null)
 			{
-				externals.setTheTvDb(externalsObject.thetvdb);
+				externals.setTheTvDb(externalsObject.getThetvdb());
 			}
 			else
 			{
@@ -419,27 +419,27 @@ public class TVMazeUtilities
 		{
 			WebChannel webChannel = new WebChannel();
 
-			if (webChannelObject.id != null)
+			if (webChannelObject.getId() != null)
 			{
-				webChannel.setId(webChannelObject.id);
+				webChannel.setId(webChannelObject.getId());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "webChannelObject.id was NULL.");
 			}
 
-			if (webChannelObject.name != null)
+			if (webChannelObject.getName() != null)
 			{
-				webChannel.setName(webChannelObject.name);
+				webChannel.setName(webChannelObject.getName());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "webChannelObject.name was NULL.");
 			}
 
-			if (webChannelObject.country != null)
+			if (webChannelObject.getCountry() != null)
 			{
-				webChannel.setCountry(getCountryFromGsonObject(webChannelObject.country));
+				webChannel.setCountry(getCountryFromGsonObject(webChannelObject.getCountry()));
 			}
 			else
 			{
@@ -467,27 +467,27 @@ public class TVMazeUtilities
 		{
 			Network network = new Network();
 
-			if (networkObject.id != null)
+			if (networkObject.getId() != null)
 			{
-				network.setId(networkObject.id);
+				network.setId(networkObject.getId());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "networkObject.id was NULL.");
 			}
 
-			if (networkObject.name != null)
+			if (networkObject.getName() != null)
 			{
-				network.setName(networkObject.name);
+				network.setName(networkObject.getName());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "networkObject.name was NULL.");
 			}
 
-			if (networkObject.country != null)
+			if (networkObject.getCountry() != null)
 			{
-				network.setCountry(getCountryFromGsonObject(networkObject.country));
+				network.setCountry(getCountryFromGsonObject(networkObject.getCountry()));
 			}
 			else
 			{
@@ -511,10 +511,10 @@ public class TVMazeUtilities
 	 */
 	public static Rating getRatingFromGsonObject(RatingObject ratingObject)
 	{
-		if (ratingObject != null && ratingObject.average != null)
+		if (ratingObject != null && ratingObject.getAverage() != null)
 		{
 			Rating rating = new Rating();
-			rating.setAverage(ratingObject.average);
+			rating.setAverage(ratingObject.getAverage());
 			return rating;
 		}
 		else
@@ -536,27 +536,27 @@ public class TVMazeUtilities
 		{
 			Country country = new Country();
 
-			if (countryObject.name != null)
+			if (countryObject.getName() != null)
 			{
-				country.setName(countryObject.name);
+				country.setName(countryObject.getName());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "countryObject.name was NULL.");
 			}
 
-			if (countryObject.code != null)
+			if (countryObject.getCode() != null)
 			{
-				country.setCode(countryObject.code);
+				country.setCode(countryObject.getCode());
 			}
 			else
 			{
 				TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "countryObject.code was NULL.");
 			}
 
-			if (countryObject.timezone != null)
+			if (countryObject.getTimezone() != null)
 			{
-				country.setTimeZone(countryObject.timezone);
+				country.setTimeZone(countryObject.getTimezone());
 			}
 			else
 			{
@@ -588,11 +588,11 @@ public class TVMazeUtilities
 
 		Schedule schedule = new Schedule();
 
-		if (scheduleObject.time != null)
+		if (scheduleObject.getTime() != null)
 		{
 			try
 			{
-				schedule.setTime(LocalTime.parse(scheduleObject.time));
+				schedule.setTime(LocalTime.parse(scheduleObject.getTime()));
 			}
 			catch (DateTimeParseException ex)
 			{
@@ -604,9 +604,9 @@ public class TVMazeUtilities
 			TVMaze4J.LOGGER.warn(LogMarkers.UTIL, "scheduleObject.time is NULL.");
 		}
 
-		if (scheduleObject.days != null)
+		if (scheduleObject.getDays() != null)
 		{
-			schedule.setDays(scheduleObject.days);
+			schedule.setDays(scheduleObject.getDays());
 		}
 		else
 		{
@@ -632,18 +632,18 @@ public class TVMazeUtilities
 
 		Season season = new Season();
 
-		season.setId(seasonObject.id);
-		season.setUrl(seasonObject.url);
-		season.setNumber(seasonObject.number);
-		season.setName(seasonObject.name);
-		season.setEpisodeOrder(seasonObject.episodeOrder);
-		season.setNetwork(getNetworkFromGsonObject(seasonObject.network));
-		season.setWebChannel(getWebChannelFromGsonObject(seasonObject.webChannel));
-		season.setImages(getImagesFromGsonObject(seasonObject.image));
-		season.setSummary(seasonObject.summary);
-		season.setLinks(getLinksFromGsonObject(seasonObject._links));
-		season.setPremiereDate(parseToLocalDate(seasonObject.premiereDate));
-		season.setEndDate(parseToLocalDate(seasonObject.endDate));
+		season.setId(seasonObject.getId());
+		season.setUrl(seasonObject.getUrl());
+		season.setNumber(seasonObject.getNumber());
+		season.setName(seasonObject.getName());
+		season.setEpisodeOrder(seasonObject.getEpisodeOrder());
+		season.setNetwork(getNetworkFromGsonObject(seasonObject.getNetwork()));
+		season.setWebChannel(getWebChannelFromGsonObject(seasonObject.getWebChannel()));
+		season.setImages(getImagesFromGsonObject(seasonObject.getImage()));
+		season.setSummary(seasonObject.getSummary());
+		season.setLinks(getLinksFromGsonObject(seasonObject.get_links()));
+		season.setPremiereDate(parseToLocalDate(seasonObject.getPremiereDate()));
+		season.setEndDate(parseToLocalDate(seasonObject.getEndDate()));
 		return season;
 	}
 

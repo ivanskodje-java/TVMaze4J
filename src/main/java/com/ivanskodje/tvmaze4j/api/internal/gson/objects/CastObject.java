@@ -19,11 +19,13 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import lombok.Getter;
+
 /**
  * @author Ivan Skodje on 27/09/2017
  */
-public class CastObject
+public @Getter class CastObject
 {
-	public PersonObject person;
-	public PersonObject character;
+	private PersonObject person;
+	private PersonObject character;
 }

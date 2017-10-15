@@ -19,6 +19,9 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +33,17 @@ import java.util.List;
  */
 public class EmbeddedObject
 {
-	public ShowObject show;
-	public List<EpisodeObject> episodes;
-	public List<CastObject> cast;
+	private @Getter ShowObject show;
+	private List<EpisodeObject> episodes;
+	private List<CastObject> cast;
+
+	public List<EpisodeObject> getEpisodes()
+	{
+		return (episodes != null) ? episodes : new ArrayList<>();
+	}
+
+	public List<CastObject> getCast()
+	{
+		return (cast != null) ? cast : new ArrayList<>();
+	}
 }

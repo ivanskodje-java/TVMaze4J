@@ -19,12 +19,14 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * A Person can be an Actor or Character from a {@link Show}.
  *
  * @author Ivan Skodje on 27/09/2017
  */
-public class Person
+public @Data class Person
 {
 	/**
 	 * Search relevance score.
@@ -35,189 +37,35 @@ public class Person
 	 * the result with the highest search relevance score will
 	 * return when searching for a single show.
 	 */
-	private float searchRelevanceScore = -1;
+	private float searchRelevanceScore;
 
 	/**
 	 * The Person's TVMaze ID.
 	 * IDs range 0 and up.
 	 */
-	private int id = -1;
+	private int id;
 
 	/**
 	 * Direct URL to the Person on TVMaze.com.
 	 */
-	private String url = "";
+	private String url;
 
 	/**
 	 * Person name.
 	 */
-	private String name = "";
+	private String name;
 
 	/**
 	 * Contains the URL addresses to the medium and original
 	 * pictures of the person.
 	 */
-	private Images images = null;
+	private Images images;
 
 	/**
 	 * Links may contain API URLs to the Person.
 	 * All have an API url to the person.
 	 */
-	private Links links = null;
-
-
-	/**
-	 * Returns the Person's search relevance score
-	 * from the search that fetched this,
-	 * or -1 if none has been set.
-	 *
-	 * @return Search relevance score.
-	 */
-	public float getSearchRelevanceScore()
-	{
-		return searchRelevanceScore;
-	}
-
-	/**
-	 * Sets the Person's search relevance score
-	 * from the search that fetched this,
-	 * if it is not null.
-	 *
-	 * @param searchRelevanceScore
-	 */
-	public void setSearchRelevanceScore(Float searchRelevanceScore)
-	{
-		if (searchRelevanceScore != null)
-		{
-			this.searchRelevanceScore = searchRelevanceScore;
-		}
-	}
-
-
-	/**
-	 * Returns the Person's TVMaze ID,
-	 * or -1 if none has been set.
-	 *
-	 * @return Person's TVMaze ID.
-	 */
-	public int getId()
-	{
-		return id;
-	}
-
-	/**
-	 * Sets the Person's TVMaze ID,
-	 * if it is not null.
-	 *
-	 * @param id Person's TVMaze ID.
-	 */
-	public void setId(Integer id)
-	{
-		if (id != null)
-		{
-			this.id = id;
-		}
-	}
-
-	/**
-	 * Returns a URL directly to the Person on TVMaze.com,
-	 * or an empty string if none have been set.
-	 *
-	 * @return URL to the Person.
-	 */
-	public String getUrl()
-	{
-		return url;
-	}
-
-	/**
-	 * Sets the TVMaze URL to the Person,
-	 * if it is not null.
-	 *
-	 * @param url URL to the Person.
-	 */
-	public void setUrl(String url)
-	{
-		if (url != null)
-		{
-			this.url = url;
-		}
-	}
-
-	/**
-	 * Returns the Person name,
-	 * or an empty string if none have been set.
-	 *
-	 * @return Person name.
-	 */
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * Sets the name of the Person,
-	 * if it is not null.
-	 *
-	 * @param name Person name.
-	 */
-	public void setName(String name)
-	{
-		if (name != null)
-		{
-			this.name = name;
-		}
-	}
-
-	/**
-	 * Returns the Person's images,
-	 * or null of none have been set.
-	 *
-	 * @return The Person's {@link Images}.
-	 */
-	public Images getImages()
-	{
-		return images;
-	}
-
-	/**
-	 * Sets the Person's images,
-	 * if it is not null.
-	 *
-	 * @param images The Person's {@link Images}.
-	 */
-	public void setImages(Images images)
-	{
-		if (images != null)
-		{
-			this.images = images;
-		}
-	}
-
-	/**
-	 * Returns the Links associated with this Person,
-	 * or null if none have been set.
-	 *
-	 * @return {@link Links}.
-	 */
-	public Links getLinks()
-	{
-		return links;
-	}
-
-	/**
-	 * Sets the Links associated with this Person,
-	 * if it is not null.
-	 *
-	 * @param links {@link Links}.
-	 */
-	public void setLinks(Links links)
-	{
-		if (links != null)
-		{
-			this.links = links;
-		}
-	}
+	private Links links;
 
 	/**
 	 * Returns the person name.

@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * Networks may run various shows.
  * Some familiar networks as example:
@@ -26,98 +28,23 @@ package com.ivanskodje.tvmaze4j.model;
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Network
+public @Data class Network
 {
 	/**
 	 * The Network's TVMaze ID.
 	 * IDs range 0 and up.
 	 */
-	private int id = -1;
+	private int id;
 
 	/**
 	 * Network name.
 	 */
-	private String name = "";
+	private String name;
 
 	/**
 	 * The Network's {@link Country}.
 	 */
-	private Country country = null;
-
-	/**
-	 * Returns the Network's TVMaze ID,
-	 * or -1 if none has been set.
-	 *
-	 * @return Network's TVMaze ID.
-	 */
-	public int getId()
-	{
-		return id;
-	}
-
-	/**
-	 * Sets the Network's TVMaze ID,
-	 * if it is not null.
-	 *
-	 * @param id Network's TVMaze ID.
-	 */
-	public void setId(Integer id)
-	{
-		if (id != null)
-		{
-			this.id = id;
-		}
-	}
-
-	/**
-	 * Returns the Network name,
-	 * or an empty string if none have been set.
-	 *
-	 * @return Network name.
-	 */
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * Sets the name of the Network,
-	 * if it is not null.
-	 *
-	 * @param name Network name.
-	 */
-	public void setName(String name)
-	{
-		if (name != null)
-		{
-			this.name = name;
-		}
-	}
-
-	/**
-	 * Returns the Country of the Network,
-	 * or null of none have been set.
-	 *
-	 * @return The Network's {@link Country}.
-	 */
-	public Country getCountry()
-	{
-		return country;
-	}
-
-	/**
-	 * Sets the Country of the Network,
-	 * if it is not null.
-	 *
-	 * @param country The Network's {@link Country}.
-	 */
-	public void setCountry(Country country)
-	{
-		if (country != null)
-		{
-			this.country = country;
-		}
-	}
+	private Country country;
 
 	/**
 	 * Returns the Country name.

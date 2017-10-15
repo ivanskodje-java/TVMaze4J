@@ -19,6 +19,9 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import com.ivanskodje.tvmaze4j.api.internal.TVMazeError;
+import lombok.Getter;
+
 /**
  * This represents a json Network object.
  * <p>
@@ -28,7 +31,17 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
  */
 public class NetworkObject
 {
-	public Integer id;
-	public String name;
-	public CountryObject country;
+	private Integer id;
+	private String name;
+	private @Getter CountryObject country;
+
+	public Integer getId()
+	{
+		return TVMazeError.getInteger(id);
+	}
+
+	public String getName()
+	{
+		return TVMazeError.getString(name);
+	}
 }

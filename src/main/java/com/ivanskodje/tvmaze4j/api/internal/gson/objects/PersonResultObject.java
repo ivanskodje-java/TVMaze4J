@@ -19,6 +19,9 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import com.ivanskodje.tvmaze4j.api.internal.TVMazeError;
+import lombok.Getter;
+
 /**
  * This represents a json Result object.
  * <p>
@@ -35,10 +38,15 @@ public class PersonResultObject
 	 * <p>
 	 * Range is expected to be between 0 and 40.
 	 */
-	public Float score;
+	private Float score;
 
 	/**
 	 * The Person object.
 	 */
-	public PersonObject person;
+	private @Getter PersonObject person;
+
+	public Float getScore()
+	{
+		return TVMazeError.getFloat(score);
+	}
 }

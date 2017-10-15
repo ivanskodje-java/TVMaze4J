@@ -19,96 +19,29 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * Country containing name, country code and time-zone.
  *
  * @author Ivan Skodje on 24/09/2017
  */
-public class Country
+public @Data class Country
 {
 	/**
 	 * Country name.
 	 */
-	private String name = "";
+	private String name;
 
 	/**
 	 * Country code.
 	 */
-	private String code = "";
+	private String code;
 
 	/**
 	 * The time-zone.
 	 */
-	private String timeZone = "";
-
-	/**
-	 * Returns the name of the country.
-	 *
-	 * @return Country name.
-	 */
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * Set the name, if it is not null.
-	 *
-	 * @param name Country name.
-	 */
-	public void setName(String name)
-	{
-		if (name != null)
-		{
-			this.name = name;
-		}
-	}
-
-	/**
-	 * Returns the country code.
-	 *
-	 * @return The Country code, or an empty string.
-	 */
-	public String getCode()
-	{
-		return code;
-	}
-
-	/**
-	 * Set the code, if it is not null.
-	 *
-	 * @param code Country code.
-	 */
-	public void setCode(String code)
-	{
-		if (code != null)
-		{
-			this.code = code;
-		}
-	}
-
-	/**
-	 * Returns the country's time-zone.
-	 *
-	 * @return Country's time-zone, or an empty string.
-	 */
-	public String getTimeZone()
-	{
-		return timeZone;
-	}
-
-	/**
-	 * Set the country's time-zone, but only if it is not null.
-	 *
-	 * @param timeZone Country's time-zone.
-	 */
-	public void setTimeZone(String timeZone)
-	{
-		if (timeZone != null)
-		{
-			this.timeZone = timeZone;
-		}
-	}
+	private String timeZone;
 
 	/**
 	 * A descriptive text of the country.

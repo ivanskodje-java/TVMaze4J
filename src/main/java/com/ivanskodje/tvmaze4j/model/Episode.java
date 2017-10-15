@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -32,23 +34,23 @@ import java.util.Date;
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Episode
+public @Data class Episode
 {
 	/**
 	 * The Episode's TVMaze ID.
 	 * IDs range 0 and up.
 	 */
-	private int id = -1;
+	private int id;
 
 	/**
 	 * Direct URL to the Episode on TVMaze.com.
 	 */
-	private String url = "";
+	private String url;
 
 	/**
 	 * Episode name.
 	 */
-	private String name = "";
+	private String name;
 
 	/**
 	 * Season number.
@@ -56,7 +58,7 @@ public class Episode
 	 * Seasons range 1 and up.
 	 * Until set, it will be by default 0.
 	 */
-	private int season = 0;
+	private int season;
 
 	/**
 	 * Episode number.
@@ -64,383 +66,53 @@ public class Episode
 	 * Seasons range 1 and up.
 	 * Until set, it will be by default 0.
 	 */
-	private int number = 0;
+	private int number;
 
 	/**
 	 * The date the episode aired.
 	 */
-	private LocalDate airDate = null;
+	private LocalDate airDate;
 
 	/**
 	 * The time the episode aired.
 	 */
-	private LocalTime airTime = null;
+	private LocalTime airTime;
 
 	/**
 	 * The date and time the episode aired.
 	 * TODO: Change to LocalDateTime.
 	 */
-	private Date airStamp = null;
+	private Date airStamp;
 
 	/**
 	 * The length of the episode in minutes.
 	 * <p>
 	 * Runtime vary, usually ranged 20 and up.
 	 */
-	private int runtime = -1;
+	private int runtime;
 
 	/**
 	 * Contains the URL addresses to the medium and original
 	 * episode images.
 	 */
-	private Images images = null;
+	private Images images;
 
 	/**
 	 * The Episode summary is a small description of the
 	 * episode with HTML formatting.
 	 */
-	private String summary = "";
+	private String summary;
 
 	/**
 	 * The Show this episode belongs in.
 	 */
-	private Show show = null;
+	private Show show;
 
 	/**
 	 * Links may contain API URLs to the episode, as well to
 	 * a previous- and next episode.
 	 */
-	private Links links = null;
-
-
-	/**
-	 * Returns the Episode's TVMaze ID,
-	 * or -1 if none has been set.
-	 *
-	 * @return Episode's TVMaze ID.
-	 */
-	public int getId()
-	{
-		return id;
-	}
-
-	/**
-	 * Sets the Episode's TVMaze ID,
-	 * if it is not null.
-	 *
-	 * @param id Episode's TVMaze ID.
-	 */
-	public void setId(Integer id)
-	{
-		if (id != null)
-		{
-			this.id = id;
-		}
-	}
-
-	/**
-	 * Returns a URL directly to the Episode on TVMaze.com,
-	 * or an empty string if none have been set.
-	 *
-	 * @return URL to the Episode.
-	 */
-	public String getUrl()
-	{
-		return url;
-	}
-
-	/**
-	 * Sets the TVMaze URL to the episode,
-	 * if it is not null.
-	 *
-	 * @param url URL to the Episode.
-	 */
-	public void setUrl(String url)
-	{
-		if (url != null)
-		{
-			this.url = url;
-		}
-	}
-
-	/**
-	 * Returns the episode name,
-	 * or an empty string if none have been set.
-	 *
-	 * @return Episode name.
-	 */
-	public String getName()
-	{
-		return name;
-	}
-
-	/**
-	 * Sets the name of the episode,
-	 * if it is not null.
-	 *
-	 * @param name Episode name.
-	 */
-	public void setName(String name)
-	{
-		if (name != null)
-		{
-			this.name = name;
-		}
-	}
-
-	/**
-	 * Returns the season number,
-	 * or 0 if none has been set.
-	 *
-	 * @return Season number.
-	 */
-	public int getSeason()
-	{
-		return season;
-	}
-
-	/**
-	 * Sets the season number,
-	 * if it is not null.
-	 *
-	 * @param season Season number.
-	 */
-	public void setSeason(Integer season)
-	{
-		if (season != null)
-		{
-			this.season = season;
-		}
-	}
-
-	/**
-	 * Returns the episode number,
-	 * or 0 if none has been set.
-	 *
-	 * @return Episode number.
-	 */
-	public int getNumber()
-	{
-		return number;
-	}
-
-	/**
-	 * Sets the episode number,
-	 * if it is not null.
-	 *
-	 * @param number Episode number.
-	 */
-	public void setNumber(Integer number)
-	{
-		if (number != null)
-		{
-			this.number = number;
-		}
-	}
-
-	/**
-	 * Returns the air date of the episode,
-	 * or null if none has been set.
-	 *
-	 * @return The episode's air date.
-	 */
-	public LocalDate getAirDate()
-	{
-		return airDate;
-	}
-
-	/**
-	 * Sets the episode's air date,
-	 * if it is not null.
-	 *
-	 * @param airDate The episode's air date.
-	 */
-	public void setAirDate(LocalDate airDate)
-	{
-		if (airDate != null)
-		{
-			this.airDate = airDate;
-		}
-	}
-
-	/**
-	 * Returns the air time of the episode,
-	 * or null if none has been set.
-	 *
-	 * @return The episode's air time.
-	 */
-	public LocalTime getAirTime()
-	{
-		return airTime;
-	}
-
-	/**
-	 * Sets the episode's air time,
-	 * if it is not null.
-	 *
-	 * @param airTime The episode's air time.
-	 */
-	public void setAirTime(LocalTime airTime)
-	{
-		if (airTime != null)
-		{
-			this.airTime = airTime;
-		}
-	}
-
-	/**
-	 * Returns the air stamp of the episode, which includes
-	 * both a date and time.
-	 * It returns null if none have been set.
-	 *
-	 * @return The episode's air stamp.
-	 */
-	public Date getAirStamp()
-	{
-		return airStamp;
-	}
-
-	/**
-	 * Sets the episode's air stamp, which includes
-	 * both the date and time,
-	 * if it is not null.
-	 *
-	 * @param airStamp The episode's air stamp.
-	 */
-	public void setAirStamp(Date airStamp)
-	{
-		if (airStamp != null)
-		{
-			this.airStamp = airStamp;
-		}
-	}
-
-	/**
-	 * Returns the runtimes of the episodes,
-	 * which is the length in minutes.
-	 * <p>
-	 * Returns -1 if none have been set.
-	 *
-	 * @return The episode's runtime.
-	 */
-	public int getRuntime()
-	{
-		return runtime;
-	}
-
-	/**
-	 * Sets the episode's runtime,
-	 * if it is not null.
-	 *
-	 * @param runtime The episode's runtime.
-	 */
-	public void setRuntime(Integer runtime)
-	{
-		if (runtime != null)
-		{
-			this.runtime = runtime;
-		}
-	}
-
-	/**
-	 * Returns the images associated with this episode,
-	 * or null if none have been set.
-	 *
-	 * @return The episode's associated {@link Images}.
-	 */
-	public Images getImages()
-	{
-		return images;
-	}
-
-	/**
-	 * Sets the episode's associated images,
-	 * if it is not null.
-	 *
-	 * @param images The episode's associated {@link Images}.
-	 */
-	public void setImages(Images images)
-	{
-		if (images != null)
-		{
-			this.images = images;
-		}
-	}
-
-	/**
-	 * Returns the episode's summary with the received in HTML format,
-	 * or an empty string if none have been set.
-	 *
-	 * @return Episode summary.
-	 */
-	public String getSummary()
-	{
-		return summary;
-	}
-
-	/**
-	 * Sets the episode's summary,
-	 * if it is not null.
-	 *
-	 * @param summary Episode summary.
-	 */
-	public void setSummary(String summary)
-	{
-		if (summary != null)
-		{
-			this.summary = summary;
-		}
-	}
-
-	/**
-	 * Returns the Show this episode runs on,
-	 * or null of none have been set.
-	 *
-	 * @return This episode's {@link Show}.
-	 */
-	public Show getShow()
-	{
-		return show;
-	}
-
-	/**
-	 * Sets the Show this episode runs on,
-	 * if it is not null.
-	 *
-	 * @param show This episode's {@link Show}.
-	 */
-	public void setShow(Show show)
-	{
-		if (show != null)
-		{
-			this.show = show;
-		}
-	}
-
-	/**
-	 * Returns the Links associated with this episode,
-	 * or null if none have been set.
-	 *
-	 * @return {@link Links}.
-	 */
-	public Links getLinks()
-	{
-		return links;
-	}
-
-	/**
-	 * Sets the Links associated with this episode,
-	 * if it is not null.
-	 *
-	 * @param links {@link Links}.
-	 */
-	public void setLinks(Links links)
-	{
-		if (links != null)
-		{
-			this.links = links;
-		}
-	}
+	private Links links;
 
 	/**
 	 * Returns the episode season, episode and name.

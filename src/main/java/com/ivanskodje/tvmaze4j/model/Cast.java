@@ -19,69 +19,24 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * A cast member has the role of both an actor and character.
  *
  * @author Ivan Skodje on 27/09/2017
  */
-public class Cast
+public @Data class Cast
 {
 	/**
 	 * The Actor in a Show.
 	 */
-	private Person actor = null;
+	private Person actor;
 
 	/**
 	 * The Character the actor portrays.
 	 */
-	private Person character = null;
-
-	/**
-	 * Returns the Actor,
-	 * or null if none have been set.
-	 *
-	 * @return The Actor.
-	 */
-	public Person getActor()
-	{
-		return actor;
-	}
-
-	/**
-	 * Sets the Actor,
-	 * if it is not null.
-	 *
-	 * @param actor The Actor.
-	 */
-	public void setActor(Person actor)
-	{
-		if (actor != null)
-		{
-			this.actor = actor;
-		}
-	}
-
-	/**
-	 * Returns the Character the actor portrays,
-	 * or null if none have been set.
-	 *
-	 * @return The Character.
-	 */
-	public Person getCharacter()
-	{
-		return character;
-	}
-
-	/**
-	 * Sets the Character the actor prortrays,
-	 * if it is not null.
-	 *
-	 * @param character The Character.
-	 */
-	public void setCharacter(Person character)
-	{
-		this.character = character;
-	}
+	private Person character;
 
 	/**
 	 * To string will be formatted as

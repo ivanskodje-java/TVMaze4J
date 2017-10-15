@@ -19,30 +19,96 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import com.ivanskodje.tvmaze4j.api.internal.TVMazeError;
+import com.sun.istack.internal.NotNull;
+import lombok.Getter;
+
 import java.util.Date;
 
 /**
- * This represents a json Episode object.
+ * This represents a json Episode object.'
+ * Will return defined "default values" on the missing received data.
  *
  * @author Ivan Skodje on 20/09/2017
  */
 public class EpisodeObject
 {
-	public Integer id;
-	public String url;
-	public String name;
-	public Integer season;
-	public Integer number;
-	public Date airdate;
-	public String airtime;
-	public Date airstamp;
-	public Integer runtime;
-	public ImageObject image;
-	public String summary;
-	public ShowObject show; // Received from schedule requests.
-	public LinksObject _links;
+	private Integer id;
+	private String url;
+	private String name;
+	private Integer season;
+	private Integer number;
+	private Date airdate;
+	private String airtime;
+	private Date airstamp;
+	private Integer runtime;
+	private @Getter ImageObject image;
+	private String summary;
+	private @Getter ShowObject show; // Received from schedule requests.
+	private @Getter LinksObject _links;
 
 	// TODO: Handle potential error statuses and messages differently.
-	public Integer status; // Used for error handling
-	public String message; // Error message
+	private Integer status; // Used for error handling
+	private String message; // Error message
+
+	public int getId()
+	{
+		return TVMazeError.getInteger(id);
+	}
+
+	public String getUrl()
+	{
+		return TVMazeError.getString(url);
+	}
+
+	public String getName()
+	{
+		return TVMazeError.getString(name);
+	}
+
+	public int getSeason()
+	{
+		return TVMazeError.getInteger(season);
+	}
+
+	public int getNumber()
+	{
+		return TVMazeError.getInteger(number);
+	}
+
+	public Date getAirdate()
+	{
+		return airdate;
+	}
+
+	public String getAirtime()
+	{
+		return TVMazeError.getString(airtime);
+	}
+
+	public Date getAirstamp()
+	{
+		return airstamp;
+	}
+
+	public int getRuntime()
+	{
+		return TVMazeError.getInteger(runtime);
+	}
+
+	public String getSummary()
+	{
+		return TVMazeError.getString(summary);
+	}
+
+
+	public Integer getStatus()
+	{
+		return TVMazeError.getInteger(status);
+	}
+
+	public String getMessage()
+	{
+		return TVMazeError.getString(message);
+	}
 }

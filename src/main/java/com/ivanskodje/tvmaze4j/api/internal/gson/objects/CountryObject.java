@@ -19,6 +19,9 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import com.ivanskodje.tvmaze4j.api.internal.TVMazeError;
+import lombok.Getter;
+
 /**
  * This represents a json Country object.
  * <p>
@@ -28,7 +31,22 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
  */
 public class CountryObject
 {
-	public String name;
-	public String code;
-	public String timezone;
+	private String name;
+	private String code;
+	private String timezone;
+
+	public String getName()
+	{
+		return TVMazeError.getString(name);
+	}
+
+	public String getCode()
+	{
+		return TVMazeError.getString(code);
+	}
+
+	public String getTimezone()
+	{
+		return TVMazeError.getString(timezone);
+	}
 }

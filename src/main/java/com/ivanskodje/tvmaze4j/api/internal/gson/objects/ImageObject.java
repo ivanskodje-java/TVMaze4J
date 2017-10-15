@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
 
+import com.ivanskodje.tvmaze4j.api.internal.TVMazeError;
+
 /**
  * This represents a json Image object.
  *
@@ -26,6 +28,16 @@ package com.ivanskodje.tvmaze4j.api.internal.gson.objects;
  */
 public class ImageObject
 {
-	public String medium;
-	public String original;
+	private String medium;
+	private String original;
+
+	public String getMedium()
+	{
+		return TVMazeError.getString(medium);
+	}
+
+	public String getOriginal()
+	{
+		return TVMazeError.getString(original);
+	}
 }

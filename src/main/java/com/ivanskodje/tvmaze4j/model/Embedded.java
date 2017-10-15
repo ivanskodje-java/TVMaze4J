@@ -19,6 +19,8 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -29,97 +31,22 @@ import java.util.List;
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Embedded
+public @Data class Embedded
 {
 	/**
 	 * A Show.
 	 */
-	private Show show = null;
+	private Show show;
 
 	/**
 	 * A list of episodes.
 	 */
-	private List<Episode> episodes = null;
+	private List<Episode> episodes;
 
 	/**
 	 * A list of cast members.
 	 */
-	private List<Cast> castMembers = null;
-
-	/**
-	 * Returns the Show embedded,
-	 * or null if none have been set.
-	 *
-	 * @return A {@link Show} or <code>null</code>.
-	 */
-	public Show getShow()
-	{
-		return show;
-	}
-
-	/**
-	 * Sets the Show,
-	 * if it is not null.
-	 *
-	 * @param show A {@link Show}.
-	 */
-	public void setShow(Show show)
-	{
-		if (show != null)
-		{
-			this.show = show;
-		}
-	}
-
-	/**
-	 * Returns the Episode embedded,
-	 * or null if none have been set.
-	 *
-	 * @return An {@link Episode} or <code>null</code>.
-	 */
-	public List<Episode> getEpisodes()
-	{
-		return episodes;
-	}
-
-	/**
-	 * Sets the Episode,
-	 * if it is not null.
-	 *
-	 * @param episodes An {@link Episode} or <code>null</code>.
-	 */
-	public void setEpisodes(List<Episode> episodes)
-	{
-		if (episodes != null)
-		{
-			this.episodes = episodes;
-		}
-	}
-
-	/**
-	 * Returns the Cast Members,
-	 * or null if none have been set.
-	 *
-	 * @return A list of {@link Cast} members.
-	 */
-	public List<Cast> getCastMembers()
-	{
-		return castMembers;
-	}
-
-	/**
-	 * Sets the Cast Members,
-	 * if it is not null.
-	 *
-	 * @param castMembers
-	 */
-	public void setCastMembers(List<Cast> castMembers)
-	{
-		if (castMembers != null)
-		{
-			this.castMembers = castMembers;
-		}
-	}
+	private List<Cast> castMembers;
 
 	/**
 	 * To string will be formatted as either

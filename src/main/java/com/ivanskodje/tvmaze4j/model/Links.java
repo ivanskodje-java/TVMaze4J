@@ -19,102 +19,29 @@
 
 package com.ivanskodje.tvmaze4j.model;
 
+import lombok.Data;
+
 /**
  * API Links to self, previous or next episode.
  *
  * @author Ivan Skodje on 23/09/2017
  */
-public class Links
+public @Data class Links
 {
 	/**
 	 * API URL to own Show or episode.
 	 */
-	private String self = "";
+	private String self;
 
 	/**
 	 * API URL to the previous episode.
 	 */
-	private String previousEpisode = "";
+	private String previousEpisode;
 
 	/**
 	 * API URL to the next episode.
 	 */
-	private String nextEpisode = "";
-
-	/**
-	 * Returns API URL to the own Show/episode,
-	 * or an empty string if none have been set.
-	 *
-	 * @return API URL to own Show/episode.
-	 */
-	public String getSelf()
-	{
-		return self;
-	}
-
-	/**
-	 * Sets the API URL to the own Show/episode,
-	 * if it is not null.
-	 *
-	 * @param self API URL to own Show/episode.
-	 */
-	public void setSelf(String self)
-	{
-		if (self != null)
-		{
-			this.self = self;
-		}
-	}
-
-	/**
-	 * Returns API URL to the previous episode,
-	 * or an empty string of none have been set.
-	 *
-	 * @return API URL to previous episode.
-	 */
-	public String getPreviousEpisode()
-	{
-		return previousEpisode;
-	}
-
-	/**
-	 * Sets the API URL to previous episode,
-	 * if it is not null.
-	 *
-	 * @param previousEpisode API URL to previous episode.
-	 */
-	public void setPreviousEpisode(String previousEpisode)
-	{
-		if (previousEpisode != null)
-		{
-			this.previousEpisode = previousEpisode;
-		}
-	}
-
-	/**
-	 * Returns API URL to the next episode,
-	 * or an empty string of none have been set.
-	 *
-	 * @return API URL to next episode.
-	 */
-	public String getNextEpisode()
-	{
-		return nextEpisode;
-	}
-
-	/**
-	 * Sets the API URL to next episode,
-	 * if it is not null.
-	 *
-	 * @param nextEpisode API URL to next episode.
-	 */
-	public void setNextEpisode(String nextEpisode)
-	{
-		if (nextEpisode != null)
-		{
-			this.nextEpisode = nextEpisode;
-		}
-	}
+	private String nextEpisode;
 
 	/**
 	 * Returns the API URLs.
